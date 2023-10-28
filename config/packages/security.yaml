@@ -17,6 +17,19 @@ security:
             lazy: true
             provider: app_user_provider
 
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                enable_csrf: true
+#                default_target_path: blog_index # this is where i will set the route default after login
+
+            logout:
+                path: app_logout
+                # The name of the route to redirect to after logging out
+                target: app_login
+                # Secure the logout against CSRF
+#                enable_csrf: true
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -28,6 +41,16 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        # this is a catch-all for the admin area
+        # additional security lives in the controllers
+        - { path: '^/admin', roles: ROLE_ADMIN }
+
+    # The ROLE_ADMIN role inherits from the ROLE_USER role
+    role_hierarchy:
+        ROLE_NURSE: ROLE_USER
+        ROLE_PHYSICIAN: ROLE_USER
+        ROLE_ADMIN: [ROLE_PHYSICIAN, ROLE_NURSE]
+        ROLE_SUPERADMIN: ROLE_ADMIN
 
 when@test:
     security:
