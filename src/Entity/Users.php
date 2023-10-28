@@ -15,6 +15,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use CommonEntityTrait;
 
+    final public const ROLE_CREW        = 'ROLE_CREW';
+    final public const ROLE_NURSE       = 'ROLE_NURSE';
+    final public const ROLE_PHYSICIAN   = 'ROLE_PHYSICIAN';
+    final public const ROLE_ADMIN       = 'ROLE_ADMIN';
+    final public const ROLE_SUPERADMIN       = 'ROLE_SUPERADMIN';
+
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
@@ -68,9 +74,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = self::ROLE_CREW;
+        }
         return array_unique($roles);
     }
 
