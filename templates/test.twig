@@ -11,4 +11,14 @@
         <div {{ stimulus_target('say-hello', 'output') }}></div>
     </div>
     <div {{ stimulus_controller('hello') }}></div>
+
+
+
+    {#    {{ dump(_context) }}#}
+    <br>
+    Whole URL{{ app.request.uri }}
+    <br>
+    this will only return path and no GET params{{ app.request.pathinfo }}
+    <br>
+    return path with GET PARAMS{{ app.request.requesturi }}
 {%  endblock %}
