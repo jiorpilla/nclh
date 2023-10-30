@@ -1,3 +1,6 @@
+#ignore migrations for now
+/migrations
+
 /.idea
 ###> symfony/framework-bundle ###
 /.env
