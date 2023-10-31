@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Branch{% endblock %}
+
+{% block contents %}
+    <h1>Branch</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ branch.name }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ branch.id }}</td>
+            </tr>
+            <tr>
+                <th>Deleted</th>
+                <td>{{ branch.deleted }}</td>
+            </tr>
+            <tr>
+                <th>Created_by</th>
+                <td>{{ get_username(branch.createdBy) }}</td>
+            </tr>
+            <tr>
+                <th>Updated_by</th>
+                <td>{{ get_username(branch.updatedBy) }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ branch.createdAt ? branch.createdAt|date('Y-m-d H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ branch.updatedAt ? branch.updatedAt|date('Y-m-d H:i') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_branch_index') }}">back to list</a>
+
+    <a href="{{ path('app_branch_edit', {'id': branch.id}) }}">edit</a>
+
+    {{ include('branch/_delete_form.html.twig') }}
+{% endblock %}
