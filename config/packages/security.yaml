@@ -44,12 +44,12 @@ security:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
         - { path: '^/admin', roles: ROLE_ADMIN }
-
-    # The ROLE_ADMIN role inherits from the ROLE_USER role
     role_hierarchy:
-        ROLE_NURSE: ROLE_USER
-        ROLE_PHYSICIAN: ROLE_USER
-        ROLE_ADMIN: [ROLE_PHYSICIAN, ROLE_NURSE]
+        ROLE_STAFF: ROLE_USER
+        ROLE_NURSE: ROLE_STAFF
+        ROLE_PHYSICIAN: ROLE_STAFF
+        ROLE_LABTECHNICIAN: ROLE_STAFF
+        ROLE_ADMIN: [ROLE_PHYSICIAN, ROLE_LABTECHNICIAN, ROLE_NURSE]
         ROLE_SUPERADMIN: ROLE_ADMIN
 
 when@test:
