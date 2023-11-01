@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+
+    <div {{ stimulus_controller('preview_image') }}>
+{#        <img src="{{ vich_uploader_asset(branch, 'image') }}" alt="{{ branch.name }}">#}
+        <img src="{{ vich_uploader_asset(branch) }}"
+             alt="{{ branch.name }}"
+             {{ stimulus_target('preview_image', 'preview') }}
+             style="width:300px;">
+        {{ form_widget(form.imageFile, {
+            attr: {
+                'data-preview-image-target': "input",
+                'data-action': "preview-image#img_preview"
+            }
+        }) }}
+
+    </div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
