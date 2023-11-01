@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
 use App\Entity\Users;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -53,13 +52,12 @@ class AppFixtures extends Fixture
         $ulid = new Ulid();
         $date_time = new \DateTime();
         return [
-            // $userData = [$username, $password, $email, $roles, $deleted, $created_by, $created_at, $updated_by, $updated_at];
             ['superadmin', 'superadmin', 'jiorpilla@gmail.com', [Users::ROLE_SUPERADMIN], 0, $ulid, $date_time, $ulid, $date_time],
             ['admin', 'admin', 'admin@gmail.com', [Users::ROLE_ADMIN], 0, $ulid, $date_time, $ulid, $date_time],
             ['nurse', 'nurse', 'nurse@gmail.com', [Users::ROLE_NURSE], 0, $ulid, $date_time, $ulid, $date_time],
-            ['physician', 'physician', 'jiorpilla@gmail.com', [Users::ROLE_PHYSICIAN], 0, $ulid, $date_time, $ulid, $date_time],
-            ['crew', 'crew', 'jiorpilla@gmail.com', [Users::ROLE_CREW], 0, $ulid, $date_time, $ulid, $date_time],
-
+            ['physician', 'physician', 'physician@gmail.com', [Users::ROLE_PHYSICIAN], 0, $ulid, $date_time, $ulid, $date_time],
+            ['labtech', 'labtech', 'labtech@gmail.com', [Users::ROLE_LABTECHNICIAN], 0, $ulid, $date_time, $ulid, $date_time],
+            ['crew', 'crew', 'crew@gmail.com', [Users::ROLE_CREW], 0, $ulid, $date_time, $ulid, $date_time],
         ];
     }
 }

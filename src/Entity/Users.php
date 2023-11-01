@@ -15,11 +15,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use CommonEntityTrait;
 
-    final public const ROLE_CREW        = 'ROLE_CREW';
-    final public const ROLE_NURSE       = 'ROLE_NURSE';
-    final public const ROLE_PHYSICIAN   = 'ROLE_PHYSICIAN';
-    final public const ROLE_ADMIN       = 'ROLE_ADMIN';
-    final public const ROLE_SUPERADMIN       = 'ROLE_SUPERADMIN';
+    final public const ROLE_CREW            = 'ROLE_CREW';
+    final public const ROLE_NURSE           = 'ROLE_NURSE';
+    final public const ROLE_LABTECHNICIAN   = 'ROLE_LABTECHNICIAN';
+    final public const ROLE_PHYSICIAN       = 'ROLE_PHYSICIAN';
+    final public const ROLE_ADMIN           = 'ROLE_ADMIN';
+    final public const ROLE_SUPERADMIN      = 'ROLE_SUPERADMIN';
 
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
@@ -36,9 +37,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
 
-
     #[ORM\Column(type: 'ulid', nullable: true)]
     private ?Ulid $physician_id = null;
+
+    #[ORM\Column(type: 'ulid', nullable: true)]
+    private ?Ulid $lab_technician_id = null;
 
     #[ORM\Column(type: 'ulid', nullable: true)]
     private ?Ulid $nurse_id = null;
@@ -133,6 +136,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhysicianId(?Ulid $physician_id): static
     {
         $this->physician_id = $physician_id;
+
+        return $this;
+    }
+
+    public function getLabTechnicianId(): ?Ulid
+    {
+        return $this->lab_technician_id;
+    }
+
+    public function setLabTechnicianId(?Ulid $lab_technician_id): static
+    {
+        $this->lab_technician_id = $lab_technician_id;
 
         return $this;
     }
