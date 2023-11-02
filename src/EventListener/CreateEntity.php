@@ -6,7 +6,6 @@ use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 #[AsDoctrineListener(event: Events::prePersist, priority: 500, connection: 'default')]
 class CreateEntity
@@ -27,6 +26,10 @@ class CreateEntity
     public function prePersist(PrePersistEventArgs $args): void
     {
         $user = $this->security->getUser();
+
+        if(empty($user)){
+            return;
+        }
 
         $deleted = 0;
         $datetime = new \DateTime();
