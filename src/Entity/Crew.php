@@ -29,6 +29,9 @@ class Crew
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $seaman_book_number = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $company = null;
+
     public function getIdNumber(): ?string
     {
         return $this->id_number;
@@ -97,6 +100,18 @@ class Crew
     public function setSeamanBookNumber(?string $seaman_book_number): static
     {
         $this->seaman_book_number = $seaman_book_number;
+
+        return $this;
+    }
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?string $company): static
+    {
+        $this->company = $company;
 
         return $this;
     }
