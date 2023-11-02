@@ -3,15 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\PhysiciansRepository;
+use App\Utils\Traits\PersonEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PhysiciansRepository::class)]
 class Physicians
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use PersonEntityTrait;
+
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $specialty = null;
@@ -21,11 +20,6 @@ class Physicians
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $physician_license_number = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getSpecialty(): ?string
     {
