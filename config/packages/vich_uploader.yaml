@@ -10,4 +10,4 @@ vich_uploader:
                 service: Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer
                 options:
                     date_time_format: 'Y/m/d'
-                    date_time_property: 'upload_datetime'
+                    date_time_property: 'uploadDatetime'

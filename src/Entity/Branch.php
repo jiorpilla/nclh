@@ -32,19 +32,23 @@ class Branch
     private ?int $imageSize = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $upload_datetime = null;
+    private ?\DateTimeInterface $uploadDatetime = null;
 
     public function getUploadDatetime(): ?\DateTimeInterface
     {
-        return $this->upload_datetime;
+        if($this->uploadDatetime == null){
+            return new \Datetime();
+        }
+        return $this->uploadDatetime;
     }
 
-    public function setUploadDatetime(?\DateTimeInterface $upload_datetime): static
+    public function setUploadDatetime(?\DateTimeInterface $uploadDatetime): static
     {
-        $this->upload_datetime = $upload_datetime;
+        $this->uploadDatetime = $uploadDatetime;
 
         return $this;
     }
+
     public function getName(): ?string
     {
         return $this->name;
