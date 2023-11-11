@@ -2,6 +2,7 @@
 
 namespace App\Utils\Traits;
 
+use App\Entity\Address;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -42,26 +43,8 @@ trait PersonEntityTrait
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $address_text = null;
-
-    #[ORM\Column(length: 150, nullable: true)]
-    private ?string $address_street = null;
-
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $address_barangay = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $address_city = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $address_province = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $address_region = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $address_postalcode = null;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Address $Address = null;
 
     public function getFirstName(): ?string
     {
@@ -195,86 +178,14 @@ trait PersonEntityTrait
         return $this;
     }
 
-    public function getAddressText(): ?string
+    public function getAddress(): ?Address
     {
-        return $this->address_text;
+        return $this->Address;
     }
 
-    public function setAddressText(?string $address_text): static
+    public function setAddress(?Address $Address): static
     {
-        $this->address_text = $address_text;
-
-        return $this;
-    }
-
-    public function getAddressStreet(): ?string
-    {
-        return $this->address_street;
-    }
-
-    public function setAddressStreet(?string $address_street): static
-    {
-        $this->address_street = $address_street;
-
-        return $this;
-    }
-
-    public function getAddressBarangay(): ?string
-    {
-        return $this->address_barangay;
-    }
-
-    public function setAddressBarangay(?string $address_barangay): static
-    {
-        $this->address_barangay = $address_barangay;
-
-        return $this;
-    }
-
-    public function getAddressCity(): ?string
-    {
-        return $this->address_city;
-    }
-
-    public function setAddressCity(string $address_city): static
-    {
-        $this->address_city = $address_city;
-
-        return $this;
-    }
-
-    public function getAddressProvince(): ?string
-    {
-        return $this->address_province;
-    }
-
-    public function setAddressProvince(?string $address_province): static
-    {
-        $this->address_province = $address_province;
-
-        return $this;
-    }
-
-    public function getAddressRegion(): ?string
-    {
-        return $this->address_region;
-    }
-
-    public function setAddressRegion(?string $address_region): static
-    {
-        $this->address_region = $address_region;
-
-        return $this;
-    }
-
-    public function getAddressPostalcode(): ?int
-    {
-        return $this->address_postalcode;
-    }
-
-    public function setAddressPostalcode(?int $address_postalcode): static
-    {
-        $this->address_postalcode = $address_postalcode;
+        $this->Address = $Address;
 
         return $this;
     }
