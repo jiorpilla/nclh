@@ -1,0 +1,45 @@
+<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
+        <span class="fs-5 d-none d-sm-inline">Menu</span>
+    </a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Hello {{ app.user.username }}</p>
+    {% endif %}
+    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+        <li class="nav-item">
+            <a href="/dashboard" class="nav-link align-middle px-0">
+                <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/crew" class="nav-link align-middle px-0">
+                <span class="ms-1 d-none d-sm-inline">Crew</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/nurse" class="nav-link align-middle px-0">
+                <span class="ms-1 d-none d-sm-inline">Nurses</span>
+            </a>
+        </li>
+        <li>
+            <a href="/lab_technician" class="nav-link px-0 align-middle">
+                <span class="ms-1 d-none d-sm-inline">Lab Technician</span></a>
+        </li>
+        <li>
+            <a href="/physician" class="nav-link px-0 align-middle">
+                <span class="ms-1 d-none d-sm-inline">Physician</span></a>
+        </li>
+        <li>
+            <a href="/room" class="nav-link px-0 align-middle">
+                <span class="ms-1 d-none d-sm-inline">Rooms</span></a>
+        </li>
+        <li>
+            <a href="/room_queue" class="nav-link px-0 align-middle">
+                <span class="ms-1 d-none d-sm-inline">Room Queue</span></a>
+        </li>
+        <li>
+            <a href="/branch" class="nav-link px-0 align-middle">
+                <span class="ms-1 d-none d-sm-inline">Branch</span></a>
+        </li>
+    </ul>
+</div>

@@ -15,17 +15,31 @@
     <body>
 
         <a href="{{ logout_path() }}">logout</a>
+
         {% block body %}
+
             {% block header %}
                 {% include 'components/header.html.twig' %}
             {% endblock %}
-            <div class="contents">
-                {% block contents %}
-                {% endblock %}
+            <div class="container-fluid contents">
+                <div class="row flex-nowrap">
+
+                    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark-subtle">
+                        {% block sidebar %}
+                            {% include 'components/sidebar.html.twig' %}
+                        {% endblock %}
+                    </div>
+
+                    <div class="col py-3">
+                        {% block contents %}
+                        {% endblock %}
+                    </div>
+                </div>
             </div>
             {% block footer %}
                 {% include 'components/footer.html.twig' %}
             {% endblock %}
+
         {% endblock %}
     </body>
 </html>
