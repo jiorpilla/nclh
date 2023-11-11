@@ -46,8 +46,6 @@ class AdminController extends AbstractController
 //
 //        $response = new QrCodeResponse($result);
 
-
-
 //        return $response;
         return  $this->render('admin/qr.twig', [
 //            'result' => $result,
@@ -56,4 +54,10 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/webcam' ,name: 'webcam')]
+    public function webcam(): Response
+    {
+        return  $this->render('admin/webcam.twig', [
+        ]);
+    }
 }

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{%  block contents %}
+
+    <h1>Camera Activation/Deactivation Example</h1>
+
+    <div {{ stimulus_controller('webcam') }}>
+        <button {{ stimulus_action('webcam', 'activateCamera') }} {{ stimulus_target('webcam', 'activateBtn') }}>Activate Camera</button>
+        <button {{ stimulus_action('webcam', 'deactivateCamera') }} {{ stimulus_target('webcam', 'deactivateBtn') }} style="display: none;">Deactivate Camera</button>
+        <video {{ stimulus_target('webcam', 'webcam') }} width="640" height="480" style="display: none;" autoplay></video>
+        <button {{ stimulus_action('webcam', 'captureImage') }} {{ stimulus_target('webcam', 'captureBtn') }}style="display: none;">Capture Image</button>
+        <canvas {{ stimulus_target('webcam', 'canvas') }} width="640" height="480" style="display: none;"></canvas>
+        <div {{ stimulus_target('webcam', 'photoContainer') }}></div>
+    </div>
+
+
+{%  endblock %}
