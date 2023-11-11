@@ -3,31 +3,22 @@
 {% block title %}Branch index{% endblock %}
 
 {% block contents %}
-    <h1>Branch index</h1>
+    <h1>Branch List</h1>
 
+
+    <a class="btn btn-dark"
+       href="{{ path('app_branch_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Id</th>
-                <th>Deleted</th>
-                <th>Created_by</th>
-                <th>Updated_by</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for branch in branches %}
             <tr>
-                <td>{{ branch.name }}</td>
-                <td>{{ branch.id }}</td>
-                <td>{{ branch.deleted }}</td>
-                <td>{{ branch.createdBy }}</td>
-                <td>{{ branch.updatedBy }}</td>
-                <td>{{ branch.createdAt ? branch.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ branch.updatedAt ? branch.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td><a href="{{ path('app_branch_show', {'id': branch.id}) }}">{{ branch.name }}</a></td>
                 <td>
                     <a href="{{ path('app_branch_show', {'id': branch.id}) }}">show</a>
                     <a href="{{ path('app_branch_edit', {'id': branch.id}) }}">edit</a>
@@ -40,6 +31,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_branch_new') }}">Create new</a>
 {% endblock %}
