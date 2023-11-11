@@ -24,7 +24,7 @@ class RoomQueue
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
-    
+
     public function getRoom(): ?Room
     {
         return $this->Room;
