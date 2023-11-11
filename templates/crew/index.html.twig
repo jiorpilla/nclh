@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crew index{% endblock %}
+
+{% block contents %}
+    <h1>Crew index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID number</th>
+                <th>Position</th>
+                <th>Ship</th>
+                <th>Nationality</th>
+                <th>Passport No</th>
+                <th>Seaman's book No'</th>
+                <th>Company</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Middle Name</th>
+                <th>Suffix</th>
+                <th>Gender</th>
+                <th>Birth date</th>
+                <th>Location Of Birth</th>
+                <th>Phone No</th>
+                <th>Email</th>
+                <th>Civil status</th>
+                <th>Picture</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for crew in crews %}
+            <tr>
+                <td>{{ crew.idNumber }}</td>
+                <td>{{ crew.position }}</td>
+                <td>{{ crew.ship }}</td>
+                <td>{{ crew.nationality }}</td>
+                <td>{{ crew.passportNumber }}</td>
+                <td>{{ crew.seamanBookNumber }}</td>
+                <td>{{ crew.company }}</td>
+                <td>{{ crew.firstName }}</td>
+                <td>{{ crew.lastName }}</td>
+                <td>{{ crew.middleName }}</td>
+                <td>{{ crew.suffix }}</td>
+                <td>{{ crew.gender }}</td>
+                <td>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d') : '' }}</td>
+                <td>{{ crew.locationOfBirth }}</td>
+                <td>{{ crew.phoneNumber }}</td>
+                <td>{{ crew.email }}</td>
+                <td>{{ crew.civilStatus }}</td>
+                <td>{{ crew.picture }}</td>
+                <td>
+                    <a href="{{ path('app_crew_show', {'id': crew.id}) }}">show</a>
+                    <a href="{{ path('app_crew_edit', {'id': crew.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="25">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_crew_new') }}">Create new</a>
+{% endblock %}
