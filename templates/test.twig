@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{%  block body %}
+{%  block contents %}
     <div {{ stimulus_controller('say-hello') }}>
         <input type="text" {{ stimulus_target('say-hello', 'name') }}>
 
