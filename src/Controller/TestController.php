@@ -15,7 +15,7 @@ class TestController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 //        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-        dump($hasAccess);
+//        dump($hasAccess);
         return $this->render('test.twig', [
         ]);
     }
