@@ -2,6 +2,7 @@
 
 namespace App\EventListener;
 
+use App\Entity\Address;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
@@ -21,10 +22,18 @@ class UpdateEntity
     {
         $user = $this->security->getUser();
 
+        $entity = $args->getObject();
+
+        if(empty($user)){
+            return;
+        }
+        if($entity instanceof Address){
+            return;
+        }
+
         $datetime = new \DateTime();
         $user_id = $user->getId();
 
-        $entity = $args->getObject();
         $entity->setUpdatedBy($user_id);
         $entity->setUpdatedAt($datetime);
 

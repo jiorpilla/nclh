@@ -2,6 +2,7 @@
 
 namespace App\EventListener;
 
+use App\Entity\Address;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
@@ -27,7 +28,12 @@ class CreateEntity
     {
         $user = $this->security->getUser();
 
+        $entity = $args->getObject();
+
         if(empty($user)){
+            return;
+        }
+        if($entity instanceof Address){
             return;
         }
 
@@ -35,7 +41,6 @@ class CreateEntity
         $datetime = new \DateTime();
         $user_id = $user->getId();
 
-        $entity = $args->getObject();
         $entity->setDeleted($deleted);
         $entity->setCreatedBy($user_id);
         $entity->setCreatedAt($datetime);
