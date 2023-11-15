@@ -40,7 +40,7 @@ class CrewIdNumber
             $lastAssignedNumber = (int) $lastAssignedIdNumber;
         } else {
             // If no crew members exist yet, start from 1
-            $lastAssignedNumber = 1;
+            $lastAssignedNumber = 0;
         }
         return $lastAssignedNumber;
     }
