@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Crew;
+use App\Form\Type\GenderType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,7 +18,7 @@ class CrewType extends AbstractType
             ->add('last_name')
             ->add('middle_name')
             ->add('suffix')
-            ->add('gender')
+            ->add('gender',GenderType::class)
             ->add('date_of_birth', DateType::class)
             ->add('location_of_birth')
             ->add('phone_number')
@@ -29,7 +30,6 @@ class CrewType extends AbstractType
             ->add('passport_number')
             ->add('seaman_book_number')
             ->add('company')
-            ->add('picture')
             ->add('Address', AddressType::class)
         ;
     }
