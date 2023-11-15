@@ -2,16 +2,15 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\BaseController;
 use Endroid\QrCode\Builder\BuilderInterface;
-use Endroid\QrCodeBundle\Response\QrCodeResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Uid\NilUlid;
 use Symfony\Component\Uid\Ulid;
 
 #[Route('/admin', name: 'admin_')]
-class AdminController extends AbstractController
+class AdminController extends BaseController
 {
     #[Route('/', name: 'test')]
     public function test()

@@ -2,17 +2,17 @@
 
 namespace App\Controller\Branch;
 
+use App\Controller\BaseController;
 use App\Entity\Branch;
 use App\Form\BranchType;
 use App\Repository\BranchRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/branch')]
-class BranchController extends AbstractController
+class BranchController extends BaseController
 {
     #[Route('/', name: 'app_branch_index', methods: ['GET'])]
     public function index(BranchRepository $branchRepository): Response

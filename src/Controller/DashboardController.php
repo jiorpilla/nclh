@@ -7,11 +7,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;
 use Faker\ORM\Doctrine\Populator;
 use Psr\Log\LoggerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DashboardController extends AbstractController
+class DashboardController extends BaseController
 {
     private $logger;
     private $entityManager;

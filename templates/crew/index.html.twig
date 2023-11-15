@@ -5,27 +5,18 @@
 {% block contents %}
     <h1>Crew index</h1>
 
+    <a class="btn btn-dark" href="{{ path('app_crew_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
                 <th>ID number</th>
-                <th>Position</th>
-                <th>Ship</th>
-                <th>Nationality</th>
-                <th>Passport No</th>
-                <th>Seaman's book No'</th>
-                <th>Company</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Middle Name</th>
-                <th>Suffix</th>
+                <th>Full Name</th>
                 <th>Gender</th>
                 <th>Birth date</th>
-                <th>Location Of Birth</th>
                 <th>Phone No</th>
                 <th>Email</th>
-                <th>Civil status</th>
-                <th>Picture</th>
+                <th>Position</th>
+                <th>Company</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -33,25 +24,18 @@
         {% for crew in crews %}
             <tr>
                 <td>{{ crew.idNumber }}</td>
-                <td>{{ crew.position }}</td>
-                <td>{{ crew.ship }}</td>
-                <td>{{ crew.nationality }}</td>
-                <td>{{ crew.passportNumber }}</td>
-                <td>{{ crew.seamanBookNumber }}</td>
-                <td>{{ crew.company }}</td>
-                <td>{{ crew.firstName }}</td>
-                <td>{{ crew.lastName }}</td>
-                <td>{{ crew.middleName }}</td>
-                <td>{{ crew.suffix }}</td>
+                <td>
+                    <a href="{{ path('app_crew_show', {'id': crew.id}) }}">
+                        {{ crew.lastName }}, {{ crew.lastName }} {{ crew.middleName|first }}., {{ crew.suffix }}
+                    </a>
+                </td>
                 <td>{{ crew.gender }}</td>
                 <td>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d') : '' }}</td>
-                <td>{{ crew.locationOfBirth }}</td>
                 <td>{{ crew.phoneNumber }}</td>
                 <td>{{ crew.email }}</td>
-                <td>{{ crew.civilStatus }}</td>
-                <td>{{ crew.picture }}</td>
+                <td>{{ crew.position }}</td>
+                <td>{{ crew.company }}</td>
                 <td>
-                    <a href="{{ path('app_crew_show', {'id': crew.id}) }}">show</a>
                     <a href="{{ path('app_crew_edit', {'id': crew.id}) }}">edit</a>
                 </td>
             </tr>
@@ -63,5 +47,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_crew_new') }}">Create new</a>
+    <div id="pagination-container">
+        {{ knp_pagination_render(crews) }}
+    </div>
 {% endblock %}

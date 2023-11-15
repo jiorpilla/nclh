@@ -2,23 +2,33 @@
 
 namespace App\Controller\Crew;
 
+use App\Controller\BaseController;
 use App\Entity\Crew;
 use App\Form\CrewType;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/crew')]
-class CrewController extends AbstractController
+class CrewController extends BaseController
 {
     #[Route('/', name: 'app_crew_index', methods: ['GET'])]
-    public function index(CrewRepository $crewRepository): Response
+    public function index(Request $request, CrewRepository $crewRepository, PaginatorInterface $paginator): Response
     {
+        $query = $crewRepository->createQueryBuilder('c')
+            ->getQuery();
+
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->get('page', 1),
+            $this->getPageLimit() // Items per page
+        );
+
         return $this->render('crew/index.html.twig', [
-            'crews' => $crewRepository->findAll(),
+            'crews' => $pagination,
         ]);
     }
 
@@ -29,6 +39,7 @@ class CrewController extends AbstractController
         $form = $this->createForm(CrewType::class, $crew);
         $form->handleRequest($request);
 
+        dump($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($crew);
             $entityManager->flush();
