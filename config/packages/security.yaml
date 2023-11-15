@@ -21,7 +21,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
-#                default_target_path: blog_index # this is where i will set the route default after login
+                default_target_path: dashboard
 
             logout:
                 path: app_logout
@@ -44,7 +44,10 @@ security:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
         - { path: '^/admin', roles: ROLE_ADMIN }
+        - { path: '^/branch', roles: ROLE_STAFF }
+        - { path: '^/crew', roles: ROLE_STAFF }
     role_hierarchy:
+        ROLE_CREW: ROLE_CREW
         ROLE_STAFF: ROLE_USER
         ROLE_NURSE: ROLE_STAFF
         ROLE_PHYSICIAN: ROLE_STAFF
