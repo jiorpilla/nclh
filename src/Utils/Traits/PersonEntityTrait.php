@@ -3,6 +3,7 @@
 namespace App\Utils\Traits;
 
 use App\Entity\Address;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -188,5 +189,23 @@ trait PersonEntityTrait
         $this->Address = $Address;
 
         return $this;
+    }
+
+    /**
+     * Calculate the age based on the birthdate
+     *
+     * @return int|null
+     */
+    public function getAge(): ?int
+    {
+        $now = new DateTime();
+        $date_of_birth = $this->getDateOfBirth();
+
+        if ($date_of_birth instanceof DateTime) {
+            $interval = $now->diff($date_of_birth);
+            return $interval->y;
+        }
+
+        return null; // or handle it differently based on your use case
     }
 }
