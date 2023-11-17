@@ -21,7 +21,7 @@ class DashboardController extends BaseController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/dashboard', name: 'dashboard')]
+    #[Route('/dashboard', name: 'app_dashboard')]
     public function index(): Response
     {
         $user = $this->getUser();
