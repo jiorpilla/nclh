@@ -41,9 +41,6 @@ trait PersonEntityTrait
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $civil_status = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $picture = null;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Address $Address = null;
 
@@ -163,18 +160,6 @@ trait PersonEntityTrait
     public function setCivilStatus(?int $civil_status): static
     {
         $this->civil_status = $civil_status;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): static
-    {
-        $this->picture = $picture;
 
         return $this;
     }
