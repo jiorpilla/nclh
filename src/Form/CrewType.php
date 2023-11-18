@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Crew;
 use App\Form\Type\GenderType;
+use App\Form\Type\ImageUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +15,7 @@ class CrewType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('imageFile', ImageUploadType::class)
             ->add('first_name')
             ->add('last_name')
             ->add('middle_name')
@@ -26,9 +28,9 @@ class CrewType extends AbstractType
             ->add('civil_status')
             ->add('position')
             ->add('ship')
-            ->add('nationality')
-            ->add('passport_number')
-            ->add('seaman_book_number')
+//            ->add('nationality')
+//            ->add('passport_number')
+//            ->add('seaman_book_number')
             ->add('company')
             ->add('Address', AddressType::class)
         ;
