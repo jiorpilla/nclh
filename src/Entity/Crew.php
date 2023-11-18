@@ -3,13 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\CrewRepository;
+use App\Utils\Traits\ImageUploadEntityTrait;
 use App\Utils\Traits\PersonEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CrewRepository::class)]
+#[Vich\Uploadable]
 class Crew
 {
     use PersonEntityTrait;
+    use ImageUploadEntityTrait;
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $id_number = null;
