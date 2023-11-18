@@ -11,7 +11,7 @@ trait ImageUploadEntityTrait
 {
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
-    #[Vich\UploadableField(mapping: 'image', fileNameProperty: 'imageName')]
+    #[Vich\UploadableField(mapping: 'image', fileNameProperty: 'picture')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
