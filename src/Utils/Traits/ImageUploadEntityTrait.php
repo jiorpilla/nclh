@@ -2,6 +2,7 @@
 
 namespace App\Utils\Traits;
 
+use Doctrine\DBAL\Types\Types;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,6 +16,9 @@ trait ImageUploadEntityTrait
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $uploadDatetime = null;
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -30,9 +34,7 @@ trait ImageUploadEntityTrait
         $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updated_at = new \DateTimeImmutable();
+            $this->uploadDatetime = new \DateTimeImmutable();
         }
     }
 
@@ -49,5 +51,20 @@ trait ImageUploadEntityTrait
     public function getPicture(): ?string
     {
         return $this->picture;
+    }
+
+    public function getUploadDatetime(): ?\DateTimeInterface
+    {
+        if($this->uploadDatetime == null){
+            return new \Datetime();
+        }
+        return $this->uploadDatetime;
+    }
+
+    public function setUploadDatetime(?\DateTimeInterface $uploadDatetime): static
+    {
+        $this->uploadDatetime = $uploadDatetime;
+
+        return $this;
     }
 }
