@@ -9,7 +9,20 @@
         <tbody>
             <tr>
                 <th>Id_number</th>
-                <td>{{ crew.idNumber }}</td>
+                <td>
+
+{#                    <img src="{{ qr_code_path(crew.idNumber) }}" />#}
+{#                    <img src="{{ qr_code_url(crew.idNumber) }}" />#}
+                    <img src="{{ qr_code_data_uri(crew.idNumber) }}" />
+
+
+                    <div>
+                        <a href="{{ qr_code_url(crew.idNumber, 'pdf') }}" download>DOWNLOAD PDF</a>
+                    </div>
+                    <div>
+                        <a href="{{ qr_code_url(crew.idNumber) }}" download>DOWNLOAD IMAGE</a>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <th>Position</th>
@@ -78,14 +91,6 @@
             <tr>
                 <th>Picture</th>
                 <td>{{ crew.picture }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ crew.id }}</td>
-            </tr>
-            <tr>
-                <th>Deleted</th>
-                <td>{{ crew.deleted }}</td>
             </tr>
             <tr>
                 <th>Created_by</th>
