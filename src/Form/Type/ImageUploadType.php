@@ -16,6 +16,11 @@ class ImageUploadType extends AbstractType
             'allow_delete' => false,
             'download_uri' => false,
             // Add any other common options you want to set
+//            'delete_label' => 'delete',
+//            'download_label' => 'download',
+//            'image_uri' => true,
+//            'imagine_pattern' => '...',
+//            'asset_helper' => true,
         ]);
     }
 

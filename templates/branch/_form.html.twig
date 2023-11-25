@@ -1,12 +1,22 @@
+
+<div {{ stimulus_controller('image_upload') }}>
+    <button {{ stimulus_action('image_upload', 'activateCamera') }} {{ stimulus_target('image_upload', 'activateBtn') }}>Activate Camera</button>
+    <button {{ stimulus_action('image_upload', 'deactivateCamera') }} {{ stimulus_target('image_upload', 'deactivateBtn') }} style="display: none;">Deactivate Camera</button>
+    <video {{ stimulus_target('image_upload', 'webcam') }} width="640" height="480" style="display: none;" autoplay></video>
+    <button {{ stimulus_action('image_upload', 'captureImage') }} {{ stimulus_target('image_upload', 'captureBtn') }} style="display: none;">Capture Image</button>
+    <canvas {{ stimulus_target('image_upload', 'canvas') }} width="640" height="480" style="display: none"></canvas>
+
 {{ form_start(form) }}
     {{ form_row(form.name) }}
 
     <div {{ stimulus_controller('preview_image') }}>
 {#        <img src="{{ vich_uploader_asset(branch, 'image') }}" alt="{{ branch.name }}">#}
-        <img src="{{ vich_uploader_asset(branch) }}"
-             alt="{{ branch.name }}"
-             {{ stimulus_target('preview_image', 'preview') }}
-             style="width:300px;">
+        <div {{ stimulus_target('image_upload', 'photoContainer') }}>
+            <img src="{{ vich_uploader_asset(branch) }}"
+                 alt="{{ branch.name }}"
+                    {{ stimulus_target('preview_image', 'preview') }}
+                 style="width:300px;">
+        </div>
         {{ form_widget(form.imageFile, {
             attr: {
                 'data-preview-image-target': "input",
@@ -17,3 +27,5 @@
     </div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+</div>

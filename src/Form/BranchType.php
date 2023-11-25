@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Branch;
+use App\Form\Type\ImageUploadType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,16 +16,7 @@ class BranchType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('imageFile', VichImageType::class, [
-                'required' => false,
-                'allow_delete' => false,
-//                'delete_label' => 'delete',
-//                'download_label' => 'download',
-                'download_uri' => false,
-//                'image_uri' => true,
-//                'imagine_pattern' => '...',
-//                'asset_helper' => true,
-            ]);
+            ->add('imageFile', ImageUploadType::class)
         ;
     }
 
