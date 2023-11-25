@@ -45,19 +45,7 @@ class AdminController extends BaseController
     #[Route('/qr' ,name: 'qr')]
     public function qrShow(BuilderInterface $customQrCodeBuilder): Response
     {
-//        $result = $customQrCodeBuilder
-//            ->data('000001')
-//            ->build();
-//
-//
-//        $response = new QrCodeResponse($result);
-
-//        return $response;
-        return  $this->render('admin/qr.twig', [
-//            'result' => $result,
-//            'qr' => $result->getImage(),
-//            'r_qr' => $response
-        ]);
+        return  $this->render('admin/qr.twig');
     }
 
     #[Route('/webcam' ,name: 'webcam')]
