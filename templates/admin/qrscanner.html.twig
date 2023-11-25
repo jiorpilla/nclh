@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{%  block contents %}
+
+    <div {{ stimulus_controller('qrscanner') }}>
+        <div {{ stimulus_target('qrscanner', 'reader') }} id='reader' style="width:500px"></div>
+        <div {{ stimulus_target('qrscanner', 'result') }} ></div>
+        <button {{ stimulus_action('qrscanner', 'startScanner') }} >Start Scanner</button>
+        <button {{ stimulus_action('qrscanner', 'stopScanner') }} >Stop Scanner</button>
+    </div>
+{%  endblock %}

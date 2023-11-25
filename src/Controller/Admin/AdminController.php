@@ -12,6 +12,13 @@ use Symfony\Component\Uid\Ulid;
 #[Route('/admin', name: 'admin_')]
 class AdminController extends BaseController
 {
+    #[Route('/qrscanner', name: 'app_qrscanner')]
+    public function index(): Response
+    {
+        return $this->render('admin/qrscanner.html.twig', [
+        ]);
+    }
+
     #[Route('/', name: 'test')]
     public function test():Response
     {
