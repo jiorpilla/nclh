@@ -9,12 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends BaseController
 {
-    private $logger;
 
-    public function __construct(LoggerInterface $logger, EntityManagerInterface $entityManager)
+    public function __construct(private LoggerInterface $logger, private EntityManagerInterface $entityManager)
     {
-        $this->logger = $logger;
-        $this->entityManager = $entityManager;
     }
 
     #[Route('/dashboard', name: 'app_dashboard')]
