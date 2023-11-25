@@ -5,6 +5,7 @@ namespace App\EventListener;
 
 use App\Entity\Crew;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
 
@@ -12,7 +13,7 @@ use Doctrine\ORM\Events;
 class CrewIdNumber
 {
 
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function prePersist(Crew $crew, PrePersistEventArgs $args): void
     {

@@ -11,7 +11,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 #[AsDoctrineListener(event: Events::preUpdate, priority: 500, connection: 'default')]
 class UpdateEntity
 {
-    private $security;
+    private Security $security;
 
     public function __construct(Security $security)
     {
