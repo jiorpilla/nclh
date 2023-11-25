@@ -12,7 +12,7 @@ class BaseController extends AbstractController
      */
     private int $page_limit = 15;
 
-    protected function getPageLimit()
+    protected function getPageLimit():int
     {
         return $this->page_limit;
     }

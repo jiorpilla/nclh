@@ -17,7 +17,7 @@ trait IdentifiableEntityTrait
     #[ORM\CustomIdGenerator(class: 'doctrine.ulid_generator')]
     private ?Ulid $id;
 
-    public function getId()
+    public function getId():Ulid
     {
         return $this->id;
     }

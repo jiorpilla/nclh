@@ -4,34 +4,35 @@ namespace App\Utils\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UlidType;
+use Symfony\Component\Uid\Ulid;
 
 trait UserAuditableEntityTrait
 {
 
     #[ORM\Column(type: UlidType::NAME)]
-    private $created_by = null;
+    private ?Ulid $created_by = null;
 
     #[ORM\Column(type: UlidType::NAME)]
-    private $updated_by = null;
+    private ?Ulid $updated_by = null;
 
-    public function getCreatedBy()
+    public function getCreatedBy():?Ulid
     {
         return $this->created_by;
     }
 
-    public function setCreatedBy($created_by): static
+    public function setCreatedBy(?Ulid $created_by): static
     {
         $this->created_by = $created_by;
 
         return $this;
     }
 
-    public function getUpdatedBy()
+    public function getUpdatedBy():?Ulid
     {
         return $this->updated_by;
     }
 
-    public function setUpdatedBy($updated_by): static
+    public function setUpdatedBy(?Ulid $updated_by): static
     {
         $this->updated_by = $updated_by;
 

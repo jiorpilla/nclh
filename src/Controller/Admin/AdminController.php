@@ -13,7 +13,7 @@ use Symfony\Component\Uid\Ulid;
 class AdminController extends BaseController
 {
     #[Route('/', name: 'test')]
-    public function test()
+    public function test():Response
     {
 
         $ulid = new Ulid();
