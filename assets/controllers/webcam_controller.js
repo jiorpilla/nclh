@@ -1,5 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 
+/* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static targets = ["webcam", "canvas", "photoContainer", "activateBtn", "deactivateBtn", "captureBtn"];
 
