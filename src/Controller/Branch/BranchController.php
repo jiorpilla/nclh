@@ -33,7 +33,7 @@ class BranchController extends BaseController
             $entityManager->persist($branch);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_branch_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_branch_show', ['id' => $branch->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('branch/new.html.twig', [
@@ -59,7 +59,7 @@ class BranchController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_branch_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_branch_show', ['id' => $branch->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('branch/edit.html.twig', [
