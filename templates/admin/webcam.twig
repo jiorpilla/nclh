@@ -4,14 +4,15 @@
 
     <h1>Camera Activation/Deactivation Example</h1>
 
-    <div {{ stimulus_controller('webcam') }}>
-        <button {{ stimulus_action('webcam', 'activateCamera') }} {{ stimulus_target('webcam', 'activateBtn') }}>Activate Camera</button>
-        <button {{ stimulus_action('webcam', 'deactivateCamera') }} {{ stimulus_target('webcam', 'deactivateBtn') }} style="display: none;">Deactivate Camera</button>
-        <video {{ stimulus_target('webcam', 'webcam') }} width="640" height="480" style="display: none;" autoplay></video>
-        <button {{ stimulus_action('webcam', 'captureImage') }} {{ stimulus_target('webcam', 'captureBtn') }}style="display: none;">Capture Image</button>
-        <canvas {{ stimulus_target('webcam', 'canvas') }} width="640" height="480" style="display: none;"></canvas>
-        <div {{ stimulus_target('webcam', 'photoContainer') }}></div>
+    <div {{ stimulus_controller('image_upload') }}>
+        <button {{ stimulus_action('image_upload', 'activateCamera') }} {{ stimulus_target('image_upload', 'activateBtn') }}>Activate Camera</button>
+        <button {{ stimulus_action('image_upload', 'deactivateCamera') }} {{ stimulus_target('image_upload', 'deactivateBtn') }} style="display: none;">Deactivate Camera</button>
+        <video {{ stimulus_target('image_upload', 'webcam') }} width="640" height="480" style="display: none;" autoplay></video>
+        <button {{ stimulus_action('image_upload', 'captureImage') }} {{ stimulus_target('image_upload', 'captureBtn') }}style="display: none;">Capture Image</button>
+        <canvas {{ stimulus_target('image_upload', 'canvas') }} width="640" height="480" style="display: none;"></canvas>
+        <div {{ stimulus_target('image_upload', 'photoContainer') }}></div>
     </div>
 
+    <div {{ stimulus_target('image_upload', 'photoContainer') }}>
 
 {%  endblock %}
