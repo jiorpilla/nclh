@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Room;
 
 use App\Entity\Room;
 use App\Form\RoomType;

@@ -13,11 +13,6 @@ class RoomType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('deleted')
-            ->add('created_by')
-            ->add('updated_by')
-            ->add('created_at')
-            ->add('updated_at')
         ;
     }
 

@@ -2,7 +2,7 @@
 
 {% block title %}Room{% endblock %}
 
-{% block body %}
+{% block contents %}
     <h1>Room</h1>
 
     <table class="table">
@@ -12,20 +12,12 @@
                 <td>{{ room.name }}</td>
             </tr>
             <tr>
-                <th>Id</th>
-                <td>{{ room.id }}</td>
-            </tr>
-            <tr>
-                <th>Deleted</th>
-                <td>{{ room.deleted }}</td>
-            </tr>
-            <tr>
                 <th>Created_by</th>
-                <td>{{ room.createdBy }}</td>
+                <td>{{ get_username(room.createdBy) }}</td>
             </tr>
             <tr>
                 <th>Updated_by</th>
-                <td>{{ room.updatedBy }}</td>
+                <td>{{ get_username(room.updatedBy) }}</td>
             </tr>
             <tr>
                 <th>Created_at</th>
