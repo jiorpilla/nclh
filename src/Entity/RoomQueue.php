@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\RoomQueueStatus;
 use App\Repository\RoomQueueRepository;
 use App\Utils\Traits\CommonEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,6 +25,12 @@ class RoomQueue
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
+
+    public function __construct()
+    {
+        // Set the default status when the RoomQueue is created
+        $this->status = RoomQueueStatus::ON_QUEUE;
+    }
 
     public function getRoom(): ?Room
     {
@@ -68,8 +75,12 @@ class RoomQueue
 
     public function setStatus(?string $status): static
     {
-        $this->status = $status;
+        // Validate that the provided status is a valid value
+        if (!in_array($status, [RoomQueueStatus::ON_QUEUE, RoomQueueStatus::IN_PROCESS, RoomQueueStatus::PROCESSED])) {
+            throw new \InvalidArgumentException('Invalid status value.');
+        }
 
+        $this->status = $status;
         return $this;
     }
 }
