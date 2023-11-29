@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/queue'), name:"queue_"]
+#[Route('/queue', name:"queue_")]
 class QueueController extends BaseController
 {
     #[Route('/', name: 'index')]
