@@ -8,6 +8,7 @@ use App\Form\CrewType;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,4 +90,17 @@ class CrewController extends BaseController
 
         return $this->redirectToRoute('app_crew_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * this is used in Room Queue QR Scanner - Stimulus JS
+     * check Ajax code on that file
+     * @param Crew $crew
+     * @return JsonResponse
+     */
+    #[Route('/api/id/{id}', name: 'crew_fetch_via_id', methods: ['GET'])]
+    public function fetchViaId(Crew $crew):JsonResponse
+    {
+        return $this->json($crew);
+    }
+
 }
