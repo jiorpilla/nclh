@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Queue Crew-Room{% endblock %}
+
+{% block contents %}
+
+    <h1>Queue</h1>
+    <div class="row">
+        {% for list in room_queue_lists %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ list.roomName }}</h5>
+                    <p class="card-text">Queue : <span class="badge bg-secondary">{{ list.crewCount }}</span></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div {{ stimulus_controller('room_queue_qr_scanner') }}>
+        <div {{ stimulus_target('room_queue_qr_scanner', 'reader') }} id='reader' style="width:500px"></div>
+{#        <div {{ stimulus_target('room_queue_qr_scanner', 'result') }} ></div>#}
+        <button {{ stimulus_action('room_queue_qr_scanner', 'startScanner') }} >Start Scanner</button>
+        <button {{ stimulus_action('room_queue_qr_scanner', 'stopScanner') }} >Stop Scanner</button>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+    </div>
+
+    <a href="{{ path('app_queue') }}">back to list</a>
+{% endblock %}

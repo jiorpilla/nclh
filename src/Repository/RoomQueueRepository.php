@@ -6,8 +6,10 @@ use App\Entity\RoomQueue;
 use App\Utils\Traits\CommonRepositoryTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Ulid;
 
 /**
+ * Use ->toBinary() for ULID
  * @extends ServiceEntityRepository<RoomQueue>
  *
  * @method RoomQueue|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,6 +24,59 @@ class RoomQueueRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, RoomQueue::class);
+    }
+
+    public function getNextQueueNumberForRoom(Ulid $roomId): int
+    {
+        $result = $this->createQueryBuilder('rq')
+            ->select('COUNT(rq.queue) as queueCount')
+            ->andWhere('rq.Room = :roomId')
+            ->andWhere('rq.deleted = :deleted')
+            ->andWhere('rq.status = :status')
+            ->setParameters([
+                'deleted' => 0,
+                'roomId' => $roomId->toBinary(),
+                'status' => 'ON_QUEUE',
+            ])
+            ->groupBy('rq.Room')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return is_null($result) ? 1 : $result['queueCount'] + 1;
+    }
+
+    public function countCrewByRoom(): ?array
+    {
+        return $this->createQueryBuilder('rq')
+            ->select('r.name as roomName', 'COUNT(c.id) as crewCount')
+            ->join('rq.Room', 'r')
+            ->join('rq.Crew', 'c')
+            ->andWhere('rq.deleted = :deleted')
+            ->andWhere('rq.status = :status')
+            ->setParameters([
+                'deleted' => 0,
+                'status' => 'ON_QUEUE', // Adjust this based on your actual status values
+            ])
+            ->groupBy('r.id')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findExistingQueue(Ulid $roomId, Ulid $crewId): ?array
+    {
+        return $this->createQueryBuilder('rq')
+            ->andWhere('rq.deleted = :deleted')
+            ->andWhere('rq.Room = :roomId')
+            ->andWhere('rq.Crew = :crewId')
+            ->andWhere('rq.status = :status')
+            ->setParameters([
+                'deleted' => 0,
+                'roomId' => $roomId->toBinary(),
+                'crewId' => $crewId->toBinary(),
+                'status' => 'ON_QUEUE', // Adjust this based on your actual status values
+            ])
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
