@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Repository\UsersRepository;
+use Symfony\Component\Uid\Ulid;
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
 
@@ -21,7 +22,7 @@ class UsernameExtension extends AbstractExtension
         ];
     }
 
-    public function getUsername($id)
+    public function getUsername(Ulid $id):string
     {
         $user = $this->userRepository->find($id);
         if ($user) {
