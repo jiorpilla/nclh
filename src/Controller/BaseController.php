@@ -27,7 +27,7 @@ class BaseController extends AbstractController
         return $this->page_limit;
     }
 
-    protected function paginate(Query $query, int $page = 1):?SlidingPagination
+    protected function paginate(Query $query, int $page):?SlidingPagination
     {
         return $this->paginator->paginate(
             $query,

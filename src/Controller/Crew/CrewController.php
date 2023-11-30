@@ -19,7 +19,7 @@ class CrewController extends BaseController
     public function index(Request $request, CrewRepository $crewRepository): Response
     {
         $query = $crewRepository->getListQuery();
-        $page = $request->query->get('page');
+        $page = $request->query->get('page', 1);
 
         $result = $this->paginate($query, $page);
 
