@@ -1,4 +1,14 @@
 {{ form_start(form) }}
+
+    <div {{ stimulus_controller('image_upload') }}>
+        <button {{ stimulus_target('image_upload', 'activateBtn') }} {{ stimulus_action('image_upload', 'activateCamera') }}>Activate Camera</button>
+        <button {{ stimulus_target('image_upload', 'deactivateBtn') }} {{ stimulus_action('image_upload', 'deactivateCamera') }} style="display: none;">Deactivate Camera</button>
+        <video {{ stimulus_target('image_upload', 'webcam') }} width="640" height="480" style="display: none;" autoplay></video>
+        <button {{ stimulus_target('image_upload', 'captureBtn') }} {{ stimulus_action('image_upload', 'captureImage') }} style="display: none;">Capture Image</button>
+        <canvas {{ stimulus_target('image_upload', 'canvas') }} width="640" height="480" style="display: none"></canvas>
+        <div {{ stimulus_target('image_upload', 'photoContainer') }}></div>
+    </div>
     {{ form_widget(form) }}
+
     <button class="btn btn-dark">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

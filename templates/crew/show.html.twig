@@ -5,14 +5,18 @@
 {% block contents %}
     <h1>Crew</h1>
 
+    <div>
+        <a href="{{ path('crew_index') }}" class="btn btn-outline-primary">back to list</a>
+        <a href="{{ path('crew_edit', {'id': crew.id}) }}" class="btn btn-secondary">edit</a>
+        {{ include('crew/_delete_form.html.twig') }}
+    </div>
+
     <table class="table">
         <tbody>
             <tr>
-                <th>Id_number</th>
+                <th>QRCode</th>
                 <td>
 
-{#                    <img src="{{ qr_code_path(crew.idNumber) }}" />#}
-{#                    <img src="{{ qr_code_url(crew.idNumber) }}" />#}
                     <img src="{{ qr_code_data_uri(crew.id) }}" />
 
 
@@ -23,6 +27,10 @@
                         <a href="{{ qr_code_url(crew.idNumber) }}" download>DOWNLOAD IMAGE</a>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <th>Id_number</th>
+                <td>{{ crew.idNumber }}</td>
             </tr>
             <tr>
                 <th>Position</th>
@@ -94,11 +102,11 @@
             </tr>
             <tr>
                 <th>Created_by</th>
-                <td>{{ crew.createdBy }}</td>
+                <td>{{ get_username(crew.createdBy) }}</td>
             </tr>
             <tr>
                 <th>Updated_by</th>
-                <td>{{ crew.updatedBy }}</td>
+                <td>{{ get_username(crew.updatedBy) }}</td>
             </tr>
             <tr>
                 <th>Created_at</th>
@@ -110,10 +118,4 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_crew_index') }}">back to list</a>
-
-    <a href="{{ path('app_crew_edit', {'id': crew.id}) }}">edit</a>
-
-    {{ include('crew/_delete_form.html.twig') }}
 {% endblock %}

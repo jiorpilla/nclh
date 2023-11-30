@@ -5,7 +5,7 @@
 {% block contents %}
     <h1>Crew index</h1>
 
-    <a class="btn btn-dark" href="{{ path('app_crew_new') }}">Create new</a>
+    <a class="btn btn-dark" href="{{ path('crew_create') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ crew.idNumber }}</td>
                 <td>
-                    <a href="{{ path('app_crew_show', {'id': crew.id}) }}">
+                    <a href="{{ path('crew_show', {'id': crew.id}) }}">
                         {{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName|first }}., {{ crew.suffix }}
                     </a>
                 </td>
@@ -36,7 +36,7 @@
                 <td>{{ crew.position }}</td>
                 <td>{{ crew.company }}</td>
                 <td>
-                    <a href="{{ path('app_crew_edit', {'id': crew.id}) }}">edit</a>
+                    <a href="{{ path('crew_edit', {'id': crew.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

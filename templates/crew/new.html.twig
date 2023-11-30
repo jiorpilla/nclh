@@ -5,7 +5,8 @@
 {% block contents %}
     <h1>Create new Crew</h1>
 
+    <a href="{{ path('crew_index') }}" class="btn btn-outline-primary">back to list</a>
+
     {{ include('crew/_form.html.twig') }}
 
-    <a href="{{ path('app_crew_index') }}">back to list</a>
 {% endblock %}

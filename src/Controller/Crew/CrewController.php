@@ -7,45 +7,39 @@ use App\Entity\Crew;
 use App\Form\CrewType;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/crew')]
+#[Route('/crew', name: 'crew_')]
 class CrewController extends BaseController
 {
-    #[Route('/', name: 'app_crew_index', methods: ['GET'])]
-    public function index(Request $request, CrewRepository $crewRepository, PaginatorInterface $paginator): Response
+    #[Route('/', name: 'index', methods: ['GET'])]
+    public function index(Request $request, CrewRepository $crewRepository): Response
     {
-        $query = $crewRepository->createQueryBuilder('c')
-            ->getQuery();
+        $query = $crewRepository->getListQuery();
+        $page = $request->query->get('page');
 
-        $pagination = $paginator->paginate(
-            $query,
-            $request->query->get('page', 1),
-            $this->getPageLimit() // Items per page
-        );
+        $result = $this->paginate($query, $page);
 
         return $this->render('crew/index.html.twig', [
-            'crews' => $pagination,
+            'crews' => $result,
         ]);
     }
 
-    #[Route('/new', name: 'app_crew_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new', name: 'create', methods: ['GET', 'POST'])]
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $crew = new Crew();
         $form = $this->createForm(CrewType::class, $crew);
         $form->handleRequest($request);
 
-        dump($form->getData());
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($crew);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_crew_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('crew/new.html.twig', [
@@ -54,7 +48,7 @@ class CrewController extends BaseController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_crew_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Crew $crew): Response
     {
         return $this->render('crew/show.html.twig', [
@@ -62,7 +56,7 @@ class CrewController extends BaseController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_crew_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Crew $crew, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CrewType::class, $crew);
@@ -71,7 +65,7 @@ class CrewController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_crew_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('crew/edit.html.twig', [
@@ -80,7 +74,7 @@ class CrewController extends BaseController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_crew_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Crew $crew, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$crew->getId(), $request->request->get('_token'))) {
@@ -88,7 +82,7 @@ class CrewController extends BaseController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_crew_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
     }
 
     /**
@@ -97,7 +91,7 @@ class CrewController extends BaseController
      * @param Crew $crew
      * @return JsonResponse
      */
-    #[Route('/api/id/{id}', name: 'crew_fetch_via_id', methods: ['GET'])]
+    #[Route('/api/id/{id}', name: 'fetch_via_id', methods: ['GET'])]
     public function fetchViaId(Crew $crew):JsonResponse
     {
         return $this->json($crew);

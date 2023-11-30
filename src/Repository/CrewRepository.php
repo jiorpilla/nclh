@@ -6,6 +6,7 @@ use App\Entity\Crew;
 use App\Utils\Traits\CommonRepositoryTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Ulid;
 
 /**
  * @extends ServiceEntityRepository<Crew>
@@ -22,6 +23,16 @@ class CrewRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Crew::class);
+    }
+
+    public function getListQuery()
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.deleted = :deleted')
+            ->setParameter('deleted', 0)
+            ->orderBy('c.id_number', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery();
     }
 
 //    /**
