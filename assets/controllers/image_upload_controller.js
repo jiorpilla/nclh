@@ -4,32 +4,27 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
     static targets = ["webcam", "canvas", "photoContainer", "activateBtn", "deactivateBtn", "captureBtn"];
 
-    activateCamera() {
-        // Access the DOM elements using this.targets
-        const webcam = this.webcamTarget;
-        const activateBtn = this.activateBtnTarget;
-        const deactivateBtn = this.deactivateBtnTarget;
-        const captureBtn = this.captureBtnTarget;
-
+    activateCamera()
+    {
         // Check if the user's browser supports getUserMedia
         if (navigator.mediaDevices) {
 
             // Request access to the user's camera
             navigator.mediaDevices
                 .getUserMedia({ video: true })
-                .then(function (stream) {
+                .then((stream) => {
                     // Display the video feed in the webcam element
-                    webcam.srcObject = stream;
+                    this.webcamTarget.srcObject = stream;
                     // Show the "Webcam Video" button
-                    webcam.style.display = 'block';
+                    this.webcamTarget.style.display = 'block';
                     // Show the "Deactivate Camera" button
-                    deactivateBtn.style.display = 'block';
+                    this.deactivateBtnTarget.style.display = 'block';
                     // Show the "Capture image" button and
-                    captureBtn.style.display = 'block';
+                    this.captureBtnTarget.style.display = 'block';
                     // hide the "Activate Camera" button
-                    activateBtn.style.display = 'none';
+                    this.activateBtnTarget.style.display = 'none';
                 })
-                .catch(function (error) {
+                .catch((error) => {
                     alert("Error accessing the camera: " + error);
                 });
 
@@ -38,65 +33,50 @@ export default class extends Controller {
         }
     }
 
-    deactivateCamera() {
-        // Access the DOM elements using this.targets
-        const webcam = this.webcamTarget;
-        const activateBtn = this.activateBtnTarget;
-        const deactivateBtn = this.deactivateBtnTarget;
-        const captureBtn = this.captureBtnTarget;
-
+    deactivateCamera()
+    {
         // Stop the media stream and hide the webcam
-        if (webcam.srcObject) {
-            webcam.srcObject.getTracks().forEach((track) => track.stop());
+        if (this.webcamTarget.srcObject) {
+            this.webcamTarget.srcObject.getTracks().forEach((track) => track.stop());
         }
-        webcam.style.display = 'none';
+        this.webcamTarget.style.display = 'none';
         // Show the "Activate Camera" button
-        activateBtn.style.display = 'block';
+        this.activateBtnTarget.style.display = 'block';
         // Show the "Capture image" button and
-        captureBtn.style.display = 'none';
+        this.captureBtnTarget.style.display = 'none';
         // hide the "Deactivate Camera" button
-        deactivateBtn.style.display = 'none';
+        this.deactivateBtnTarget.style.display = 'none';
     }
 
-    captureImage() {
-        // Access the DOM elements using this.targets
-        const canvas = this.canvasTarget;
-        const photoContainer = this.photoContainerTarget;
-        const deactivateBtn = this.deactivateBtnTarget;
+    captureImage()
+    {
 
-        const context = canvas.getContext("2d");
-        canvas.width = this.webcamTarget.videoWidth;
-        canvas.height = this.webcamTarget.videoHeight;
-        context.drawImage(this.webcamTarget, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob(function (blob) {
+        const context = this.canvasTarget.getContext("2d");
+        this.canvasTarget.width = this.webcamTarget.videoWidth;
+        this.canvasTarget.height = this.webcamTarget.videoHeight;
+        context.drawImage(this.webcamTarget, 0, 0, this.canvasTarget.width, this.canvasTarget.height);
+        this.canvasTarget.toBlob((blob) => {
             const imageURL = URL.createObjectURL(blob);
 
             // Create a new image element
-            var imgElement = $('<img>').attr('src', imageURL).attr('alt', 'Captured Photo');
+            const  imgElement = $('<img>').attr('src', imageURL).attr('alt', 'Captured Photo');
 
             // Clear the content of the photoContainer and add the new image
-            $(photoContainer).html(imgElement);
+            $(this.photoContainerTarget).html(imgElement);
 
-            // Alternatively, if you want to append the image, use the following:
-            // photoContainer.empty(); // Clear the content before appending
-            // photoContainer.append(imgElement);
-
-
-            let fileName = 'image' + new Date().getTime() + '.jpg'; // You can replace with an appropriate file name
+            // set filename based on date
+            const  fileName = 'image' + new Date().getTime() + '.jpg';
             // Create a File object from the blob
-            let file = new File([blob], fileName, { type: "image/jpeg"});
+            const  file = new File([blob], fileName, { type: "image/jpeg"});
 
             // Get the file input element
-            let fileInput = $('#branch_imageFile_file')[0]; // Assuming ID is 'branch_imageFile_file'
-            let container = new DataTransfer();
+            const  fileInput = document.querySelector('.vich-image input[type="file"]');
+            const  container = new DataTransfer();
             container.items.add(file);
             fileInput.files = container.files;
 
             // Trigger a change event on the file input to simulate user selection
             $(fileInput).trigger('change');
-
-
-
 
             // Clean up the URL.createObjectURL to avoid memory leaks
             URL.revokeObjectURL(imageURL);
