@@ -18,9 +18,6 @@ class Appointment
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Appointee $Appointee = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Crew $Crew = null;
-
     public function getAppointmentDate(): ?\DateTimeInterface
     {
         return $this->AppointmentDate;
@@ -41,18 +38,6 @@ class Appointment
     public function setAppointee(?Appointee $Appointee): static
     {
         $this->Appointee = $Appointee;
-
-        return $this;
-    }
-
-    public function getCrew(): ?Crew
-    {
-        return $this->Crew;
-    }
-
-    public function setCrew(?Crew $Crew): static
-    {
-        $this->Crew = $Crew;
 
         return $this;
     }
