@@ -31,7 +31,6 @@ class CrewRepository extends ServiceEntityRepository
             ->andWhere('c.deleted = :deleted')
             ->setParameter('deleted', 0)
             ->orderBy('c.id_number', 'DESC')
-            ->setMaxResults(10)
             ->getQuery();
     }
 
