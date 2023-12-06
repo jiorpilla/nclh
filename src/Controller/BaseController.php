@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Doctrine\ORM\Query;
-use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -27,7 +27,7 @@ class BaseController extends AbstractController
         return $this->page_limit;
     }
 
-    protected function paginate(Query $query, int $page):?SlidingPagination
+    protected function paginate(Query $query, int $page): ?PaginationInterface
     {
         return $this->paginator->paginate(
             $query,
