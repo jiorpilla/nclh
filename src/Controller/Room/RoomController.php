@@ -72,7 +72,7 @@ class RoomController extends BaseController
     public function delete(Request $request, Room $room, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$room->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($room);
+            $room->setDeleted(1);
             $entityManager->flush();
         }
 
