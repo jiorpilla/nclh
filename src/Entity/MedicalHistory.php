@@ -25,6 +25,9 @@ class MedicalHistory
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[ORM\OneToOne(mappedBy: 'MedicalHistory', cascade: ['persist', 'remove'])]
+    private ?ExamPhysical $examPhysical = null;
+
     public function getCrew(): ?Crew
     {
         return $this->Crew;
@@ -69,6 +72,23 @@ class MedicalHistory
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getExamPhysical(): ?ExamPhysical
+    {
+        return $this->examPhysical;
+    }
+
+    public function setExamPhysical(ExamPhysical $examPhysical): static
+    {
+        // set the owning side of the relation if necessary
+        if ($examPhysical->getMedicalHistory() !== $this) {
+            $examPhysical->setMedicalHistory($this);
+        }
+
+        $this->examPhysical = $examPhysical;
 
         return $this;
     }
