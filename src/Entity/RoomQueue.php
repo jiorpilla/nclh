@@ -23,7 +23,7 @@ class RoomQueue
     #[ORM\Column]
     private ?int $queue = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true, enumType:RoomQueueStatus::class)]
     private ?string $status = null;
 
     public function __construct()
