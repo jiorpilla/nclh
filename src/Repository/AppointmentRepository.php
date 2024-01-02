@@ -24,6 +24,14 @@ class AppointmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Appointment::class);
     }
 
+    public function getListQuery()
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.deleted = :deleted')
+            ->setParameter('a.deleted', 0)
+            ->getQuery();
+    }
+
 //    /**
 //     * @return Appointment[] Returns an array of Appointment objects
 //     */
