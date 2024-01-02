@@ -28,7 +28,7 @@ class AppointmentRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.deleted = :deleted')
-            ->setParameter('a.deleted', 0)
+            ->setParameter('deleted', 0)
             ->getQuery();
     }
 
