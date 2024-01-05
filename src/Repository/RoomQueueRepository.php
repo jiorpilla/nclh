@@ -48,7 +48,8 @@ class RoomQueueRepository extends ServiceEntityRepository
     public function countCrewByRoom(): ?array
     {
         return $this->createQueryBuilder('rq')
-            ->select('r.name as roomName', 'COUNT(c.id) as crewCount')
+            ->select('r', 'c', 'rq', 'r.name as roomName', 'COUNT(c.id) as crewCount')
+
             ->join('rq.Room', 'r')
             ->join('rq.Crew', 'c')
             ->andWhere('rq.deleted = :deleted')
@@ -60,6 +61,7 @@ class RoomQueueRepository extends ServiceEntityRepository
             ->groupBy('r.id')
             ->getQuery()
             ->getResult();
+            ;
     }
 
     public function findExistingQueue(Ulid $roomId, Ulid $crewId): ?array

@@ -23,13 +23,13 @@ class RoomQueue
     #[ORM\Column]
     private ?int $queue = null;
 
-    #[ORM\Column(length: 255, nullable: true, enumType:RoomQueueStatus::class)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
 
     public function __construct()
     {
         // Set the default status when the RoomQueue is created
-        $this->status = RoomQueueStatus::ON_QUEUE;
+        $this->setStatus(RoomQueueStatus::ON_QUEUE);
     }
 
     public function getRoom(): ?Room
