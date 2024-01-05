@@ -1,0 +1,41 @@
+@import 'variables';
+
+
+.topbar {
+    background-color: #fff;
+    height:60px;
+    padding:0 30px;
+    font-size: 14px;
+
+    .notifications {
+        font-size:21px;
+        border-right: 1px solid #d7d7d7;
+        padding-right: 20px;
+        margin-right: 20px;
+
+        .notice {
+            top: 7px;
+            right: -5px;
+        }
+        i {
+            position: relative;
+        }
+    }
+
+    .avatar {
+        width: 40px;
+        margin-right:15px;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .profile-info {
+        .name {
+            font-weight: 700;
+            display:block;
+        }
+    }
+
+}

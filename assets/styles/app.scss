@@ -1,15 +1,9 @@
 
-$primary: darken(#428bca, 20%);
-
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+@import 'includes/global';
+@import 'includes/loginPage';
+@import 'includes/navbar';
+@import 'includes/topbar';
+@import 'includes/dashboard';
 
-body {
-  background-color: lightgray;
-}
-
-
-.contents
-{
-  background-color: #f8f8f8;
-}

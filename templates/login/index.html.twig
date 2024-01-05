@@ -3,23 +3,41 @@
 {% block title %}Hello LoginController!{% endblock %}
 
 {% block body %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+   
+    <div class="body-wrapper login d-flex justify-content-center align-items-center">
+        <div class="login-wrapper">
+            <div class="login-form">
+                <div class="logo">
+                    <img src="https://d1io3yog0oux5.cloudfront.net/_114e7d3598fccd562eaf175af24810dc/nclhltd/files/theme/images/logo.svg" alt="NCLH logo" class="img-fluid">
+                </div>
+                <form action="{{ path('app_login') }}" method="post">
 
-    <form action="{{ path('app_login') }}" method="post">
+                    {% if error %}
+                        <div class="error-message">
+                            <i class="bi bi-exclamation-triangle-fill"></i> {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input required type="text" class="form-control" id="username" name="_username" value="{{ last_username }}">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input required type="password" class="form-control" id="password" name="_password">
+                    </div>
 
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"> #}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="forgot-password">
+                        <a href="#" class="link">Forgot Password?</a>
+                    </div>
 
-        <button type="submit">login</button>
-    </form>
+                    <button type="submit" class="btn btn-primary btn-cta">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,0 +1,56 @@
+@import 'variables';
+
+.sidebar {
+    width: 100%;
+    max-width: 260px;
+    padding: 40px 20px 20px;
+    border-right:1px solid #ffefef;
+    background-color: #fff;
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    box-shadow: $box-shadow;
+
+    .logo {
+        max-width: 180px;
+        margin:auto;
+    }
+
+    .navbar-left {
+        font-size:14px;
+        
+        ul {
+            padding:0;
+            margin-top:30px;
+
+            li {
+                list-style-type: none;
+                margin-bottom:10px;
+
+                a {
+                    text-decoration: none;
+                    color: $color-default;
+                    background-color: #fff;
+                    display:block;
+                    padding:12px;
+                    border-radius: $border-radius;
+      
+                    i {
+                        padding-right: 8px;
+                    }
+
+                    &:hover {
+                        color: $color-main;
+                    }
+
+                    &.active {
+                        background-color: $color-main;
+                        color: #fff;
+                    }
+                }
+            }
+
+        }
+    }
+}
