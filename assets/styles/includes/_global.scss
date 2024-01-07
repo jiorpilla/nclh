@@ -4,7 +4,7 @@ body {
     font-family: $font-family-main;
     color: $color-default;
     background-color: #edf5fd;
-
+    font-size:14px;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -17,11 +17,22 @@ label.form-label {
     font-weight: 700;
     font-size:14px;
 }
-
+.form-select {
+    padding: 8px 12px;
+    font-size:14px;
+    border-radius: $border-radius;
+    color: $color-default;
+    border: 1px solid #e8e8e8;
+    &:focus {
+        box-shadow: none;
+        border-color: $color-default;
+    }
+}
 .form-control {
     color: $color-default;
     border: 1px solid #e8e8e8;
-    padding: 12px;
+    padding: 8px 12px;
+    font-size:14px;
     border-radius: $border-radius;
     transition: 200ms;
 
@@ -38,12 +49,12 @@ label.form-label {
 .btn-cta {
     font-family: $font-family-secondary;
     font-weight: 700;
-    text-transform: uppercase;
+    font-size: 14px;
     border-radius: $border-radius;
     background-color: $color-main;
     border: 0;
     transition: 200ms;
-    padding: 12px;
+    padding: 12px 34px;
     
         &:hover, &:active {
             background-color: lighten($color-main, 10%) !important;
@@ -60,4 +71,12 @@ label.form-label {
     i {
         padding-right:5px;
     }
+}
+
+.modal-dialog  {
+    .modal-body {
+        padding: 30px;
+    }
+
+
 }

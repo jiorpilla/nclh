@@ -6,12 +6,16 @@
 
     <div class="appointments p-3">
 
-        <h1>Create new Appointment</h1>
+        <h1 class="page-heading">Appointments</h1>
+
+        {{ include('appointment/list.html.twig') }}
+
+        {{ include('appointment/appointmentform.html.twig') }}
 
         {# {{ include('appointment/_form.html.twig') }} #}
 
         {# <a href="{{ path('appointment_bulk_create') }}">Bulk create</a> #}
-        <div class="row">
+        {# <div class="row">
             <div class="col-md-6">
                 <form class="row g-3">
                     <div class="col-4">
@@ -19,9 +23,9 @@
                       <input type="date" class="form-control" id="inputAddress" >
                     </div>
                     <div class="col-12">
-                        <label for="inputAddress" class="form-label">Company</label>
-                        <input type="text" class="form-control" id="inputAddress" >
-                      </div>
+                        <label for="company" class="form-label">Company</label>
+                        <input type="text" class="form-control" id="company" >
+                    </div>
                       <div class="col-4">
                         <label for="inputAddress" class="form-label">First Name</label>
                         <input type="text" class="form-control" id="inputAddress" >
@@ -61,9 +65,9 @@
                   </form>
             </div>
             <div class="col-md-6">
-                {{ include('appointment/list.html.twig') }}
+              
             </div>
-        </div>
+        </div> #}
 
        
         </div>
