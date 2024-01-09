@@ -2,9 +2,10 @@
 
 namespace App\Enum;
 
-enum RoomQueueStatus: string
+
+class RoomQueueStatus
 {
-    case ON_QUEUE = 'ON_QUEUE';
-    case IN_PROCESS = 'IN_PROCESS';
-    case PROCESSED = 'PROCESSED';
+    public const ON_QUEUE = 'on_queue';
+    public const IN_PROCESS = 'in_process';
+    public const PROCESSED = 'processed';
 }
