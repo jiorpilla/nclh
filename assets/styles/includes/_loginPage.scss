@@ -1,0 +1,41 @@
+@import 'variables';
+
+.login {
+    height: 100vh;
+    width: 100%;
+    background-color: #edf5fd;
+
+    .btn-cta {
+
+        text-transform: uppercase;
+    }
+
+    .login-wrapper {
+        max-width: 470px;
+        width: 100%;
+        background-color:#fff;
+        box-shadow: $box-shadow;
+        padding: 40px;
+        border-radius: $border-radius;
+
+        .logo {
+            margin: auto;
+            max-width: 290px;
+            margin-bottom:40px;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 14px;
+            margin: 20px 0;
+
+            .link {
+                text-decoration: none;
+            }
+        }
+
+        .btn-cta {
+            width: 100%;
+        }
+    }
+}

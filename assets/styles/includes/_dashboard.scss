@@ -1,0 +1,66 @@
+@import 'variables';
+
+.page-heading {
+    font-size:32px;
+}
+
+.dashboard-wrapper {
+    position:relative;
+    margin-left:260px;
+}
+
+.dashboard-content {
+    background-color: #fff;
+    margin:30px;
+    padding: 30px;
+    border-radius: $border-radius;
+}
+
+.table-controls {
+    margin: 20px 0;
+}
+
+.table-filter {
+
+    ul {
+        padding:0;
+        margin:0;
+
+        li {
+            list-style-type: none;
+            display:inline-block;
+            margin:0 10px;
+            cursor: pointer;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .active {
+            border-radius: $border-radius;
+
+            color: #0d68c5;
+            background-color: #eff6ff;
+            padding:10px 30px;
+        }
+    }
+}
+
+.search-wrapper {
+    position: relative;
+    max-width: 320px;
+    width: 100%;
+    i {
+        position:absolute;
+        right: 15px;
+        top: 50%;
+        transform:translateY(-50%);
+    }
+}
+
+.appointment-edit {
+    font-weight: 700;
+
+    color: $color-main;
+}

@@ -1,53 +1,52 @@
-<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
-    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
-        <span class="fs-5 d-none d-sm-inline">Menu</span>
-    </a>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <p>Hello {{ app.user.username }}</p>
-    {% endif %}
-    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-        <li class="nav-item">
-            <a href="/dashboard" class="nav-link align-middle px-0">
-                <span class="ms-1 d-none d-sm-inline">Dashboard</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/crew" class="nav-link align-middle px-0">
-                <span class="ms-1 d-none d-sm-inline">Crew</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/nurse" class="nav-link align-middle px-0">
-                <span class="ms-1 d-none d-sm-inline">Nurses</span>
-            </a>
-        </li>
-        <li>
-            <a href="/lab_technician" class="nav-link px-0 align-middle">
-                <span class="ms-1 d-none d-sm-inline">Lab Technician</span></a>
-        </li>
-        <li>
-            <a href="/physician" class="nav-link px-0 align-middle">
-                <span class="ms-1 d-none d-sm-inline">Physician</span></a>
-        </li>
-        <li>
-            <a href="/room" class="nav-link px-0 align-middle">
-                <span class="ms-1 d-none d-sm-inline">Rooms</span></a>
-        </li>
-        <li>
-            <a href="/queue" class="nav-link px-0 align-middle">
-                <span class="ms-1 d-none d-sm-inline">Room Queue</span></a>
-        </li>
-        <li>
-            <a href="/branch" class="nav-link px-0 align-middle">
-                <span class="ms-1 d-none d-sm-inline">Branch</span></a>
-        </li>
-        <li>
-            <a href="/appointment" class="nav-link px-0 align-middle">
-                <span class="ms-1 d-none d-sm-inline">Appointment</span></a>
-        </li>
-        <li>
-            <a href="/appointee" class="nav-link px-0 align-middle">
-                <span class="ms-1 d-none d-sm-inline">Appointee</span></a>
-        </li>
-    </ul>
+<div class="sidebar">
+
+    <div class="sidebar-wrapper">
+
+        <div class="logo">
+            <img src="https://d1io3yog0oux5.cloudfront.net/_114e7d3598fccd562eaf175af24810dc/nclhltd/files/theme/images/logo.svg" alt="NCLH logo" class="img-fluid">
+        </div>
+
+        <div class="navbar-left">
+            <ul id="menu">
+                <li>
+                    <a href="/dashboard" class="active"><i class="bi bi-house"></i> Home</a>
+                </li>
+                <li>
+                    <a href="/crew"><i class="bi bi-people"></i> Crew</a>
+                </li>
+                <li>
+                    <a href="/nurse"><i class="bi bi-people"></i> Nurses</a>
+                </li>
+                <li>
+                    <a href="/lab_technician"><i class="bi bi-people"></i> Lab Technician</a>
+                </li>
+                <li>
+                    <a href="/physician"><i class="bi bi-people"></i> Physician</a>
+                </li>
+                <li>
+                    <a href="/room"><i class="bi bi-door-closed"></i> Rooms</a>
+                </li>
+                <li>
+                    <a href="/queue"><i class="bi bi-door-closed"></i> Room Queue</a>
+                </li>
+                <li>
+                    <a href="#"><i class="bi bi-clipboard-minus"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="#"><i class="bi bi-folder"></i> Records</a>
+                </li>
+                <li>
+                    <a href="/branch"><i class="bi bi-folder"></i> Branch</a>
+                </li>
+                <li>
+                    <a href="/appointment"><i class="bi bi-calendar"></i> Appointments</a>
+                </li>
+                <li>
+                    <a href="/appointee"><i class="bi bi-calendar"></i> Appointee</a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
 </div>

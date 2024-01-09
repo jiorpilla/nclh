@@ -1,5 +1,5 @@
 
-<table class="table">
+{# <table class="table">
     <thead>
     <tr>
         <th>Date</th>
@@ -14,14 +14,78 @@
                 {{ list.appointee.lastName }}, {{ list.appointee.firstName }} {{ list.appointee.middleName|first }}., {{ list.appointee.suffix }}
             </td>
         </tr>
+        
     {% else %}
         <tr>
             <td colspan="25">no records found</td>
         </tr>
     {% endfor %}
     </tbody>
+</table> #}
+<div class="add-appointment-wrapper d-flex justify-content-end">
+    <button class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Add New Appointment</button>
+</div>
+<div class="table-controls d-flex justify-content-between align-items-center">
+    <div class="search-wrapper">
+        <input type="text" id="search" class="form-control" placeholder="Search...">
+        <i class="bi bi-search"></i>
+    </div>
+    <div class="table-filter">
+        <ul>
+            <li class="active">Today</li>
+            <li>Tomorrow</li>
+            <li>This Week</li>
+            <li>Overdue</li>
+            <li>Select Period</li>
+        </ul>
+    </div>
+
+</div>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Company</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+        </tr>
+      </thead>
+    <tbody>
+    <tr>
+        <td>03-12-23</td>
+        <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Bugs Bunny</a></td>
+        <td>ACME Company</td>
+        <td>test@test.com</td>
+        <td>985-5654-515</td>
+    </tr>
+    <tr>
+        <td>03-12-23</td>
+        <td><a href="#"><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Maggio, Tanner J., III</td>
+        <td>ACME Company</td>
+        <td>test@test.com</td>
+        <td>985-5654-515</td>
+    </tr>
+    <tr>
+        <td>03-12-23</td>
+        <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Willms, Etha F., V</td>
+        <td>ACME Company</td>
+        <td>test@test.com</td>
+        <td>985-5654-515</td>
+    </tr>
+    <tr>
+        <td>03-12-23</td>
+        <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Bugs Bunny </td>
+        <td>ACME Company</td>
+        <td>test@test.com</td>
+        <td>985-5654-515</td>
+    </tr>
+    </tbody>
 </table>
 
 <div id="pagination-container">
     {{ knp_pagination_render(appointment_lists) }}
 </div>
+
+
