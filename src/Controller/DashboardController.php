@@ -14,7 +14,7 @@ class DashboardController extends BaseController
     {
     }
 
-    #[Route('/dashboard', name: 'app_dashboard')]
+    #[Route('/dashboard', name: 'dashboard')]
     public function index(): Response
     {
         $user = $this->getUser();
