@@ -53,34 +53,24 @@
         </tr>
       </thead>
     <tbody>
-    <tr>
-        <td>03-12-23</td>
-        <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Bugs Bunny</a></td>
-        <td>ACME Company</td>
-        <td>test@test.com</td>
-        <td>985-5654-515</td>
-    </tr>
-    <tr>
-        <td>03-12-23</td>
-        <td><a href="#"><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Maggio, Tanner J., III</td>
-        <td>ACME Company</td>
-        <td>test@test.com</td>
-        <td>985-5654-515</td>
-    </tr>
-    <tr>
-        <td>03-12-23</td>
-        <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Willms, Etha F., V</td>
-        <td>ACME Company</td>
-        <td>test@test.com</td>
-        <td>985-5654-515</td>
-    </tr>
-    <tr>
-        <td>03-12-23</td>
-        <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Bugs Bunny </td>
-        <td>ACME Company</td>
-        <td>test@test.com</td>
-        <td>985-5654-515</td>
-    </tr>
+
+    {% for appointment in appointment_lists %}
+        <tr>
+            <td>{{ appointment.appointmentDate |date('Y-m-d') }}</td>
+            <td>
+                <a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                    {{ appointment.appointee.lastName }}, {{ appointment.appointee.firstName }} {{ appointment.appointee.middleName|first }}., {{ appointment.appointee.suffix }}
+                </a>
+            </td>
+            <td>{{ appointment.appointee.company }}</td>
+            <td>{{ appointment.appointee.email }}</td>
+            <td>{{ appointment.appointee.phoneNumber }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td>no records found</td>
+        </tr>
+    {% endfor %}
     </tbody>
 </table>
 
