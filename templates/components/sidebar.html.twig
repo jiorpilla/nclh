@@ -9,11 +9,27 @@
         <div class="navbar-left">
             <ul id="menu">
                 <li>
-                    <a href="/dashboard" class="active"><i class="bi bi-house"></i> Home</a>
+                    <a href="{{ path('dashboard') }}" {{ app.request.attributes.get('_route') == 'dashboard' ? 'class="active"' : '' }}><i class="bi bi-house"></i> Home</a>
                 </li>
                 <li>
-                    <a href="/crew"><i class="bi bi-people"></i> Crew</a>
+                    <a href="{{ path('crew_index') }}" {{ app.request.attributes.get('_route') == 'crew_index' ? 'class="active"' : '' }}><i class="bi bi-people"></i> Crew</a>
                 </li>
+                <li>
+                    <a href="{{ path('appointment_main') }}" {{ app.request.attributes.get('_route') == 'appointment_main' ? 'class="active"' : '' }}><i class="bi bi-calendar"></i> Appointments</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="bi bi-door-closed"></i> Rooms</a>
+                </li>
+                <li>
+                    <a href="/#"><i class="bi bi-door-closed"></i> Room Queue</a>
+                </li>
+                <li>
+                    <a href="#"><i class="bi bi-clipboard-minus"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="#"><i class="bi bi-folder"></i> Records</a>
+                </li>
+            {% if 'ROLE_SUPERADMIN' in app.user.getroles()  %}
                 <li>
                     <a href="/nurse"><i class="bi bi-people"></i> Nurses</a>
                 </li>
@@ -24,26 +40,12 @@
                     <a href="/physician"><i class="bi bi-people"></i> Physician</a>
                 </li>
                 <li>
-                    <a href="/room"><i class="bi bi-door-closed"></i> Rooms</a>
-                </li>
-                <li>
-                    <a href="/queue"><i class="bi bi-door-closed"></i> Room Queue</a>
-                </li>
-                <li>
-                    <a href="#"><i class="bi bi-clipboard-minus"></i> Reports</a>
-                </li>
-                <li>
-                    <a href="#"><i class="bi bi-folder"></i> Records</a>
-                </li>
-                <li>
                     <a href="/branch"><i class="bi bi-folder"></i> Branch</a>
-                </li>
-                <li>
-                    <a href="/appointment"><i class="bi bi-calendar"></i> Appointments</a>
                 </li>
                 <li>
                     <a href="/appointee"><i class="bi bi-calendar"></i> Appointee</a>
                 </li>
+            {% endif %}
             </ul>
         </div>
         
