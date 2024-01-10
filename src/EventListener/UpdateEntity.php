@@ -2,7 +2,6 @@
 
 namespace App\EventListener;
 
-use App\Entity\Address;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
@@ -27,9 +26,9 @@ class UpdateEntity
         if(empty($user)){
             return;
         }
-        if($entity instanceof Address){
-            return;
-        }
+//        if($entity instanceof Address){
+//            return;
+//        }
 
         $datetime = new \DateTime();
         $user_id = $user->getId();

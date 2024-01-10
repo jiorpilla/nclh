@@ -124,11 +124,7 @@ class AppFixtures extends Fixture
 
         for($i = 0; $i < 100; $i++){
             $ulid = new Ulid();
-            $address = new Address();
-            $address->setStreet($this->faker->streetAddress());
-            $address->setBarangay($this->faker->barangay());
-            $address->setCity($this->faker->municipality());
-            $address->setProvince($this->faker->province());
+            $address = $this->faker->streetAddress() . "" . $this->faker->barangay() . "" . $this->faker->municipality() . "" . $this->faker->province();
             $crew[] = [
                 $this->faker->firstName(),//first_name
                 $this->faker->lastName(), //last_name

@@ -28,7 +28,7 @@ class AppointeeType extends AbstractType
             ->add('phone_number')
             ->add('email', EmailType::class)
             ->add('civil_status')
-            ->add('Address', AddressType::class)
+            ->add('address')
         ;
     }
 
