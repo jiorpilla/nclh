@@ -11,7 +11,7 @@
                     <img src="https://d1io3yog0oux5.cloudfront.net/_114e7d3598fccd562eaf175af24810dc/nclhltd/files/theme/images/logo.svg" alt="NCLH logo" class="img-fluid">
                 </div>
                 <form action="{{ path('app_login') }}" method="post" autocomplete="off">
-test
+
                     {% if error %}
                         <div class="error-message">
                             <i class="bi bi-exclamation-triangle-fill"></i> {{ error.messageKey|trans(error.messageData, 'security') }}
