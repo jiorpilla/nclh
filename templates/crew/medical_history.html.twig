@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crew{% endblock %}
+
+{% block contents %}
+    <h1>Crew</h1>
+
+
+    <div>
+        <ul>
+            <li>Patients records</li>
+            <li><a href="{{ path('crew_medical_history', {'id': crew.id}) }}">medical history</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <ul>
+            <li>Physical</li>
+            <li>ChestXray</li>
+            <li>RPR</li>
+            <li>Urinalysis</li>
+            <li>BloodChemistry</li>
+            <li>CBC</li>
+            <li>HIV</li>
+            <li>HbsAG</li>
+            <li>HepA</li>
+            <li>Riba</li>
+            <li>StoolCulture</li>
+            <li>OvaAndParasatises</li>
+            <li>PregnancyTest</li>
+            <li>Audiometry</li>
+            <li>VisualAcuity</li>
+            <li>EKG</li>
+            <li>PSA</li>
+            <li>Vaccines</li>
+            <li>Drugs</li>
+        </ul>
+    </div>
+
+{% endblock %}
