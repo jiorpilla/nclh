@@ -12,7 +12,7 @@
 .dashboard-content {
     background-color: #fff;
     margin:30px;
-    padding: 30px;
+    padding: 45px;
     border-radius: $border-radius;
 }
 
@@ -61,6 +61,32 @@
 
 .appointment-edit {
     font-weight: 700;
-
     color: $color-main;
+}
+
+.crew-heading {
+    margin-bottom: 40px;
+    
+    h1 {
+        font-size: 28px;
+        text-transform: uppercase;
+        color: $color-main;
+    }
+}
+
+.right-info {
+    border-left: 1px solid #eee;
+    padding-left:45px;
+    margin-left: 45px;
+
+    .crew-avatar {
+        margin-bottom: 20px;
+        position: relative;
+
+        .dropdown {
+            position: absolute;
+            right:0;
+            top:0;
+        }
+    }
 }
