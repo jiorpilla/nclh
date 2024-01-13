@@ -3,10 +3,28 @@
 {% block title %}Crew index{% endblock %}
 
 {% block contents %}
-    <h1>Crew index</h1>
+    <h1>Crew</h1>
 
-    <a class="btn btn-dark" href="{{ path('crew_create') }}">Create new</a>
-    <table class="table table-hover table-bordered ">
+    <div class="add-appointment-wrapper d-flex justify-content-end">
+        <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Add New Crew</button>
+    </div>
+    <div class="table-controls d-flex justify-content-between align-items-center">
+        <div class="search-wrapper">
+            <input type="text" id="search" class="form-control" placeholder="Search...">
+            <i class="bi bi-search"></i>
+        </div>
+        <div class="table-filter">
+            <ul>
+                <li class="active">Today</li>
+                <li>Tomorrow</li>
+                <li>This Week</li>
+                <li>Overdue</li>
+                <li>Select Period</li>
+            </ul>
+        </div>
+    
+    </div>
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>ID number</th>
@@ -47,7 +65,24 @@
         </tbody>
     </table>
 
-    <div id="pagination-container">
-        {{ knp_pagination_render(crews) }}
+    <div id="pagination-container" class=" mt-5 d-flex justify-content-center align-items-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        {# {{ knp_pagination_render(crews) }} #}
     </div>
 {% endblock %}

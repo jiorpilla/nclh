@@ -17,7 +17,7 @@
 }
 
 .table-controls {
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 .table-filter {
@@ -76,6 +76,7 @@
 
 .right-info {
     border-left: 1px solid #eee;
+    height: 100%;
     padding-left:45px;
     margin-left: 45px;
 
@@ -89,4 +90,16 @@
             top:0;
         }
     }
+}
+
+.pagination {
+
+    .page-link {
+        color: $color-main;
+    }
+    .page-link.active, .active > .page-link {
+        background-color: $color-main;
+        color: #fff;
+    }
+
 }

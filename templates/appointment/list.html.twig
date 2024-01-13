@@ -23,7 +23,7 @@
     </tbody>
 </table> #}
 <div class="add-appointment-wrapper d-flex justify-content-end">
-    <button class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Add New Appointment</button>
+    <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Add New Appointment</button>
 </div>
 <div class="table-controls d-flex justify-content-between align-items-center">
     <div class="search-wrapper">
@@ -84,8 +84,25 @@
     </tbody>
 </table>
 
-<div id="pagination-container">
-    {{ knp_pagination_render(appointment_lists) }}
+<div id="pagination-container" class="mt-5 d-flex justify-content-center align-items-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    {# {{ knp_pagination_render(appointment_lists) }} #}
 </div>
 
 
