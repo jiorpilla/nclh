@@ -3,11 +3,14 @@
 namespace App\Controller\Crew;
 
 use App\Controller\BaseController;
+use App\Entity\Appointee;
 use App\Entity\Crew;
+use App\Entity\MedicalHistory;
 use App\Form\CrewType;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -103,5 +106,58 @@ class CrewController extends BaseController
     public function fetchViaId(Crew $crew):JsonResponse
     {
         return $this->json($crew);
+    }
+
+    #[Route('/register-appointment/{id}', name: 'register_appointment', methods: ['GET', 'POST'])]
+    public function registerAppointmente(Appointee $appointee, EntityManagerInterface $entityManager): Response
+    {
+
+//
+//        dd($appointee);
+
+        // Check if there is a matching crew member with the same email
+        $crewRepository = $entityManager->getRepository(Crew::class);
+        $existingCrew = $crewRepository->findOneBy(['email' => $appointee->getEmail(), 'deleted' => '0']);
+
+        if ($existingCrew) {
+            // If a matching crew member exists, use that crew
+            $crew = $existingCrew;
+        } else {
+            // If no matching crew member, create a new crew
+            $crew = new Crew();
+            $crew->setFirstName($appointee->getFirstName());
+            $crew->setLastName($appointee->getLastName());
+            $crew->setMiddleName($appointee->getMiddleName());
+            $crew->setSuffix($appointee->getSuffix());
+            $crew->setGender($appointee->getGender());
+            $crew->setDateOfBirth($appointee->getDateOfBirth());
+            $crew->setLocationOfBirth($appointee->getLocationOfBirth());
+            $crew->setPhoneNumber($appointee->getPhoneNumber());
+            $crew->setEmail($appointee->getEmail());
+            $crew->setCivilStatus($appointee->getCivilStatus());
+            $crew->setAddress($appointee->getAddress());
+
+            $entityManager->persist($crew);
+            $entityManager->flush();
+        }
+
+        // Create a new MedicalHistory connected to the crew
+        $medicalHistory = new MedicalHistory();
+        // Set MedicalHistory properties as needed
+        // ...
+        $datetime = new \DateTime();
+        $medicalHistory->setStartDate($datetime);
+        $medicalHistory->setStatus(1);
+        // Associate crew with the MedicalHistory
+        $medicalHistory->setCrew($crew);
+
+        // Persist and flush changes to the database
+        $entityManager->persist($medicalHistory);
+        $entityManager->flush();
+
+        // should send email here
+
+        // Redirect to the show method of the CrewController
+        return $this->redirectToRoute('crew_show', ['id' => $crew->getId()]);
     }
 }

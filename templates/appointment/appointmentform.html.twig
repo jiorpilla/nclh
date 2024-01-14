@@ -9,25 +9,14 @@
             </div>
 
 
-<button type="button" class="shadow-sm   btn btn-primary btn-cta">Save Appointment</button>
             <div class="modal-body">
                 {{ form_start(form) }}
-                <div class="error-message">
-                    <i class="bi bi-exclamation-triangle-fill"></i> Sample Error Message
-                </div>
-                    {{ form_widget(form) }}
-                <button type="submit" class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
-                {{ form_end(form) }}
-{#                <div class="mb-3">#}
-{#                    <label for="" class="form-label">Civil status</label>#}
-{#                    <select class="form-select">#}
-{#                        <option disabled selected hidden>Select one</option>#}
-{#                        <option value="1">Single</option>#}
-{#                        <option value="2">Married</option>#}
-{#                        <option value="1">Widowed</option>#}
-{#                        <option value="2">Legally Separated</option>#}
-{#                    </select>#}
+                <button type="button" class="shadow-sm   btn btn-primary btn-cta">Save Appointment</button>
+{#                <div class="error-message">#}
+{#                    <i class="bi bi-exclamation-triangle-fill"></i> Sample Error Message#}
 {#                </div>#}
+                    {{ form_widget(form) }}
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
