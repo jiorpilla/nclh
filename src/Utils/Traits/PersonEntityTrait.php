@@ -41,8 +41,8 @@ trait PersonEntityTrait
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $civil_status = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Address $Address = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address = null;
 
     public function getFirstName(): ?string
     {
@@ -164,14 +164,14 @@ trait PersonEntityTrait
         return $this;
     }
 
-    public function getAddress(): ?Address
+    public function getAddress(): ?string
     {
-        return $this->Address;
+        return $this->address;
     }
 
-    public function setAddress(?Address $Address): static
+    public function setAddress(?string $address): static
     {
-        $this->Address = $Address;
+        $this->address = $address;
 
         return $this;
     }

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/appointment', name: 'appointment_')]
 class AppointmentController extends BaseController
 {
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'main')]
     public function index(Request $request, EntityManagerInterface $entityManager, AppointmentRepository $appointmentRepository): Response
     {
 

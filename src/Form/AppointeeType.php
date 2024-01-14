@@ -24,11 +24,11 @@ class AppointeeType extends AbstractType
             ->add('date_of_birth', BirthdayType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('location_of_birth')
             ->add('phone_number')
             ->add('email', EmailType::class)
-            ->add('civil_status')
-            ->add('Address', AddressType::class)
+//            ->add('location_of_birth')
+//            ->add('civil_status')
+//            ->add('address')
         ;
     }
 

@@ -1,87 +1,34 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 <!-- Modal -->
 <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModal" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Appointment</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-              <div class="error-message">
-                <i class="bi bi-exclamation-triangle-fill"></i> Sample Error Message
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Appointment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Appointment date</label>
-                  <input type="date" class="form-control" id="">
+
+
+<button type="button" class="shadow-sm   btn btn-primary btn-cta">Save Appointment</button>
+            <div class="modal-body">
+                {{ form_start(form) }}
+                <div class="error-message">
+                    <i class="bi bi-exclamation-triangle-fill"></i> Sample Error Message
                 </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Company</label>
-                    <input type="text" class="form-control" id="">
-
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Middle name</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Suffix</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Gender</label>
-                    <select class="form-select">
-                        <option disabled selected hidden>Select one</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
-                      </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Date of birth</label>
-                    <input type="date" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Location of birth</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Phone number</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Civil status</label>
-                    <select class="form-select">
-                        <option disabled selected hidden>Select one</option>
-                        <option value="1">Single</option>
-                        <option value="2">Married</option>
-                        <option value="1">Widowed</option>
-                        <option value="2">Legally Separated</option>
-                      </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="" class="form-label">Address</label>
-                    <textarea class="form-control" id=""></textarea>
-                  </div>
-                
-             
-              </form>
+                    {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
+                {{ form_end(form) }}
+{#                <div class="mb-3">#}
+{#                    <label for="" class="form-label">Civil status</label>#}
+{#                    <select class="form-select">#}
+{#                        <option disabled selected hidden>Select one</option>#}
+{#                        <option value="1">Single</option>#}
+{#                        <option value="2">Married</option>#}
+{#                        <option value="1">Widowed</option>#}
+{#                        <option value="2">Legally Separated</option>#}
+{#                    </select>#}
+{#                </div>#}
+            </div>
         </div>
-        <div class="modal-footer">
-
-          <button type="button" class="shadow-sm   btn btn-primary btn-cta">Save Appointment</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>

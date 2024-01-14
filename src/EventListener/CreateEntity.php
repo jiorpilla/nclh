@@ -2,7 +2,6 @@
 
 namespace App\EventListener;
 
-use App\Entity\Address;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
@@ -33,9 +32,9 @@ class CreateEntity
         if(empty($user)){
             return;
         }
-        if($entity instanceof Address){
-            return;
-        }
+//        if($entity instanceof Address){
+//            return;
+//        }
 
         $deleted = 0;
         $datetime = new \DateTime();

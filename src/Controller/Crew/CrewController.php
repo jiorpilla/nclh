@@ -85,6 +85,14 @@ class CrewController extends BaseController
         return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/{id}/medical-history', name: 'medical_history', methods: ['GET'])]
+    public function medicalHistory(Crew $crew): Response
+    {
+        return $this->render('crew/medical_history.html.twig', [
+            'crew' => $crew,
+        ]);
+    }
+
     /**
      * this is used in Room Queue QR Scanner - Stimulus JS
      * check Ajax code on that file
@@ -96,5 +104,4 @@ class CrewController extends BaseController
     {
         return $this->json($crew);
     }
-
 }

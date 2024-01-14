@@ -34,7 +34,7 @@ class CrewType extends AbstractType
 //            ->add('passport_number')
 //            ->add('seaman_book_number')
             ->add('company')
-            ->add('Address', AddressType::class)
+            ->add('address')
         ;
     }
 
