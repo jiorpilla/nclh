@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/crew', name: 'crew_')]
@@ -109,7 +110,7 @@ class CrewController extends BaseController
     }
 
     #[Route('/register-appointment/{id}', name: 'register_appointment', methods: ['GET', 'POST'])]
-    public function registerAppointmente(Appointee $appointee, EntityManagerInterface $entityManager): Response
+    public function registerAppointmente(Appointee $appointee, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
 
 //
@@ -156,6 +157,19 @@ class CrewController extends BaseController
         $entityManager->flush();
 
         // should send email here
+        $email = (new Email())
+            ->from('Hello@janivanorpilla.com')
+            ->to($appointee->getEmail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('You are now being processed')
+            ->text('Here are you steps on what to do while doing a medical check up!')
+            ->html('<p>Here are you steps on what to do while doing a medical check up!</p>');
+
+        $mailer->send($email);
+
 
         // Redirect to the show method of the CrewController
         return $this->redirectToRoute('crew_show', ['id' => $crew->getId()]);
