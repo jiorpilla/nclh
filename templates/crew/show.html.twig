@@ -3,7 +3,7 @@
 {% block title %}Crew{% endblock %}
 
 {% block contents %}
-    <h1>Crew</h1>
+    {# <h1>Crew</h1>
 
     <div>
         <a href="{{ path('crew_index') }}" class="btn btn-outline-primary">back to list</a>
@@ -124,5 +124,76 @@
                 <td>{{ crew.updatedAt ? crew.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
-    </table>
+    </table> #}
+
+    <div class="crew">
+        <div class="row">
+            <div class="col-md-9 main-info">
+                <div class="crew-heading">
+                    <h1>{{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName }}</h1>
+                </div>
+
+                <div class="crew-tabs">
+
+                    <ul class="nav nav-underline nav-fill" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="crew-information-tab" data-bs-toggle="tab" data-bs-target="#crew-information-tab-pane" type="button" role="tab" aria-controls="crew-information-tab-pane" aria-selected="true">Crew Information</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="appointments-tab" data-bs-toggle="tab" data-bs-target="#appointments-tab-pane" type="button" role="tab" aria-controls="appointments-tab-panee" aria-selected="false">Appointments</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="exam-records-tab" data-bs-toggle="tab" data-bs-target="#exam-records-tab-pane" type="button" role="tab" aria-controls="exam-records-tab-pane" aria-selected="false">Exam Records</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="assess-notes-tab" data-bs-toggle="tab" data-bs-target="#assess-notes-tab-pane" type="button" role="tab" aria-controls="assess-notes-tab-pane" aria-selected="false">Assess Notes</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="crew-information-tab-pane" role="tabpanel" aria-labelledby="crew-information-tab" tabindex="0">
+                            {{ include('crew/crew_information.html.twig') }}
+                        </div>
+                        
+                        <div class="tab-pane fade" id="appointments-tab-pane" role="tabpanel" aria-labelledby="appointments-tab" tabindex="0">
+                            {{ include('crew/crew_appointments.html.twig') }}
+                        </div>
+                        
+                        <div class="tab-pane fade" id="exam-records-tab-pane" role="tabpanel" aria-labelledby="exam-records-tab" tabindex="0">.3.</div>
+                        
+                        <div class="tab-pane fade" id="assess-notes-tab-pane" role="tabpanel" aria-labelledby="assess-notes-tab" tabindex="0">..4.</div>
+                      </div>
+
+                </div>
+
+            </div>
+            
+            <div class="col-md-3 right-info-wrapper">
+                <div class="right-info">
+                    <div class="crew-avatar">
+                        <img src="https://placehold.co/1000x1000" alt="" class="img-fluid"> 
+                        <div class="dropdown ">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Take A Photo</a></li>
+                              <li><a class="dropdown-item" href="#">Upload</a></li>
+                              <li><a class="dropdown-item" href="#">Delete Photo</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="qr-data">
+                            <img src="{{ qr_code_data_uri(crew.id) }}" class="img-fluid"/>
+                        </div>
+                        <div class="avatar-caption">
+                            <a href="{{ qr_code_url(crew.idNumber, 'pdf') }}" download>DOWNLOAD PDF</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

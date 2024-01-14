@@ -14,8 +14,8 @@ h1,h2,h3,h4,h5,h6 {
 
 label.form-label {
     font-family: $font-family-secondary;
-    font-weight: 700;
-    font-size:14px;
+    font-weight: 500;
+    font-size:12px;
 }
 .form-select {
     padding: 8px 12px;
@@ -27,6 +27,21 @@ label.form-label {
         box-shadow: none;
         border-color: $color-default;
     }
+}
+
+.form-section {
+    margin-bottom:30px;
+
+    h3 {
+        font-size: 16px;
+        background-color:#f4f4f4;
+        margin:0 15px 20px;
+        padding: 15px;
+    }
+}
+
+.tab-content {
+    margin-top: 40px;
 }
 .form-control {
     color: $color-default;
@@ -40,6 +55,21 @@ label.form-label {
         box-shadow: none;
         border-color: $color-default;
     }
+}
+
+.nav-underline {
+    margin-bottom:30px;
+}
+.nav-underline .nav-link {
+    color: $color-main;
+    text-transform: uppercase;
+    border-bottom-width: 8px;
+    font-weight: 500;
+}
+
+.nav-underline .nav-link.active, .nav-underline .show > .nav-link {
+    border-bottom-color: $color-main;
+    color: $color-main;
 }
 
 .link {
