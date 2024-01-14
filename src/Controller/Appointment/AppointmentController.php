@@ -26,7 +26,7 @@ class AppointmentController extends BaseController
             $entityManager->persist($appointment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('appointment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('appointment_main', [], Response::HTTP_SEE_OTHER);
         }
 
 
