@@ -1,72 +1,92 @@
 <div class="crew-information">
-    <form action="">
-        <div class="row form-section">
-            <h3>Primary Details</h3>
-            <div class="mb-3 col-md-6">
-                <label for="" class="form-label">First Name</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.firstName }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="" class="form-label">Last Name</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.lastName }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="" class="form-label">Middle Name</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.middleName }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Suffix</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.suffix }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Gender</label>
-                <input required type="text" class="form-control" id="" name="_username" value="{{ crew.gender }}">
-            </div>
+    <div class="row form-section">
+        <h3>Primary Details</h3>
+        <div class="mb-3 col-md-6">
+            <label for="" class="form-label">First Name</label>
+            <p><strong>{{ crew.firstName }}</strong></p>
         </div>
-        <div class="row form-section">
-            <h3>Secondary Details</h3>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Passport Number</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Seaman Book Number</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Company</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
+        <div class="mb-3 col-md-6">
+            <label for="" class="form-label">Last Name</label>
+            <p><strong>{{ crew.lastName }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="" class="form-label">Middle Name</label>
+            <p><strong>{{ crew.middleName }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Suffix</label>
+            <p><strong>{{ crew.suffix }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <p><strong>{{ crew.email }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="phoneNumber" class="form-label">phoneNumber</label>
+            <p><strong>{{ crew.phoneNumber }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Gender</label>
+            <p><strong>{{ crew.gender }}</strong></p>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-cta">Save Changes</button>
-    </form>
+    <div class="row form-section">
+        <h3>Secondary Details</h3>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Nationality</label>
+            <p><strong>{{ crew.nationality }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Postion</label>
+            <p><strong>{{ crew.position }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Passport Number</label>
+            <p><strong>{{ crew.passportNumber }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Seaman Book Number</label>
+            <p><strong>{{ crew.seamanBookNumber }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Company</label>
+            <p><strong>{{ crew.company }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Birth Address</label>
+            <p><strong>{{ crew.locationOfBirth }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Birth date</label>
+            <p><strong>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d H:i:s') : '' }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Address</label>
+            <p><strong>{{ crew.address }}</strong></p>
+        </div>
+    </div>
+
+    <div class="row form-section">
+        <h3>Information Details</h3>
+
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Created by</label>
+            <p><strong>{{ get_username(crew.createdBy) }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Updated by</label>
+            <p><strong>{{ get_username(crew.updatedBy) }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Created at</label>
+            <p><strong>{{ crew.createdAt ? crew.createdAt|date('Y-m-d H:i:s') : '' }}</strong></p>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label">Updated at</label>
+            <p><strong>{{ crew.updatedAt ? crew.updatedAt|date('Y-m-d H:i:s') : '' }}</strong></p>
+        </div>
+    </div>
+    {{ include('crew/_delete_form.html.twig') }}
+    <a href="{{ path('crew_edit', {'id': crew.id}) }}" class="btn btn-primary btn-cta">Edit</a>
 
 </div>

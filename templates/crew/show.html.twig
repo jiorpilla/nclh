@@ -17,114 +17,7 @@
             <li><a href="{{ path('crew_medical_history', {'id': crew.id}) }}">medical history</a></li>
         </ul>
     </div>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>QRCode</th>
-                <td>
-
-                    <img src="{{ qr_code_data_uri(crew.id) }}" />
-
-
-                    <div>
-                        <a href="{{ qr_code_url(crew.idNumber, 'pdf') }}" download>DOWNLOAD PDF</a>
-                    </div>
-                    <div>
-                        <a href="{{ qr_code_url(crew.idNumber) }}" download>DOWNLOAD IMAGE</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th>Id_number</th>
-                <td>{{ crew.idNumber }}</td>
-            </tr>
-            <tr>
-                <th>Position</th>
-                <td>{{ crew.position }}</td>
-            </tr>
-            <tr>
-                <th>Ship</th>
-                <td>{{ crew.ship }}</td>
-            </tr>
-            <tr>
-                <th>Nationality</th>
-                <td>{{ crew.nationality }}</td>
-            </tr>
-            <tr>
-                <th>Passport_number</th>
-                <td>{{ crew.passportNumber }}</td>
-            </tr>
-            <tr>
-                <th>Seaman_book_number</th>
-                <td>{{ crew.seamanBookNumber }}</td>
-            </tr>
-            <tr>
-                <th>Company</th>
-                <td>{{ crew.company }}</td>
-            </tr>
-            <tr>
-                <th>First_name</th>
-                <td>{{ crew.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Last_name</th>
-                <td>{{ crew.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Middle_name</th>
-                <td>{{ crew.middleName }}</td>
-            </tr>
-            <tr>
-                <th>Suffix</th>
-                <td>{{ crew.suffix }}</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>{{ crew.gender }}</td>
-            </tr>
-            <tr>
-                <th>Date_of_birth</th>
-                <td>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Location_of_birth</th>
-                <td>{{ crew.locationOfBirth }}</td>
-            </tr>
-            <tr>
-                <th>Phone_number</th>
-                <td>{{ crew.phoneNumber }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ crew.email }}</td>
-            </tr>
-            <tr>
-                <th>Civil_status</th>
-                <td>{{ crew.civilStatus }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ crew.picture }}</td>
-            </tr>
-            <tr>
-                <th>Created_by</th>
-                <td>{{ get_username(crew.createdBy) }}</td>
-            </tr>
-            <tr>
-                <th>Updated_by</th>
-                <td>{{ get_username(crew.updatedBy) }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ crew.createdAt ? crew.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ crew.updatedAt ? crew.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table> #}
+#}
 
     <div class="crew">
         <div class="row">
@@ -170,7 +63,7 @@
             <div class="col-md-3 right-info-wrapper">
                 <div class="right-info">
                     <div class="crew-avatar">
-                        <img src="https://placehold.co/1000x1000" alt="" class="img-fluid"> 
+                        <img src="{{ vich_uploader_asset(crew) }}" alt="" class="img-fluid">
                         <div class="dropdown ">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-three-dots"></i>

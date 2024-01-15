@@ -1,12 +1,52 @@
-<div {{ stimulus_controller('image_upload') }}>
-    <button {{ stimulus_target('image_upload', 'activateBtn') }} {{ stimulus_action('image_upload', 'activateCamera') }}>Activate Camera</button>
-    <button {{ stimulus_target('image_upload', 'deactivateBtn') }} {{ stimulus_action('image_upload', 'deactivateCamera') }} style="display: none;">Deactivate Camera</button>
-    <video {{ stimulus_target('image_upload', 'webcam') }} width="640" height="480" style="display: none;" autoplay></video>
-    <button {{ stimulus_target('image_upload', 'captureBtn') }} {{ stimulus_action('image_upload', 'captureImage') }} style="display: none;">Capture Image</button>
-    <canvas {{ stimulus_target('image_upload', 'canvas') }} width="640" height="480" style="display: none"></canvas>
-    <div {{ stimulus_target('image_upload', 'photoContainer') }}></div>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-dark">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+<div class="row" {{ stimulus_controller('image_upload') }}>
+    <div class="col-md-9 main-info">
+        <div class="crew-heading">
+            <h1>Edit: {{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName }}</h1>
+        </div>
+
+        <div class="crew-tabs">
+            <a href="{{ path('crew_show', {'id': crew.id}) }}" class="btn btn-outline-primary">back to information view</a>
+            <br>
+            <button class="btn btn-outline-secondary" {{ stimulus_target('image_upload', 'activateBtn') }} {{ stimulus_action('image_upload', 'activateCamera') }}>Activate Camera</button>
+            <button class="btn btn-outline-secondary" {{ stimulus_target('image_upload', 'deactivateBtn') }} {{ stimulus_action('image_upload', 'deactivateCamera') }} style="display: none;">Deactivate Camera</button>
+            <video {{ stimulus_target('image_upload', 'webcam') }} width="640" height="480" style="display: none;" autoplay></video>
+            <button class="btn btn-outline-secondary" {{ stimulus_target('image_upload', 'captureBtn') }} {{ stimulus_action('image_upload', 'captureImage') }} style="display: none;">Capture Image</button>
+            <canvas {{ stimulus_target('image_upload', 'canvas') }} width="640" height="480" style="display: none"></canvas>
+{#            <div {{ stimulus_target('image_upload', 'photoContainer') }}></div>#}
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn btn-dark">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+    <div class="col-md-3 right-info-wrapper">
+        <div class="right-info">
+            <div class="crew-avatar" {{ stimulus_target('image_upload', 'photoContainer') }}>
+                <img src="{{ vich_uploader_asset(crew) }}" alt="" class="img-fluid">
+                <div class="dropdown ">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" >Activate Camera</button></li>
+                        <li><a class="dropdown-item" href="#">Upload</a></li>
+                        <li><a class="dropdown-item" href="#">Delete Photo</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="qr-data">
+                    <img src="{{ qr_code_data_uri(crew.id) }}" class="img-fluid"/>
+                </div>
+                <div class="avatar-caption">
+                    <a href="{{ qr_code_url(crew.idNumber, 'pdf') }}" download>DOWNLOAD PDF</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

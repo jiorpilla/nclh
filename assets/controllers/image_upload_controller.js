@@ -58,11 +58,23 @@ export default class extends Controller {
         this.canvasTarget.toBlob((blob) => {
             const imageURL = URL.createObjectURL(blob);
 
-            // Create a new image element
-            const  imgElement = $('<img>').attr('src', imageURL).attr('alt', 'Captured Photo');
+            // // Create a new image element
+            // const  imgElement = $('<img>').attr('src', imageURL).attr('alt', 'Captured Photo');
+            //
+            // // Clear the content of the photoContainer and add the new image
+            // $(this.photoContainerTarget).html(imgElement);
 
-            // Clear the content of the photoContainer and add the new image
-            $(this.photoContainerTarget).html(imgElement);
+            // Find the existing img tag within the photoContainer
+            const existingImgElement = $(this.photoContainerTarget).find('img');
+
+            // If an img tag already exists, update its src attribute; otherwise, create a new img tag
+            if (existingImgElement.length) {
+                existingImgElement.attr('src', imageURL).attr('alt', 'Captured Photo').attr('class', 'img-fluid');
+            } else {
+                // If no img tag exists, create a new one and add it to the photoContainer
+                const imgElement = $('<img>').attr('src', imageURL).attr('alt', 'Captured Photo');
+                $(this.photoContainerTarget).html(imgElement);
+            }
 
             // set filename based on date
             const  fileName = 'image' + new Date().getTime() + '.jpg';

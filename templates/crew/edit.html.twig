@@ -1,14 +1,9 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Edit Crew{% endblock %}
 
 {% block contents %}
-    <h1>Edit Crew</h1>
-
-    <a href="{{ path('crew_index') }}" class="btn btn-outline-primary">back to list</a>
-
-    {{ include('crew/_delete_form.html.twig') }}
-
-    {{ include('crew/_form.html.twig', {'button_label': 'Update'}) }}
+<div class="crew">
+                {{ include('crew/_form.html.twig', {'button_label': 'Update'}) }}
+</div>
 
 {% endblock %}
