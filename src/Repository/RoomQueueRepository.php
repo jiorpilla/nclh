@@ -58,7 +58,7 @@ class RoomQueueRepository extends ServiceEntityRepository
                 'deleted' => 0,
                 'status' => 'ON_QUEUE', // Adjust this based on your actual status values
             ])
-            ->groupBy('rq.Room')
+            ->groupBy('rq.Room','rq')
             ->getQuery()
             ->getResult();
             ;
