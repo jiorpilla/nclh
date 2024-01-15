@@ -2,6 +2,7 @@
 
 .page-heading {
     font-size:32px;
+    margin-bottom:30px;
 }
 
 .dashboard-wrapper {
@@ -47,6 +48,16 @@
     }
 }
 
+.searchbar-top {
+    width: 100%;
+    max-width: 700px;
+
+    .search-wrapper {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 .search-wrapper {
     position: relative;
     max-width: 320px;
@@ -59,6 +70,31 @@
     }
 }
 
+.status-group-wrapper {
+    margin-bottom: 30px;
+    .btn {
+        border-color: #fff;
+        background-color: #edf1f0;
+        color: $color-default;
+        padding:12px 24px;
+    }
+    .btn-check:checked + .btn {
+        border-color: #fff;
+        background-color:$color-main;
+    }
+
+    .btn-check + .btn:hover {
+        background-color: darken(#edf1f0, 5%);
+        border-color: #fff;
+        color: $color-main;
+    }
+}
+
+.badge {
+    font-weight: 400;
+    font-size: 13px;
+}
+
 .appointment-edit {
     font-weight: 700;
     color: $color-main;
@@ -66,7 +102,7 @@
 
 .crew-heading {
     margin-bottom: 40px;
-    
+
     h1 {
         font-size: 28px;
         text-transform: uppercase;
@@ -102,4 +138,29 @@
         color: #fff;
     }
 
+}
+
+.avatar-caption {
+    margin-top:10px;
+    a {
+        color: $color-main;
+
+    }
+}
+
+.page-section {
+    &:not(:last-child) {
+        margin-bottom: 60px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 60px;
+    }
+}
+
+.table-heading {
+    h3 {
+        font-size: 21px;
+        background-color: #edfaff;
+        border: 1px solid #f9f9f9;
+        padding: 15px;
+    }
 }

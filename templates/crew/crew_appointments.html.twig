@@ -1,72 +1,197 @@
-<div class="crew-information">
-    <form action="">
-        <div class="row form-section">
-            <h3>Primary Details</h3>
-            <div class="mb-3 col-md-6">
-                <label for="" class="form-label">First Name</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.firstName }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="" class="form-label">Last Name</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.lastName }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="" class="form-label">Middle Name</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.middleName }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Suffix</label>
-                <input required type="text" class="form-control" id="" name="" value="{{ crew.suffix }}">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Gender</label>
-                <input required type="text" class="form-control" id="" name="_username" value="{{ crew.gender }}">
-            </div>
+<div class="crew-appointments">
+    <div class="page-section">
+        <div class="page-heading">
+            <h2>Current Appointment</h2>
         </div>
-        <div class="row form-section">
-            <h3>Secondary Details</h3>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Passport Number</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Seaman Book Number</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Company</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
-            <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">Nationality</label>
-                <input required type="text" class="form-control" id="" name="" value="">
-            </div>
+
+        <div class="btn-group status-group-wrapper d-flex" role="group" aria-label="Basic radio toggle button group">
+
+            <input type="radio" class="btn-check" name="appointmentStatus" id="notStarted" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="notStarted">Not Started</label>
+
+            <input type="radio" class="btn-check" name="appointmentStatus" id="started" autocomplete="off">
+            <label class="btn btn-outline-primary" for="started">Started</label>
+
+            <input type="radio" class="btn-check" name="appointmentStatus" id="awaitingResults" autocomplete="off">
+            <label class="btn btn-outline-primary" for="awaitingResults">Awaiting Results</label>
+
+            <input type="radio" class="btn-check" name="appointmentStatus" id="evaluation" autocomplete="off">
+            <label class="btn btn-outline-primary" for="evaluation">Evaluation</label>
+
+            <input type="radio" class="btn-check" name="appointmentStatus" id="closed" autocomplete="off">
+            <label class="btn btn-outline-primary" for="closed">Closed</label>
+
+        </div>
+
+        <div class="table-heading">
+            <h3>Exams</h3>
+        </div>
+
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last Updated</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Lab Test 1</td>
+                <td>01-05-2023</td>
+                <td><span class="badge text-bg-success">Awaiting Results</span></td>
+            </tr>
+            <tr>
+                <td>X-ray</td>
+                <td>01-05-2023</td>
+                <td><span class="badge text-bg-primary">Started</span></td>
+            </tr>
+            <tr>
+                <td>Echo</td>
+                <td>01-05-2023</td>
+                <td><span class="badge text-bg-secondary">Not Started</span></td>
+            </tr>
+            <tr>
+                <td>Lab Test 1</td>
+                <td>01-05-2023</td>
+                <td><span class="badge text-bg-secondary">Not Started</span></td>
+            </tr>
+            <tr>
+                <td>Lab Test 1</td>
+                <td>01-05-2023</td>
+                <td><span class="badge text-bg-secondary">Not Started</span></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex mb-5">
+            <button type="submit" class="btn btn-primary btn-cta">Add Exam</button>
+        </div>
+
+
+        <div class="table-heading">
+            <h3>Notes</h3>
+        </div>
+
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Author</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>03-01-02</td>
+                <td>Lorem Ipsum Dolor</td>
+                <td>author</td>
+            </tr>
+            <tr>
+                <td>03-01-02</td>
+                <td>Lorem Ipsum Dolor</td>
+                <td>author</td>
+            </tr>
+            <tr>
+                <td>03-01-02</td>
+                <td>Lorem Ipsum Dolor</td>
+                <td>author</td>
+            </tr>
+            <tr>
+                <td>03-01-02</td>
+                <td>Lorem Ipsum Dolor</td>
+                <td>author</td>
+            </tr>
+            <tr>
+                <td>03-01-02</td>
+                <td>Lorem Ipsum Dolor</td>
+                <td>author</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex mb-5">
+            <button type="submit" class="btn btn-primary btn-cta">Add Note</button>
+        </div>
+
     </div>
-    <button type="submit" class="btn btn-primary btn-cta">Save Changes</button>
-    </form>
+
+    <div class="page-section">
+
+        <div class="page-heading">
+            <h2>All Appointments</h2>
+        </div>
+        <div class="table-controls d-flex justify-content-between align-items-center">
+            <div class="search-wrapper">
+                <input type="text" id="search" class="form-control" placeholder="Search...">
+                <i class="bi bi-search"></i>
+            </div>
+
+        </div>
+
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Company</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>03-12-23</td>
+                <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Bugs Bunny</a></td>
+                <td>ACME Company</td>
+                <td>test@test.com</td>
+                <td>985-5654-515</td>
+            </tr>
+            <tr>
+                <td>03-12-23</td>
+                <td><a href="#"><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Maggio, Tanner J., III</td>
+                <td>ACME Company</td>
+                <td>test@test.com</td>
+                <td>985-5654-515</td>
+            </tr>
+            <tr>
+                <td>03-12-23</td>
+                <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Willms, Etha F., V</td>
+                <td>ACME Company</td>
+                <td>test@test.com</td>
+                <td>985-5654-515</td>
+            </tr>
+            <tr>
+                <td>03-12-23</td>
+                <td><a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Bugs Bunny </td>
+                <td>ACME Company</td>
+                <td>test@test.com</td>
+                <td>985-5654-515</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div id="pagination-container" class="mt-5 d-flex justify-content-center align-items-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            {# {{ knp_pagination_render(appointment_lists) }} #}
+        </div>
+
+    </div>
 
 </div>
