@@ -25,6 +25,8 @@ class AppointmentController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $appointment->setCreatedAt(new \DateTime());
+            $appointment->setUpdatedAt(new \DateTime());
             $entityManager->persist($appointment);
             $entityManager->flush();
 
