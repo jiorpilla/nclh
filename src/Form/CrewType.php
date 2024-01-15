@@ -30,9 +30,9 @@ class CrewType extends AbstractType
             ->add('civil_status')
             ->add('position')
             ->add('ship')
-//            ->add('nationality')
-//            ->add('passport_number')
-//            ->add('seaman_book_number')
+            ->add('nationality')
+            ->add('passport_number')
+            ->add('seaman_book_number')
             ->add('company')
             ->add('address')
         ;
