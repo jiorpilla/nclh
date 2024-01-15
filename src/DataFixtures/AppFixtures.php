@@ -131,6 +131,7 @@ class AppFixtures extends Fixture
                 $this->faker->lastName(),//middle_name
                 $this->faker->suffix(),//suffix
                 $gender[$this->faker->numberBetween(1, 2)],//gender
+                $this->faker->numberBetween(100000, 999999),//passport_number
                 $this->faker->dateTime(),//date_of_birth
                 $this->faker->address(),//location_ofbirth
                 $this->faker->phoneNumber(),//phone_number
@@ -147,7 +148,7 @@ class AppFixtures extends Fixture
             ];
         }
 
-        foreach ($crew as [$first_name,$last_name,$middle_name,$suffix,$gender,$date_of_birth,$location_of_birth,$phone_number,$email,$civil_status,$company,$position,$address,$deleted, $created_by, $created_at, $updated_by, $updated_at]) {
+        foreach ($crew as [$first_name,$last_name,$middle_name,$suffix,$gender,$passportNumber,$date_of_birth,$location_of_birth,$phone_number,$email,$civil_status,$company,$position,$address,$deleted, $created_by, $created_at, $updated_by, $updated_at]) {
 
             $branch = new Crew();
 
@@ -156,6 +157,7 @@ class AppFixtures extends Fixture
             $branch->setMiddleName($middle_name);
             $branch->setSuffix($suffix);
             $branch->setGender($gender);
+            $branch->setPassportNumber($passportNumber);
             $branch->setDateOfBirth($date_of_birth);
             $branch->setLocationOfBirth($location_of_birth);
             $branch->setPhoneNumber($phone_number);
