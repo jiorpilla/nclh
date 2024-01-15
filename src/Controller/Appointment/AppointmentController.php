@@ -9,13 +9,15 @@ use App\Repository\AppointmentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/appointment', name: 'appointment_')]
 class AppointmentController extends BaseController
 {
     #[Route('/', name: 'main')]
-    public function index(Request $request, EntityManagerInterface $entityManager, AppointmentRepository $appointmentRepository): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, AppointmentRepository $appointmentRepository, MailerInterface $mailer): Response
     {
 
         $appointment = new Appointment();
@@ -25,6 +27,15 @@ class AppointmentController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($appointment);
             $entityManager->flush();
+
+            $email = (new Email())
+                ->from('NCLH@janivanorpilla.com')
+                ->to($appointment->getAppointee()->getEmail())
+                ->subject('You have an appointment at NCLH clinic at ' . $appointment->getAppointmentDate()->format('Y-m-d'))
+                ->text('Just show up')
+                ->html('<p>Just show up</p>');
+
+            $mailer->send($email);
 
             return $this->redirectToRoute('appointment_main', [], Response::HTTP_SEE_OTHER);
         }
