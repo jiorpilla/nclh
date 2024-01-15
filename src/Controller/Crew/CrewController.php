@@ -159,7 +159,7 @@ class CrewController extends BaseController
 
         // should send email here
         $email = (new Email())
-            ->from('Hello@janivanorpilla.com')
+            ->from('NCLH@janivanorpilla.com')
             ->to($appointee->getEmail())
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
