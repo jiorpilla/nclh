@@ -18,9 +18,6 @@
                     <a href="{{ path('appointment_main') }}" {{ app.request.attributes.get('_route') == 'appointment_main' ? 'class="active"' : '' }}><i class="bi bi-calendar"></i> Appointments</a>
                 </li>
                 <li>
-                    <a href="/rooms"><i class="bi bi-door-closed"></i> Rooms</a>
-                </li>
-                <li>
                     <a href="/queue"><i class="bi bi-door-closed"></i> Room Queue</a>
                 </li>
                 <li>
@@ -32,6 +29,9 @@
             {% if 'ROLE_SUPERADMIN' in app.user.getroles()  %}
                 <li>
                     <a href="/nurse"><i class="bi bi-people"></i> Nurses</a>
+                </li>
+                <li>
+                    <a href="/rooms"><i class="bi bi-door-closed"></i> Rooms</a>
                 </li>
                 <li>
                     <a href="/lab_technician"><i class="bi bi-people"></i> Lab Technician</a>
