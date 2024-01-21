@@ -1,5 +1,5 @@
 #ignore migrations for now
-/migrations
+#/migrations
 
 /.idea
 ###> symfony/framework-bundle ###
