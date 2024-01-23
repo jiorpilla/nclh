@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Crew;
+use App\Form\Type\CivilStatusType;
 use App\Form\Type\GenderType;
 use App\Form\Type\ImageUploadType;
 use Symfony\Component\Form\AbstractType;
@@ -16,23 +17,23 @@ class CrewType extends AbstractType
     {
         $builder
             ->add('imageFile', ImageUploadType::class)
-            ->add('first_name')
-            ->add('last_name')
-            ->add('middle_name')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('middleName')
             ->add('suffix')
             ->add('gender',GenderType::class)
-            ->add('date_of_birth', BirthdayType::class, [
+            ->add('dateOfBirth', BirthdayType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('location_of_birth')
-            ->add('phone_number')
+            ->add('locationOfBirth')
+            ->add('phoneNumber')
             ->add('email')
-            ->add('civil_status')
+            ->add('civilStatus', CivilStatusType::class)
             ->add('position')
             ->add('ship')
             ->add('nationality')
-            ->add('passport_number')
-            ->add('seaman_book_number')
+            ->add('passportNumber')
+            ->add('seamanBookNumber')
             ->add('company')
             ->add('address')
         ;
