@@ -9,7 +9,7 @@
         <h1 class="page-heading">Appointments</h1>
 
         <div class="add-appointment-wrapper d-flex justify-content-end">
-            <button class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Add New Appointment</button>
+            <a href="{{ path('appointment_create') }}" class="btn btn-primary btn-cta">Add New Appointment</a>
         </div>
         {{ include('appointment/list.html.twig') }}
 
