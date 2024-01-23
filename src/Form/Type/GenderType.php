@@ -19,6 +19,7 @@ class GenderType extends AbstractType
             'expanded' => true,
             'multiple' => false,
             'data' => 'male',
+            'label_attr' => ['class' => 'radio-inline']
         ]);
     }
 
