@@ -31,18 +31,15 @@
         <tr>
             <td>{{ appointment.appointmentDate |date('Y-m-d') }}</td>
             <td>
-{#                <a href="#" class="appointment-edit"  data-bs-toggle="modal" data-bs-target="#newAppointmentModal">#}
-{#                    {{ appointment.appointee.lastName }}, {{ appointment.appointee.firstName }} {{ appointment.appointee.middleName|first }}., {{ appointment.appointee.suffix }}#}
-{#                </a>#}
                 <a href="#" class="appointment-edit">
-                    {{ appointment.appointee.lastName }}, {{ appointment.appointee.firstName }} {{ appointment.appointee.middleName|first }}., {{ appointment.appointee.suffix }}
+                    {{ appointment.crew.lastName }}, {{ appointment.crew.firstName }} {{ appointment.crew.middleName|first }}., {{ appointment.crew.suffix }}
                 </a>
             </td>
-            <td>{{ appointment.appointee.company }}</td>
-            <td>{{ appointment.appointee.email }}</td>
-            <td>{{ appointment.appointee.phoneNumber }}</td>
+            <td>{{ appointment.crew.company }}</td>
+            <td>{{ appointment.crew.email }}</td>
+            <td>{{ appointment.crew.phoneNumber }}</td>
             <td>
-                <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.appointee.id}) }}">Start Process</a>
+                <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.crew.id}) }}">Start Process</a>
                 <a class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Reschedule</a>
             </td>
         </tr>
@@ -54,23 +51,4 @@
     </tbody>
 </table>
 
-<div id="pagination-container" class="mt-5 d-flex justify-content-center align-items-center">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-     {{ knp_pagination_render(appointment_lists) }}
-</div>
+{{ knp_pagination_render(appointment_lists) }}
