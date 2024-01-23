@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\CrewRepository;
 use App\Utils\Traits\ImageUploadEntityTrait;
 use App\Utils\Traits\PersonEntityTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -35,6 +37,9 @@ class Crew
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $company = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $type = null;
 
     public function getIdNumber(): ?string
     {
@@ -116,6 +121,18 @@ class Crew
     public function setCompany(?string $company): static
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(?int $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
