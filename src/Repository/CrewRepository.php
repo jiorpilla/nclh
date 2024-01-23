@@ -34,6 +34,26 @@ class CrewRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
+    public function findExistingCrewByAttributes(array $attributes): ?Crew
+    {
+        $queryBuilder = $this->createQueryBuilder('c');
+        $whereConditions = [];
+
+        foreach (['email', 'passport_number', 'seaman_book_number'] as $attribute) {
+            if ($attributes[$attribute] !== null) {
+                $whereConditions[] = sprintf('c.%s = :%s', $attribute, $attribute);
+                $queryBuilder->setParameter($attribute, $attributes[$attribute]);
+            }
+        }
+
+        if (!empty($whereConditions)) {
+            $queryBuilder->where(implode(' AND ', $whereConditions));
+        }
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+
+    }
+
 //    /**
 //     * @return Crew[] Returns an array of Crew objects
 //     */

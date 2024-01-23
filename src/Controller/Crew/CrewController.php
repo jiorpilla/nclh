@@ -53,7 +53,7 @@ class CrewController extends BaseController
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    #[Route('/detail/{id}', name: 'show', methods: ['GET'])]
     public function show(Crew $crew): Response
     {
         return $this->render('crew/show.html.twig', [
@@ -61,7 +61,7 @@ class CrewController extends BaseController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Crew $crew, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CrewType::class, $crew);
@@ -110,12 +110,46 @@ class CrewController extends BaseController
         return $this->json($crew);
     }
 
-    #[Route('/register-appointment/{id}', name: 'register_appointment', methods: ['GET', 'POST'])]
-    public function registerAppointmente(Appointee $appointee, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    #[Route('/find', name: 'search', methods: ['GET'])]
+    public function findCrew(Request $request, CrewRepository $crewRepository): JsonResponse
     {
-
+        $email = $request->query->get('email');
+        $passportNumber = $request->query->get('passportNumber');
+        $seamanBookNumber = $request->query->get('seamanBookNumber');
 //
-//        dd($appointee);
+//        $email = $request->query->get('email') ?? null;
+//        $passportNumber = $request->query->get('passportNumber') ?? null;
+//        $seamanBookNumber = $request->query->get('seamanBookNumber') ?? null;
+//
+//        $email = empty($email) ? null : $email;
+//        $passportNumber = empty($passportNumber) ? null : $passportNumber;
+//        $seamanBookNumber = empty($seamanBookNumber) ? null : $seamanBookNumber;
+
+        // You can also pass an array of parameters if you prefer
+        // $parameters = $this->getRequest()->query->all();
+
+        // Validate input
+        if (!($email || $passportNumber || $seamanBookNumber)) {
+            return $this->json(['error' => 'At least one parameter is required.'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        // Find the Crew based on the provided parameters
+        $crew = $crewRepository->findExistingCrewByAttributes([
+            'email' => $email,
+            'passport_number' => $passportNumber,
+            'seaman_book_number' => $seamanBookNumber,
+        ]);
+
+        if (!$crew) {
+            return $this->json(['error' => 'Crew not found.'], JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        return $this->json($crew);
+    }
+
+    #[Route('/register-appointment/{id}', name: 'register_appointment', methods: ['GET', 'POST'])]
+    public function registerAppointment(Appointee $appointee, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    {
 
         // Check if there is a matching crew member with the same email
         $crewRepository = $entityManager->getRepository(Crew::class);
