@@ -13,10 +13,10 @@ class AppointmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('AppointmentDate', DateType::class, [
+            ->add('appointmentDate', DateType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('Appointee', AppointeeType::class)
+            ->add('crew', AppointmentCrewType::class)
         ;
     }
 
