@@ -15,8 +15,11 @@ class Appointment
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $AppointmentDate = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Appointee $Appointee = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $status = null;
+
+    #[ORM\ManyToOne(inversedBy: 'appointments')]
+    private ?Crew $crew = null;
 
     public function getAppointmentDate(): ?\DateTimeInterface
     {
@@ -30,14 +33,26 @@ class Appointment
         return $this;
     }
 
-    public function getAppointee(): ?Appointee
+    public function getStatus(): ?int
     {
-        return $this->Appointee;
+        return $this->status;
     }
 
-    public function setAppointee(?Appointee $Appointee): static
+    public function setStatus(?int $status): static
     {
-        $this->Appointee = $Appointee;
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCrew(): ?Crew
+    {
+        return $this->crew;
+    }
+
+    public function setCrew(?Crew $crew): static
+    {
+        $this->crew = $crew;
 
         return $this;
     }
