@@ -10,6 +10,11 @@
     {{ form_start(form) }}
     <button class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
     <div class="row">
+{#        <div class="col-md-12">#}
+{#            <div class="error-message">#}
+{#                <i class="bi bi-exclamation-triangle-fill"></i> Sample Error Message#}
+{#            </div>#}
+{#        </div>#}
         <div class="col-md-6">
             {{ form_row(form.appointmentDate) }}
             {{ form_row(form.crew.email,
