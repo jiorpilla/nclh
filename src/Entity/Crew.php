@@ -5,8 +5,6 @@ namespace App\Entity;
 use App\Repository\CrewRepository;
 use App\Utils\Traits\ImageUploadEntityTrait;
 use App\Utils\Traits\PersonEntityTrait;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -40,6 +38,14 @@ class Crew
 
     #[ORM\Column(nullable: true)]
     private ?int $type = null;
+
+    public const GENDER_MALE = 'male';
+    public const GENDER_FEMALE = 'female';
+
+    public const CIVIL_STATUS_SINGLE = '1';
+    public const CIVIL_STATUS_MARRIED = '2';
+    public const CIVIL_STATUS_DIVORCED = '3';
+    public const CIVIL_STATUS_WIDOWED = '4';
 
     public function getIdNumber(): ?string
     {
