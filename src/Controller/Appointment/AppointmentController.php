@@ -27,8 +27,6 @@ class AppointmentController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $appointment->setCreatedAt(new \DateTime());
-            $appointment->setUpdatedAt(new \DateTime());
             $entityManager->persist($appointment);
             $entityManager->flush();
 //
@@ -50,6 +48,8 @@ class AppointmentController extends BaseController
 
         $appointment_lists = $this->paginate($query, $page);
 
+        dump($appointment_lists);
+
         return $this->render('appointment/index.html.twig', [
             'appointment_lists' => $appointment_lists,
             'appointment' => $appointment,
@@ -58,13 +58,13 @@ class AppointmentController extends BaseController
     }
 
     #[Route('/bulk_create', name: 'bulk_create')]
-    public function bulkCreate()
+    public function bulkCreate(): Response
     {
-
+        return new Response("test");
     }
 
     #[Route('/new', name: 'create')]
-    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository)
+    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository): Response
     {
         $appointment = new Appointment();
         $form = $this->createForm(AppointmentType::class, $appointment);
@@ -100,7 +100,7 @@ class AppointmentController extends BaseController
 
             // persist the Appointment
             $entityManager->persist($appointment);
-            
+
             //flush
             $entityManager->flush();
 
