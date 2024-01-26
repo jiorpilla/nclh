@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AppointmentController!{% endblock %}
+{% block title %}Appointments{% endblock %}
 
 {% block contents %}
-
     <div class="appointments p-3">
 
         <h1 class="page-heading">Appointments</h1>
@@ -14,8 +13,6 @@
         {{ include('appointment/list.html.twig') }}
 
         {{ include('appointment/appointmentform.html.twig') }}
-
-        </div>
       
     </div>
 {% endblock %}
