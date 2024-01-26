@@ -15,11 +15,17 @@ class Appointment
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $AppointmentDate = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $status = null;
-
     #[ORM\ManyToOne(inversedBy: 'appointments')]
     private ?Crew $crew = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $status = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $package = null;
+
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_CONFIRMED = 'confirmed';
 
     public function getAppointmentDate(): ?\DateTimeInterface
     {
@@ -33,18 +39,6 @@ class Appointment
         return $this;
     }
 
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?int $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     public function getCrew(): ?Crew
     {
         return $this->crew;
@@ -53,6 +47,30 @@ class Appointment
     public function setCrew(?Crew $crew): static
     {
         $this->crew = $crew;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPackage(): ?int
+    {
+        return $this->package;
+    }
+
+    public function setPackage(?int $package): static
+    {
+        $this->package = $package;
 
         return $this;
     }
