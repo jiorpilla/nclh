@@ -26,6 +26,7 @@ class Appointment
 
     public const STATUS_PENDING = 'pending';
     public const STATUS_CONFIRMED = 'confirmed';
+    public const STATUS_CHECKED_IN = 'checked_in';
 
     public function getAppointmentDate(): ?\DateTimeInterface
     {

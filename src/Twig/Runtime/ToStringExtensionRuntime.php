@@ -48,6 +48,8 @@ class ToStringExtensionRuntime implements RuntimeExtensionInterface
                 return 'Pending';
             case Appointment::STATUS_CONFIRMED:
                 return 'Confirmed';
+            case Appointment::STATUS_CHECKED_IN:
+                return 'Checked-in';
             default:
                 return 'Error';
         }
