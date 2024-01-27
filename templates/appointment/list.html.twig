@@ -1,19 +1,5 @@
-<div class="table-controls d-flex justify-content-between align-items-center">
-    <div class="search-wrapper">
-        <input type="text" id="search" class="form-control" placeholder="Search...">
-        <i class="bi bi-search"></i>
-    </div>
-    <div class="table-filter">
-        <ul>
-            <li class="active">Today</li>
-            <li>Tomorrow</li>
-            <li>This Week</li>
-            <li>Overdue</li>
-            <li>Select Period</li>
-        </ul>
-    </div>
+{{ include('appointment/_form_search.html.twig') }}
 
-</div>
 <table class="table table-hover table-bordered">
     <thead>
     <tr>
@@ -22,6 +8,7 @@
         <th scope="col">Company</th>
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
+        <th scope="col">Status</th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -31,21 +18,21 @@
         <tr>
             <td>{{ appointment.appointmentDate |date('Y-m-d') }}</td>
             <td>
-                <a href="#" class="appointment-edit">
+                <a href="{{ path('crew_show', {'id': appointment.crew.id}) }}" class="appointment-edit">
                     {{ appointment.crew.lastName }}, {{ appointment.crew.firstName }} {{ appointment.crew.middleName|first }}., {{ appointment.crew.suffix }}
                 </a>
             </td>
             <td>{{ appointment.crew.company }}</td>
             <td>{{ appointment.crew.email }}</td>
             <td>{{ appointment.crew.phoneNumber }}</td>
+            <td>{{ appointment.status | appointmentStatusToString }}</td>
             <td>
-                <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.crew.id}) }}">Start Process</a>
-                <a class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Reschedule</a>
+                <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.crew.id}) }}">Check-in</a>
             </td>
         </tr>
     {% else %}
         <tr>
-            <td colspan="6">no records found</td>
+            <td colspan="7">no records found</td>
         </tr>
     {% endfor %}
     </tbody>

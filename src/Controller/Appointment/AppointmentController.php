@@ -6,6 +6,7 @@ use App\Controller\BaseController;
 use App\Entity\Appointment;
 use App\Entity\Crew;
 use App\Form\AppointmentType;
+use App\Form\DateRangeType;
 use App\Repository\AppointmentRepository;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,52 +19,48 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/appointment', name: 'appointment_')]
 class AppointmentController extends BaseController
 {
-    #[Route('/', name: 'main')]
-    public function index(Request $request, EntityManagerInterface $entityManager, AppointmentRepository $appointmentRepository, MailerInterface $mailer): Response
+    #[Route('/', name: 'main', methods: ['GET','POST'])]
+    public function index(Request $request, AppointmentRepository $appointmentRepository): Response
     {
+//        $dateFilter = $request->query->get('dateFilter', 'today');
+        $dateFilter = $request->query->get('dateFilter');
+        $page       = $request->query->get('page', 1);
 
-        $appointment = new Appointment();
-        $form = $this->createForm(AppointmentType::class, $appointment);
+        $form = $this->createForm(DateRangeType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($appointment);
-            $entityManager->flush();
-//
-//            $email = (new Email())
-//                ->from('NCLH@janivanorpilla.com')
-//                ->to($appointment->getAppointee()->getEmail())
-//                ->subject('You have an appointment at NCLH clinic at ' . $appointment->getAppointmentDate()->format('Y-m-d'))
-//                ->text('Just show up')
-//                ->html('<p>Just show up</p>');
-//
-//            $mailer->send($email);
+        $startDate = null;
+        $endDate = null;
+        $search = null;
 
-            return $this->redirectToRoute('appointment_main', [], Response::HTTP_SEE_OTHER);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $startDate = $data['startDate'];
+            $endDate = $data['endDate'];
+            $search = $data['search'];
         }
 
 
-        $query = $appointmentRepository->getListQuery();
-        $page = $request->query->get('page', 1);
+//        $appointment_query = $appointmentRepository->findAppointmentsByDateFilter($dateFilter, $startDate, $endDate);
+        $appointment_query = $appointmentRepository->findAppointments($dateFilter, $startDate, $endDate, $search);
+        dump($appointment_query);
 
-        $appointment_lists = $this->paginate($query, $page);
+        $appointment_lists = $this->paginate($appointment_query, $page);
 
-        dump($appointment_lists);
 
         return $this->render('appointment/index.html.twig', [
             'appointment_lists' => $appointment_lists,
-            'appointment' => $appointment,
-            'form' => $form,
+            'dateRangeForm' => $form,
         ]);
     }
 
-    #[Route('/bulk_create', name: 'bulk_create')]
+    #[Route('/bulk_create', name: 'bulk_create', methods: ['GET'])]
     public function bulkCreate(): Response
     {
         return new Response("test");
     }
 
-    #[Route('/new', name: 'create')]
+    #[Route('/new', name: 'create', methods: ['GET','POST'])]
     public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository): Response
     {
         $appointment = new Appointment();
@@ -78,8 +75,8 @@ class AppointmentController extends BaseController
             // Check if Crew with the same email, passportNumber, or seamanBookNumber exists
             $existingCrew = $crewRepository->findExistingCrewByAttributes([
                 'email' => $crewData->getEmail(),
-                'passportNumber' => $crewData->getPassportNumber(),
-                'seamanBookNumber' => $crewData->getSeamanBookNumber(),
+                'passport_number' => $crewData->getPassportNumber(),
+                'seaman_book_number' => $crewData->getSeamanBookNumber(),
             ]);
 
             if ($existingCrew instanceof Crew) {
@@ -97,6 +94,10 @@ class AppointmentController extends BaseController
 
             // Set the Crew for the Appointment
             $appointment->setCrew($crew);
+
+            //set `pending` since this is the registration.
+            $appointment->setStatus(Appointment::STATUS_PENDING);
+            //set `package` here too once logic is set
 
             // persist the Appointment
             $entityManager->persist($appointment);

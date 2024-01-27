@@ -13,7 +13,7 @@ class Appointment
     use CommonEntityTrait;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $AppointmentDate = null;
+    private ?\DateTimeInterface $appointmentDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'appointments')]
     private ?Crew $crew = null;
@@ -30,12 +30,12 @@ class Appointment
 
     public function getAppointmentDate(): ?\DateTimeInterface
     {
-        return $this->AppointmentDate;
+        return $this->appointmentDate;
     }
 
-    public function setAppointmentDate(?\DateTimeInterface $AppointmentDate): static
+    public function setAppointmentDate(?\DateTimeInterface $appointmentDate): static
     {
-        $this->AppointmentDate = $AppointmentDate;
+        $this->appointmentDate = $appointmentDate;
 
         return $this;
     }

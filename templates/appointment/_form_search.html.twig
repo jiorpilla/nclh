@@ -1,0 +1,43 @@
+{% form_theme dateRangeForm 'bootstrap_5_layout.html.twig' %}
+
+{% set dateFilters = ['today', 'tomorrow', 'next-week', 'overdue'] %}
+{% set dateFilter = app.request.attributes.get('dateFilter') %}
+{% set search = app.request.attributes.get('search') %}
+
+<div class="table-controls d-flex  justify-content-end align-items-center">
+    <div class="table-filter">
+        <ul>
+            {% for filter in dateFilters %}
+                <li class="{{ dateFilter == filter ? 'active' : '' }}">
+                    <a href="{{ path('appointment_main', {'dateFilter': filter}) }}">{{ filter|capitalize }}</a>
+                </li>
+            {% endfor %}
+{#            <li class="{{ dateFilter == 'today' ? 'active' : '' }}"><a href="{{ path('appointment_main', {'dateFilter': 'today'}) }}">Today</a></li>#}
+{#            <li class="{{ dateFilter == 'tomorrow' ? 'active' : '' }}"><a href="{{ path('appointment_main', {'dateFilter': 'tomorrow'}) }}">Tomorrow</a></li>#}
+{#            <li class="{{ dateFilter == 'next-week' ? 'active' : '' }}"><a href="{{ path('appointment_main', {'dateFilter': 'next-week'}) }}">Next Week</a></li>#}
+{#            <li class="{{ dateFilter == 'overdue' ? 'active' : '' }}"><a href="{{ path('appointment_main', {'dateFilter': 'overdue'}) }}">Overdue</a></li>#}
+        </ul>
+    </div>
+
+</div>
+
+<div class="mb-3" {{ stimulus_controller('appointment_search_view') }}>
+
+    <div class="d-flex justify-content-end align-items-center g-1">
+        <a href="#" {{ stimulus_action('appointment_search_view', 'toggleSearchBox') }}> search options▼ </a>
+    </div>
+    <div class="d-none" {{ stimulus_target('appointment_search_view', 'searchBox') }} >
+        {{ form_start(dateRangeForm) }}
+        <div class="d-flex justify-content-center align-items-center">
+            {{ form_row(dateRangeForm.search) }}
+{#                <i class="bi bi-search"></i>#}
+
+            {{ form_row(dateRangeForm.startDate) }}
+            {{ form_row(dateRangeForm.endDate) }}
+            <button class="btn btn-primary">{{ button_label|default('Search') }}</button>
+        </div>
+
+        {{ form_end(dateRangeForm) }}
+
+    </div>
+</div>
