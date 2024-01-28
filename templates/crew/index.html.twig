@@ -3,66 +3,73 @@
 {% block title %}Crew index{% endblock %}
 
 {% block contents %}
-    <h1>Crew</h1>
 
-    <div class="add-appointment-wrapper d-flex justify-content-end">
-        <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Add New Crew</button>
-    </div>
-    <div class="table-controls d-flex justify-content-between align-items-center">
-        <div class="search-wrapper">
-            <input type="text" id="search" class="form-control" placeholder="Search...">
-            <i class="bi bi-search"></i>
+    <div class="widget">
+        <div class="widget-heading">
+            <h1>Crew Database</h1>
         </div>
-        <div class="table-filter">
-            <ul>
-                <li class="active">Today</li>
-                <li>Tomorrow</li>
-                <li>This Week</li>
-                <li>Overdue</li>
-                <li>Select Period</li>
-            </ul>
+
+        <div class="widget-body">
+            <div class="add-appointment-wrapper d-flex justify-content-end">
+                <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">Add New Crew</button>
+            </div>
+            <div class="table-controls d-flex justify-content-between align-items-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search" class="form-control" placeholder="Search...">
+                    <i class="bi bi-search"></i>
+                </div>
+                <div class="table-filter">
+                    <ul>
+                        <li class="active">Today</li>
+                        <li>Tomorrow</li>
+                        <li>This Week</li>
+                        <li>Overdue</li>
+                        <li>Select Period</li>
+                    </ul>
+                </div>
+            
+            </div>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID number</th>
+                        <th>Full Name</th>
+                        <th>Gender</th>
+                        <th>Birth date</th>
+                        <th>Phone No</th>
+                        <th>Email</th>
+                        <th>Position</th>
+                        <th>Company</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for crew in crews %}
+                    <tr>
+                        <td>{{ crew.idNumber }}</td>
+                        <td>
+                            <a href="{{ path('crew_show', {'id': crew.id}) }}">
+                                {{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName|first }}., {{ crew.suffix }}
+                            </a>
+                        </td>
+                        <td>{{ crew.gender }}</td>
+                        <td>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d') : '' }}</td>
+                        <td>{{ crew.phoneNumber }}</td>
+                        <td>{{ crew.email }}</td>
+                        <td>{{ crew.position }}</td>
+                        <td>{{ crew.company }}</td>
+                        <td>
+                            <a href="{{ path('crew_edit', {'id': crew.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="25">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {{ knp_pagination_render(crews) }}
         </div>
-    
     </div>
-    <table class="table table-hover table-bordered">
-        <thead>
-            <tr>
-                <th>ID number</th>
-                <th>Full Name</th>
-                <th>Gender</th>
-                <th>Birth date</th>
-                <th>Phone No</th>
-                <th>Email</th>
-                <th>Position</th>
-                <th>Company</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for crew in crews %}
-            <tr>
-                <td>{{ crew.idNumber }}</td>
-                <td>
-                    <a href="{{ path('crew_show', {'id': crew.id}) }}">
-                        {{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName|first }}., {{ crew.suffix }}
-                    </a>
-                </td>
-                <td>{{ crew.gender }}</td>
-                <td>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d') : '' }}</td>
-                <td>{{ crew.phoneNumber }}</td>
-                <td>{{ crew.email }}</td>
-                <td>{{ crew.position }}</td>
-                <td>{{ crew.company }}</td>
-                <td>
-                    <a href="{{ path('crew_edit', {'id': crew.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="25">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {{ knp_pagination_render(crews) }}
 {% endblock %}

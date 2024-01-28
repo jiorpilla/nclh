@@ -3,7 +3,7 @@
 body {
     font-family: $font-family-main;
     color: $color-default;
-    background-color: #edf5fd;
+    background-color: $background-color;
     font-size:14px;
 }
 
@@ -13,14 +13,14 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 label.form-label {
-    font-family: $font-family-secondary;
-    font-weight: 500;
-    font-size:12px;
+
+    font-weight: 600;
+    font-size:13px;
 }
+
 .form-select {
-    padding: 8px 12px;
-    font-size:14px;
-    border-radius: $border-radius;
+    font-size:13px;
+    border-radius: 6px;
     color: $color-default;
     border: 1px solid #e8e8e8;
     &:focus {
@@ -43,18 +43,13 @@ label.form-label {
 .tab-content {
     margin-top: 40px;
 }
+
 .form-control {
     color: $color-default;
-    border: 1px solid #e8e8e8;
-    padding: 8px 12px;
-    font-size:14px;
+    border: 1px solid #9dabbb;
+    font-size:13px;
     border-radius: $border-radius;
     transition: 200ms;
-
-    &:focus {
-        box-shadow: none;
-        border-color: $color-default;
-    }
 }
 
 .nav-underline {

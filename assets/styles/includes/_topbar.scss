@@ -3,9 +3,20 @@
 
 .topbar {
     background-color: #fff;
-    height:60px;
-    padding:0 30px;
-    font-size: 14px;
+    border-bottom: 1px solid #dbe3ea;
+    box-shadow: 0 10px 20px -10px #dde1ee;
+    height: 70px;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    .logo {
+        max-width: 180px;
+        padding-left:12px;
+  
+    }
 
     .notifications {
         font-size:21px;
@@ -27,7 +38,7 @@
         margin-right:15px;
 
         img {
-            border-radius: 50%;
+            border-radius: 12%;
         }
     }
 

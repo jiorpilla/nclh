@@ -1,14 +1,13 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
-<div class="row" {{ stimulus_controller('appointment_crew') }}>
+<div class="widget" {{ stimulus_controller('appointment_crew') }}>
 
-    <div class="col-md-12">
-        <div>
+    <div class="widget-heading">
             <h1>Appointment</h1>
-        </div>
     </div>
+    <div class="widget-body">
     {{ form_start(form) }}
-    <button class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
+
     <div class="row">
 {#        <div class="col-md-12">#}
 {#            <div class="error-message">#}
@@ -58,7 +57,9 @@
             {{ form_row(form.crew.position, { attr: stimulus_target('appointment_crew', 'position').toArray() }) }}
             {{ form_row(form.crew.nationality, { attr: stimulus_target('appointment_crew', 'nationality').toArray() }) }}
         </div>
+            <button class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
     </div>
+
     <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="crewMatch" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
             <div class="toast-header">
@@ -74,4 +75,5 @@
     </div>
 
     {{ form_end(form) }}
+    </div>
 </div>
