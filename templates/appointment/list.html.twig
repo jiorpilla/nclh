@@ -27,7 +27,9 @@
             <td>{{ appointment.crew.phoneNumber }}</td>
             <td>{{ appointment.status | appointmentStatusToString }}</td>
             <td>
-                <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.crew.id}) }}">Check-in</a>
+                {% if appointment.appointmentDate|date('Y-m-d') == "now"|date('Y-m-d') %}
+                    <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.crew.id}) }}">Check-in</a>
+                {% endif %}
             </td>
         </tr>
     {% else %}

@@ -120,7 +120,7 @@ class AppointmentRepository extends ServiceEntityRepository
 
 
         if ($search) {
-            $queryBuilder->andWhere('(c.firstName LIKE :search OR a.lastName LIKE :search)')
+            $queryBuilder->andWhere('(c.first_name LIKE :search OR c.last_name LIKE :search)')
                 ->setParameter('search', '%' . $search . '%');
         }
 
@@ -173,6 +173,9 @@ class AppointmentRepository extends ServiceEntityRepository
             }
         }
 
+        $queryBuilder->orderBy('a.appointmentDate', 'ASC')
+            ->addOrderBy('c.last_name', 'ASC')
+            ->addOrderBy('c.first_name', 'ASC');
 
         return $queryBuilder->getQuery();
     }

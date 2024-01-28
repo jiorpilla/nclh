@@ -23,7 +23,7 @@ class AppointmentController extends BaseController
     public function index(Request $request, AppointmentRepository $appointmentRepository): Response
     {
 //        $dateFilter = $request->query->get('dateFilter', 'today');
-        $dateFilter = $request->query->get('dateFilter');
+        $dateFilter = $request->query->get('dateFilter', 'today');
         $page       = $request->query->get('page', 1);
 
         $form = $this->createForm(DateRangeType::class);
@@ -40,6 +40,9 @@ class AppointmentController extends BaseController
             $search = $data['search'];
         }
 
+        if($search || $startDate || $endDate){
+            $dateFilter = '';
+        }
 
 //        $appointment_query = $appointmentRepository->findAppointmentsByDateFilter($dateFilter, $startDate, $endDate);
         $appointment_query = $appointmentRepository->findAppointments($dateFilter, $startDate, $endDate, $search);
