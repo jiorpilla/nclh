@@ -32,11 +32,33 @@
 }
 
 .table-controls {
-    margin: 40px 0;
+    margin: 20px 0;
+
+    .dropdown {
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .dropdown-menu {
+            padding: 15px;
+            font-size: 14px;
+            min-width: 240px;
+        }
+    }
+
+    .btn-table-control {
+        font-size: 1em;
+        border-radius: $border-radius;
+        background-color: #fff;
+        color: $color-main;
+        border: 1px solid $color-main;
+
+
+
+    }   
 }
 
 .table-filter {
-
     ul {
         padding:0;
         margin:0;
@@ -176,5 +198,11 @@
         background-color: #edfaff;
         border: 1px solid #f9f9f9;
         padding: 15px;
+    }
+}
+
+.table {
+    a {
+        color: $color-default;
     }
 }

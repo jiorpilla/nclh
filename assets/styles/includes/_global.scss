@@ -72,14 +72,13 @@ label.form-label {
 }
 
 .btn-cta {
-    font-family: $font-family-secondary;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 14px;
     border-radius: $border-radius;
     background-color: $color-main;
     border: 0;
     transition: 200ms;
-    padding: 12px 34px;
+    padding: 7px 1rem;
     
         &:hover, &:active {
             background-color: lighten($color-main, 10%) !important;
