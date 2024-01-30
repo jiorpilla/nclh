@@ -8,13 +8,7 @@
             <h1>Appointments</h1>
         </div>
         <div class="widget-body">
-            <div class="appointments p-3">
-                <div class="add-appointment-wrapper d-flex justify-content-end">
-                    <a href="{{ path('appointment_create') }}" class="btn btn-primary btn-cta">Add New Appointment</a>
-                </div>
-                {{ include('appointment/list.html.twig') }}
-            </div>
+            {{ include('appointment/list.html.twig') }}
         </div>
-        
     </div>
 {% endblock %}

@@ -75,13 +75,13 @@ label.form-label {
     font-weight: 400;
     font-size: 14px;
     border-radius: $border-radius;
-    background-color: $color-main;
+    background-color: $color-cta;
     border: 0;
     transition: 200ms;
     padding: 7px 1rem;
     
         &:hover, &:active {
-            background-color: lighten($color-main, 10%) !important;
+            background-color: lighten($color-cta, 10%) !important;
         }
 }
 

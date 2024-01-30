@@ -1,50 +1,52 @@
 {{ include('appointment/_form_search.html.twig') }}
 
-<table class="table table-hover table-bordered">
-    <thead>
-    <tr>
-        <th scope="col">Appointment Date</th>
-        <th scope="col">Full Name</th>
-        <th scope="col">Company</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Status</th>
-        <th scope="col">Actions</th>
-        <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered  align-middle">
+        <thead>
+        <tr>
+            <th scope="col">Appointment Date</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Company</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
 
-    {% for appointment in appointment_lists %}
-        <tr>
-            <td>{{ appointment.appointmentDate |date('Y-m-d') }}</td>
-            <td>
-               
-                    {{ appointment.crew.lastName }}, {{ appointment.crew.firstName }} {{ appointment.crew.middleName|first }}., {{ appointment.crew.suffix }}
-              
-            </td>
-            <td>{{ appointment.crew.company }}</td>
-            <td>{{ appointment.crew.email }}</td>
-            <td>{{ appointment.crew.phoneNumber }}</td>
-            <td>{{ appointment.status | appointmentStatusToString }}</td>
-            <td>
-                <div class="data-actions">
-                <a href="{{ path('crew_show', {'id': appointment.crew.id}) }}" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i> Edit</a>
-                <a href="" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
-                </div>
-            </td>
-            <td>
-                {% if appointment.appointmentDate|date('Y-m-d') == "now"|date('Y-m-d') %}
-                    <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.crew.id}) }}">Check-in</a>
-                {% endif %}
-            </td>
-        </tr>
-    {% else %}
-        <tr>
-            <td colspan="7">no records found</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        {% for appointment in appointment_lists %}
+            <tr>
+                <td>{{ appointment.appointmentDate |date('Y-m-d') }}</td>
+                <td>
+                
+                        {{ appointment.crew.lastName }}, {{ appointment.crew.firstName }} {{ appointment.crew.middleName|first }}., {{ appointment.crew.suffix }}
+                
+                </td>
+                <td>{{ appointment.crew.company }}</td>
+                <td>{{ appointment.crew.email }}</td>
+                <td>{{ appointment.crew.phoneNumber }}</td>
+                <td>{{ appointment.status | appointmentStatusToString }}</td>
+                <td>
+                    <div class="data-actions">
+                    <a href="{{ path('crew_show', {'id': appointment.crew.id}) }}" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i> Edit</a>
+                    <a href="" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
+                    </div>
+                </td>
+                <td>
+                    {% if appointment.appointmentDate|date('Y-m-d') == "now"|date('Y-m-d') %}
+                        <a class="btn btn-primary btn-cta" href="{{ path('crew_register_appointment', {'id': appointment.crew.id}) }}">Check-in</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {{ knp_pagination_render(appointment_lists) }}

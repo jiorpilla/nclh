@@ -32,17 +32,40 @@
 }
 
 .table-controls {
-    margin: 20px 0;
+    margin-bottom: 20px;
 
     .dropdown {
         &:not(:last-child) {
             margin-right: 10px;
         }
 
+        [data-bs-toggle="dropdown"] {
+            &.show {
+                background-color: $color-main;
+                color:#fff;
+            }
+        }
+
         .dropdown-menu {
             padding: 15px;
             font-size: 14px;
             min-width: 240px;
+
+            .filter-reset {
+                color: $color-main;
+                text-decoration: none;
+            }
+
+            .form-check-input {
+                margin-right:5px;
+            }
+
+            ul{
+                li {
+                    list-style-type: none;
+                    margin-bottom:5px;
+                }
+            }
         }
     }
 
