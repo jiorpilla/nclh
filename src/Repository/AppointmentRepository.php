@@ -58,6 +58,9 @@ class AppointmentRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('a');
 
+        $queryBuilder->andWhere('a.deleted = 0');
+
+        //this is only run when the dateFilter is available
         switch ($dateFilter) {
             case 'today':
                 $queryBuilder->andWhere('a.appointmentDate >= :todayStart AND a.appointmentDate < :todayEnd')
@@ -89,16 +92,6 @@ class AppointmentRepository extends ServiceEntityRepository
                     ->setParameter('todayStart', new \DateTime('today'));
                 break;
 
-            case 'custom':
-                if ($startDate && $endDate) {
-                    $queryBuilder->andWhere('a.appointmentDate >= :startDate AND a.appointmentDate < :endDate')
-                        ->setParameter('startDate', $startDate)
-                        ->setParameter('endDate', $endDate);
-                }
-                break;
-
-            // Add more cases for additional date filters if needed
-
             default:
                 // Handle unknown date filter
                 break;
@@ -113,14 +106,15 @@ class AppointmentRepository extends ServiceEntityRepository
      * @param \DateTimeInterface|null $endDate
      * @return \Doctrine\ORM\Query
      */
-    public function findAppointments(string $dateFilter = null, ?\DateTimeInterface $startDate = null, ?\DateTimeInterface $endDate = null, string $search = null)
+    public function findAppointments(?\DateTimeInterface $startDate = null, ?\DateTimeInterface $endDate = null, string $search = null, ?array $status = null)
     {
         $queryBuilder = $this->createQueryBuilder('a')
             ->leftJoin('a.crew', 'c');
 
+        $queryBuilder->andWhere('a.deleted = 0');
 
         if ($search) {
-            $queryBuilder->andWhere('(c.first_name LIKE :search OR c.last_name LIKE :search)')
+            $queryBuilder->andWhere('(c.first_name LIKE :search OR c.last_name LIKE :search OR c.email LIKE :search)')
                 ->setParameter('search', '%' . $search . '%');
         }
 
@@ -134,43 +128,12 @@ class AppointmentRepository extends ServiceEntityRepository
         }elseif(empty($startDate) && $endDate){
             $queryBuilder->andWhere('a.appointmentDate <= :endDate')
                 ->setParameter('endDate', $endDate);
+        }
+
+        if ($status) {
+            $queryBuilder->andWhere('a.status IN (:status)')->setParameter('status', $status);
         }else{
-            //this is only run when the dateFilter is available
-            switch ($dateFilter) {
-                case 'today':
-                    $queryBuilder->andWhere('a.appointmentDate >= :todayStart AND a.appointmentDate < :todayEnd')
-                        ->setParameter('todayStart', new \DateTime('today'))
-                        ->setParameter('todayEnd', new \DateTime('tomorrow'));
-                    break;
-
-                case 'tomorrow':
-                    $queryBuilder->andWhere('a.appointmentDate >= :tomorrowStart AND a.appointmentDate < :tomorrowEnd')
-                        ->setParameter('tomorrowStart', new \DateTime('tomorrow'))
-                        ->setParameter('tomorrowEnd', new \DateTime('tomorrow + 1 day'));
-                    break;
-
-                case 'next-week':
-                    // Calculate the start of next week by adding 6 or 7 days from today
-                    $nextWeekStart = new \DateTime('today +6 days'); // or 'today +7 days'
-
-                    // Calculate the end of next week by adding 6 or 7 days from the start date
-                    $nextWeekEnd = clone $nextWeekStart;
-                    $nextWeekEnd->modify('+6 days'); // or '+7 days'
-
-                    $queryBuilder->andWhere('a.appointmentDate >= :nextWeekStart AND a.appointmentDate < :nextWeekEnd')
-                        ->setParameter('nextWeekStart', $nextWeekStart)
-                        ->setParameter('nextWeekEnd', $nextWeekEnd);
-                    break;
-
-                case 'overdue':
-                    $queryBuilder->andWhere('a.appointmentDate < :todayStart')
-                        ->setParameter('todayStart', new \DateTime('today'));
-                    break;
-
-                default:
-                    // Handle unknown date filter
-                    break;
-            }
+            $queryBuilder->andWhere('a.status != :status')->setParameter('status', 'checked_in');
         }
 
         $queryBuilder->orderBy('a.appointmentDate', 'ASC')
@@ -179,29 +142,4 @@ class AppointmentRepository extends ServiceEntityRepository
 
         return $queryBuilder->getQuery();
     }
-
-//    /**
-//     * @return Appointment[] Returns an array of Appointment objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Appointment
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

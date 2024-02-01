@@ -1,81 +1,72 @@
 {% form_theme dateRangeForm 'bootstrap_5_layout.html.twig' %}
 
 {% set dateFilters = ['today', 'tomorrow', 'next-week', 'overdue'] %}
-{% set dateFilter = app.request.attributes.get('dateFilter')|default('today') %}
-{% set search = app.request.attributes.get('search') %}
+{% set dateFilter = app.request.query.get('dateFilter') | default('today') %}
+{% set search = app.request.query.get('search') %}
 
 
 <div class="table-controls d-flex justify-content-between align-items-center">
     <div class="add-appointment-wrapper d-flex justify-content-end">
-        <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal"><i class="bi bi-plus"></i> Add New Appointment</button>
+        <a href="{{ path("appointment_create") }}" class="btn btn-primary btn-cta shadow-sm"><i class="bi bi-plus"></i> Add New Appointment</a>
     </div>
     <div class="controls-right d-flex">
 
-     <div class="dropdown">
+        <div class="dropdown">
             <button class="btn btn-secondary btn-table-control dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                 <i class="bi bi-filter"></i> Filter
             </button>
              <ul class="dropdown-menu p-1">
-                    <ul>
-            {% for filter in dateFilters %}
-                <li>
-                    <a class="dropdown-item {{ dateFilter == filter ? 'active' : '' }}" href="{{ path('appointment_main', {'dateFilter': filter}) }}">{{ filter|capitalize }}</a>
-                </li>
-            {% endfor %}
-        </ul>
- 
+                {% for filter in dateFilters %}
+                    <li>
+                        <a class="dropdown-item {{ dateFilter == filter ? 'active' : '' }}" href="{{ path('appointment_main', {'dateFilter': filter}) }}">{{ filter|capitalize }}</a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
+
+{#        <div class="table-filter">#}
+{#            <ul>#}
+
+{#                {% for filter in dateFilters %}#}
+{#                    <li>#}
+{#                        <a class="dropdown-item {{ dateFilter == filter ? 'active' : '' }}" href="{{ path('appointment_main', {'dateFilter': filter}) }}">{{ filter|capitalize }}</a>#}
+{#                    </li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#        </div>#}
+
         <div class="dropdown">
             <button class="btn btn-secondary btn-table-control dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                <i class="bi bi-filter"></i> Filter
+                <i class="bi bi-filter"></i> Search Filter
             </button>
             <div class="dropdown-menu" >
-                <div class="mb-3" {{ stimulus_controller('appointment_search_view') }}>
 
-    <div class="d-flex justify-content-end align-items-center g-1">
-        <a href="javascript:void(0);" {{ stimulus_action('appointment_search_view', 'toggleSearchBox') }}> search options▼ </a>
-    </div>
-    <div class="d-none" {{ stimulus_target('appointment_search_view', 'searchBox') }} >
-        {{ form_start(dateRangeForm) }}
-        <div class="d-flex justify-content-center align-items-center">
-            {{ form_row(dateRangeForm.search) }}
-            {{ form_row(dateRangeForm.startDate) }}
-            {{ form_row(dateRangeForm.endDate) }}
-            <button class="btn btn-primary">{{ button_label|default('Search') }}</button>
-        </div>
+                {{ form_start(dateRangeForm) }}
+                <div class="d-flex flex-column">
+                    {{ form_row(dateRangeForm.search) }}
+                    {{ form_row(dateRangeForm.startDate) }}
+                    {{ form_row(dateRangeForm.endDate) }}
+                    {{ form_row(dateRangeForm.appointmentStatus) }}
+                    <button class="btn btn-primary btn-cta shadow-sm">{{ button_label|default('Search') }}</button>
+                </div>
 
-        {{ form_end(dateRangeForm) }}
+                {{ form_end(dateRangeForm) }}
 
-    </div>
-</div>
             </div>
         </div>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary btn-table-control" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-three-dots"></i>
-            </button>
-            <ul class="dropdown-menu p-1">
-                <li><a class="dropdown-item" href="#">Export Filter Results...</a></li>
-                <li><a class="dropdown-item" href="#">Data Import...</a></li>
-                <li><a class="dropdown-item" href="#">Merge Duplicates</a></li>
-            </ul>
-        </div>
-        {# <div class="search-wrapper">
-            <input type="text" id="search" class="form-control" placeholder="Search...">
-            <i class="bi bi-search"></i>
-        </div>
-        <div class="table-filter">
-            <ul>
-                <li class="active">Today</li>
-                <li>Tomorrow</li>
-                <li>This Week</li>
-                <li>Overdue</li>
-                <li>Select Period</li>
-            </ul>
-        </div> #}
-    </div>
+<div class="dropdown">
+    <button class="btn btn-secondary btn-table-control" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-three-dots"></i>
+    </button>
+    <ul class="dropdown-menu p-1">
+        <li><a class="dropdown-item" href="#">Export Filter Results...</a></li>
+        <li><a class="dropdown-item" href="#">Data Import...</a></li>
+        <li><a class="dropdown-item" href="#">Merge Duplicates</a></li>
+    </ul>
 </div>
+</div>
+</div>
+
 
 

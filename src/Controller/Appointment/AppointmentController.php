@@ -5,8 +5,8 @@ namespace App\Controller\Appointment;
 use App\Controller\BaseController;
 use App\Entity\Appointment;
 use App\Entity\Crew;
+use App\Form\AppointmentSearchType;
 use App\Form\AppointmentType;
-use App\Form\DateRangeType;
 use App\Repository\AppointmentRepository;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,34 +22,21 @@ class AppointmentController extends BaseController
     #[Route('/', name: 'main', methods: ['GET','POST'])]
     public function index(Request $request, AppointmentRepository $appointmentRepository): Response
     {
-//        $dateFilter = $request->query->get('dateFilter', 'today');
-        $dateFilter = $request->query->get('dateFilter', 'today');
-        $page       = $request->query->get('page', 1);
 
-        $form = $this->createForm(DateRangeType::class);
+        $form = $this->createForm(AppointmentSearchType::class);
         $form->handleRequest($request);
-
-        $startDate = null;
-        $endDate = null;
-        $search = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $startDate = $data['startDate'];
-            $endDate = $data['endDate'];
-            $search = $data['search'];
+            $appointment_query = $appointmentRepository->findAppointments( $data['startDate'], $data['endDate'], $data['search'], $data['appointmentStatus']);
+        }else{
+            $dateFilter = $request->query->get('dateFilter', 'today');
+            $appointment_query = $appointmentRepository->findAppointmentsByDateFilter($dateFilter);
         }
 
-        if($search || $startDate || $endDate){
-            $dateFilter = '';
-        }
-
-//        $appointment_query = $appointmentRepository->findAppointmentsByDateFilter($dateFilter, $startDate, $endDate);
-        $appointment_query = $appointmentRepository->findAppointments($dateFilter, $startDate, $endDate, $search);
-        dump($appointment_query);
-
-        $appointment_lists = $this->paginate($appointment_query, $page);
-
+        $page               = $request->query->get('page', 1);
+        $appointment_lists  = $this->paginate($appointment_query, $page);
+        dump($appointment_lists);
 
         return $this->render('appointment/index.html.twig', [
             'appointment_lists' => $appointment_lists,
@@ -115,5 +102,27 @@ class AppointmentController extends BaseController
             'appointment' => $appointment,
             'form' => $form,
         ]);
+    }
+
+
+    #[Route('/confirm-appointment/{id}', name: 'confirm', methods: ['GET'])]
+    public function registerAppointment(Appointment $appointment, EntityManagerInterface $entityManager): Response
+    {
+        // Check if the appointment exists
+        if (!$appointment) {
+            // Handle the case where the appointment is not found
+            throw $this->createNotFoundException('Appointment not found');
+        }
+
+        // Update the appointment status to 'confirmed'
+        $appointment->setStatus(Appointment::STATUS_CONFIRMED);
+
+        // Save the changes to the database
+        $entityManager->persist($appointment);
+        $entityManager->flush();
+
+
+        return $this->render('appointment/confirm.html.twig');
+
     }
 }
