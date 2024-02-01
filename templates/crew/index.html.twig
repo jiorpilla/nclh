@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Crew index{% endblock %}
-
 {% block contents %}
-
     <div class="widget">
         <div class="widget-wrapper">
             <div class="widget-heading">
@@ -159,4 +156,5 @@
             </div>
         </div>
     </div>
+    {{ knp_pagination_render(crews) }}
 {% endblock %}
