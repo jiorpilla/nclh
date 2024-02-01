@@ -57,7 +57,9 @@
             {{ form_row(form.crew.position, { attr: stimulus_target('appointment_crew', 'position').toArray() }) }}
             {{ form_row(form.crew.nationality, { attr: stimulus_target('appointment_crew', 'nationality').toArray() }) }}
         </div>
+        <div class="col-md-12">
             <button class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
+        </div>
     </div>
 
     <div class="toast-container position-fixed top-0 end-0 p-3">
