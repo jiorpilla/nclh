@@ -18,9 +18,9 @@
                 <tr>
                     <td>{{ appointment.appointmentDate |date('Y-m-d') }}</td>
                     <td>
-
+                        <a href="{{ path('crew_show', {'id': appointment.crew.id}) }}">
                             {{ appointment.crew.lastName }}, {{ appointment.crew.firstName }} {{ appointment.crew.middleName|first }}., {{ appointment.crew.suffix }}
-
+                        </a>
                     </td>
                     <td>{{ appointment.crew.company }}</td>
                     <td>{{ appointment.crew.email }}</td>
