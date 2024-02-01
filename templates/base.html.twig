@@ -33,6 +33,15 @@
                 <div class="dashboard-wrapper">
                     <div class="dashboard-content">
                         {% block contents %}
+                            <div class="widget">
+                                <div class="widget-heading">
+                                    <h1>{% block content_heading %}{% endblock %}</h1>
+                                </div>
+
+                                <div class="widget-body">
+                                    {% block content_body %}{% endblock %}
+                                </div>
+                            </div>
                         {% endblock %}
                     </div>
                 </div>
