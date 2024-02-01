@@ -5,156 +5,158 @@
 {% block contents %}
 
     <div class="widget">
-        <div class="widget-heading">
-            <h1>Crew Database</h1>
-        </div>
+        <div class="widget-wrapper">
+            <div class="widget-heading">
+                <h1>Crew Database</h1>
+            </div>
 
-        <div class="widget-body">
-            <div class="table-controls d-flex justify-content-between align-items-center">
-                <div class="add-appointment-wrapper d-flex justify-content-end">
-                    <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal"><i class="bi bi-plus"></i> Add New Crew</button>
-                </div>
-                <div class="controls-right d-flex">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-table-control dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                            <i class="bi bi-filter"></i> Filter
-                        </button>
-                        <div class="dropdown-menu" >
-                            <form>
-                                <div class="mb-3">
-                                    <div class="search-wrapper">
-                                        <input type="text" id="search" class="form-control" placeholder="Search...">
-                                        <i class="bi bi-search"></i>
+            <div class="widget-body">
+                <div class="table-controls d-flex justify-content-between align-items-center">
+                    <div class="add-appointment-wrapper d-flex justify-content-end">
+                        <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal"><i class="bi bi-plus"></i> Add New Crew</button>
+                    </div>
+                    <div class="controls-right d-flex">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary btn-table-control dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="bi bi-filter"></i> Filter
+                            </button>
+                            <div class="dropdown-menu" >
+                                <form>
+                                    <div class="mb-3">
+                                        <div class="search-wrapper">
+                                            <input type="text" id="search" class="form-control" placeholder="Search...">
+                                            <i class="bi bi-search"></i>
+                                        </div>
                                     </div>
-                                </div>
-                               <hr class="dropdown-divider">
-                                <div class="mb-3">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                                        <label class="form-check-label" for="dropdownCheck">
-                                        Search all items
-                                        </label>
-                                     </div>
-                                    <ul>
-                                        <li> <input type="checkbox" class="form-check-input" id="test">
-                                        <label class="form-check-label" for="dropdownCheck">
-                                            ID Number
-                                        </label>
-                                        </li>
-                                        <li> <input type="checkbox" class="form-check-input" id="test">
-                                        <label class="form-check-label" for="dropdownCheck">
-                                            Last Name
-                                        </label>
-                                        </li>
-                                         <li> <input type="checkbox" class="form-check-input" id="test">
-                                        <label class="form-check-label" for="dropdownCheck">
-                                            First Name
-                                        </label>
-                                        </li>
-                                         <li> <input type="checkbox" class="form-check-input" id="test">
-                                        <label class="form-check-label" for="dropdownCheck">
-                                            Company
-                                        </label>
-                                        </li>
-                                    </ul> 
-                                </div>
                                 <hr class="dropdown-divider">
-                                <div class="dropdown-btn-wrapper d-flex justify-content-between align-items-center">
-                                    <a href="#" class="filter-reset">Reset</a>
-                                    <button type="submit" class="btn btn-primary btn-cta">Apply</button>
-                                </div>
-                            </form>
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                                            <label class="form-check-label" for="dropdownCheck">
+                                            Search all items
+                                            </label>
+                                        </div>
+                                        <ul>
+                                            <li> <input type="checkbox" class="form-check-input" id="test">
+                                            <label class="form-check-label" for="dropdownCheck">
+                                                ID Number
+                                            </label>
+                                            </li>
+                                            <li> <input type="checkbox" class="form-check-input" id="test">
+                                            <label class="form-check-label" for="dropdownCheck">
+                                                Last Name
+                                            </label>
+                                            </li>
+                                            <li> <input type="checkbox" class="form-check-input" id="test">
+                                            <label class="form-check-label" for="dropdownCheck">
+                                                First Name
+                                            </label>
+                                            </li>
+                                            <li> <input type="checkbox" class="form-check-input" id="test">
+                                            <label class="form-check-label" for="dropdownCheck">
+                                                Company
+                                            </label>
+                                            </li>
+                                        </ul> 
+                                    </div>
+                                    <hr class="dropdown-divider">
+                                    <div class="dropdown-btn-wrapper d-flex justify-content-between align-items-center">
+                                        <a href="#" class="filter-reset">Reset</a>
+                                        <button type="submit" class="btn btn-primary btn-cta">Apply</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-table-control" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu p-1">
-                            <li><a class="dropdown-item" href="#">Export Filter Results...</a></li>
-                            <li><a class="dropdown-item" href="#">Data Import...</a></li>
-                            <li><a class="dropdown-item" href="#">Merge Duplicates</a></li>
-                        </ul>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary btn-table-control" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                            <ul class="dropdown-menu p-1">
+                                <li><a class="dropdown-item" href="#">Export Filter Results...</a></li>
+                                <li><a class="dropdown-item" href="#">Data Import...</a></li>
+                                <li><a class="dropdown-item" href="#">Merge Duplicates</a></li>
+                            </ul>
+                        </div>
+                        {# <div class="search-wrapper">
+                            <input type="text" id="search" class="form-control" placeholder="Search...">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <div class="table-filter">
+                            <ul>
+                                <li class="active">Today</li>
+                                <li>Tomorrow</li>
+                                <li>This Week</li>
+                                <li>Overdue</li>
+                                <li>Select Period</li>
+                            </ul>
+                        </div> #}
                     </div>
-                    {# <div class="search-wrapper">
-                        <input type="text" id="search" class="form-control" placeholder="Search...">
-                        <i class="bi bi-search"></i>
-                    </div>
-                    <div class="table-filter">
-                        <ul>
-                            <li class="active">Today</li>
-                            <li>Tomorrow</li>
-                            <li>This Week</li>
-                            <li>Overdue</li>
-                            <li>Select Period</li>
-                        </ul>
-                    </div> #}
                 </div>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered  align-middle">
-                    <thead>
-                        <tr>
-                            <th>ID number</th>
-                            <th>Full Name</th>
-                            <th>Gender</th>
-                            <th>Birth date</th>
-                            <th>Phone No</th>
-                            <th>Email</th>
-                            <th>Position</th>
-                            <th>Company</th>
-                            <th>actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for crew in crews %}
-                        <tr>
-                            <td>{{ crew.idNumber }}</td>
-                            <td>
-                                <a href="{{ path('crew_show', {'id': crew.id}) }}">
-                                    {{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName|first }}., {{ crew.suffix }}
-                                </a>
-                            </td>
-                            <td>{{ crew.gender }}</td>
-                            <td>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d') : '' }}</td>
-                            <td>{{ crew.phoneNumber }}</td>
-                            <td>{{ crew.email }}</td>
-                            <td>{{ crew.position }}</td>
-                            <td>{{ crew.company }}</td>
-                            <td>
-                                <a href="{{ path('crew_edit', {'id': crew.id}) }}">edit</a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="25">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="pagination-wrapper mt-5">
-             <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-            <ul class="pagination">
-                <li class="page-item ">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-                </li>
-            </ul>
-            </nav>
-            </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered  align-middle">
+                        <thead>
+                            <tr>
+                                <th>ID number</th>
+                                <th>Full Name</th>
+                                <th>Gender</th>
+                                <th>Birth date</th>
+                                <th>Phone No</th>
+                                <th>Email</th>
+                                <th>Position</th>
+                                <th>Company</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for crew in crews %}
+                            <tr>
+                                <td>{{ crew.idNumber }}</td>
+                                <td>
+                                    <a href="{{ path('crew_show', {'id': crew.id}) }}">
+                                        {{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName|first }}., {{ crew.suffix }}
+                                    </a>
+                                </td>
+                                <td>{{ crew.gender }}</td>
+                                <td>{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d') : '' }}</td>
+                                <td>{{ crew.phoneNumber }}</td>
+                                <td>{{ crew.email }}</td>
+                                <td>{{ crew.position }}</td>
+                                <td>{{ crew.company }}</td>
+                                <td>
+                                    <a href="{{ path('crew_edit', {'id': crew.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="25">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination-wrapper mt-5">
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item ">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    </li>
+                </ul>
+                </nav>
+                </div>
 
-            {{ knp_pagination_render(crews) }}
+                {{ knp_pagination_render(crews) }}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -2,21 +2,22 @@
 
 <div class="widget" {{ stimulus_controller('appointment_crew') }}>
 
-    <div class="widget-heading">
-            <h1>Appointment</h1>
-    </div>
-    <div class="widget-body">
-    {{ form_start(form) }}
+	<div class="widget-wrapper">
 
-    <div class="row">
-{#        <div class="col-md-12">#}
-{#            <div class="error-message">#}
-{#                <i class="bi bi-exclamation-triangle-fill"></i> Sample Error Message#}
-{#            </div>#}
-{#        </div>#}
-        <div class="col-md-6">
-            {{ form_row(form.appointmentDate) }}
-            {{ form_row(form.crew.email,
+		<div class="widget-heading">
+			<h1>Appointment</h1>
+		</div>
+		<div class="widget-body">
+			{{ form_start(form) }}
+
+			<div class="row">
+				{#        <div class="col-md-12">#}
+				{#            <div class="error-message">#}
+				{#                <i class="bi bi-exclamation-triangle-fill"></i> Sample Error Message#}
+				{#            </div>#}
+				{#        </div>#}
+					<div class="col-md-6"> {{ form_row(form.appointmentDate) }}
+					{{ form_row(form.crew.email,
                 {
                     attr : {
                         'data-action' : 'input->appointment-crew#findCrew',
@@ -24,7 +25,7 @@
                     }
                 })
             }}
-            {{ form_row(form.crew.passportNumber,
+					{{ form_row(form.crew.passportNumber,
                 {
                     attr : {
                     'data-action' : 'input->appointment-crew#findCrew',
@@ -32,7 +33,7 @@
                 }
                 })
             }}
-            {{ form_row(form.crew.seamanBookNumber,
+					{{ form_row(form.crew.seamanBookNumber,
                 {
                     attr : {
                     'data-action' : 'input->appointment-crew#findCrew',
@@ -40,42 +41,42 @@
                 }
                 })
             }}
-            {{ form_row(form.crew.firstName, { attr: stimulus_target('appointment_crew', 'firstName').toArray() }) }}
-            {{ form_row(form.crew.middleName, { attr: stimulus_target('appointment_crew', 'middleName').toArray() }) }}
-            {{ form_row(form.crew.lastName, { attr: stimulus_target('appointment_crew', 'lastName').toArray() }) }}
-            {{ form_row(form.crew.suffix, { attr: stimulus_target('appointment_crew', 'suffix').toArray() }) }}
-            {{ form_row(form.crew.phoneNumber, { attr: stimulus_target('appointment_crew', 'phoneNumber').toArray() }) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.crew.civilStatus, { attr: stimulus_target('appointment_crew', 'civilStatus').toArray() }) }}
-            {{ form_row(form.crew.gender, { attr: stimulus_target('appointment_crew', 'gender').toArray() }) }}
-            {{ form_row(form.crew.address, { attr: stimulus_target('appointment_crew', 'address').toArray() }) }}
-            {{ form_row(form.crew.dateOfBirth, { attr: stimulus_target('appointment_crew', 'dateOfBirth').toArray() }) }}
-            {{ form_row(form.crew.locationOfBirth, { attr: stimulus_target('appointment_crew', 'locationOfBirth').toArray() }) }}
-            {{ form_row(form.crew.company, { attr: stimulus_target('appointment_crew', 'company').toArray() }) }}
-            {{ form_row(form.crew.ship, { attr: stimulus_target('appointment_crew', 'ship').toArray() }) }}
-            {{ form_row(form.crew.position, { attr: stimulus_target('appointment_crew', 'position').toArray() }) }}
-            {{ form_row(form.crew.nationality, { attr: stimulus_target('appointment_crew', 'nationality').toArray() }) }}
-        </div>
-        <div class="col-md-12">
-            <button class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
-        </div>
-    </div>
+					{{ form_row(form.crew.firstName, { attr: stimulus_target('appointment_crew', 'firstName').toArray() }) }}
+					{{ form_row(form.crew.middleName, { attr: stimulus_target('appointment_crew', 'middleName').toArray() }) }}
+					{{ form_row(form.crew.lastName, { attr: stimulus_target('appointment_crew', 'lastName').toArray() }) }}
+					{{ form_row(form.crew.suffix, { attr: stimulus_target('appointment_crew', 'suffix').toArray() }) }}
+					{{ form_row(form.crew.phoneNumber, { attr: stimulus_target('appointment_crew', 'phoneNumber').toArray() }) }}
+				</div>
+				<div class="col-md-6">
+					{{ form_row(form.crew.civilStatus, { attr: stimulus_target('appointment_crew', 'civilStatus').toArray() }) }}
+					{{ form_row(form.crew.gender, { attr: stimulus_target('appointment_crew', 'gender').toArray() }) }}
+					{{ form_row(form.crew.address, { attr: stimulus_target('appointment_crew', 'address').toArray() }) }}
+					{{ form_row(form.crew.dateOfBirth, { attr: stimulus_target('appointment_crew', 'dateOfBirth').toArray() }) }}
+					{{ form_row(form.crew.locationOfBirth, { attr: stimulus_target('appointment_crew', 'locationOfBirth').toArray() }) }}
+					{{ form_row(form.crew.company, { attr: stimulus_target('appointment_crew', 'company').toArray() }) }}
+					{{ form_row(form.crew.ship, { attr: stimulus_target('appointment_crew', 'ship').toArray() }) }}
+					{{ form_row(form.crew.position, { attr: stimulus_target('appointment_crew', 'position').toArray() }) }}
+					{{ form_row(form.crew.nationality, { attr: stimulus_target('appointment_crew', 'nationality').toArray() }) }}
+				</div>
+				<div class="col-md-12">
+					<button class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
+				</div>
+			</div>
 
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="crewMatch" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-            <div class="toast-header">
-                <strong class="me-auto">Crew Match Found!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                <p id="toastContent"></p>
-                <button type="button" class="btn btn-primary btn-sm"  data-bs-dismiss="toast"
-                        {{ stimulus_target('appointment_crew', 'autofill') }} {{ stimulus_action('appointment_crew', 'autofillFields') }}>Autofill</button>
-            </div>
-        </div>
-    </div>
+			<div class="toast-container position-fixed top-0 end-0 p-3">
+				<div id="crewMatch" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+					<div class="toast-header">
+						<strong class="me-auto">Crew Match Found!</strong>
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">
+						<p id="toastContent"></p>
+						<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="toast" {{ stimulus_target('appointment_crew', 'autofill') }} {{ stimulus_action('appointment_crew', 'autofillFields') }}>Autofill</button>
+					</div>
+				</div>
+			</div>
 
-    {{ form_end(form) }}
-    </div>
+			{{ form_end(form) }}
+		</div>
+	</div>
 </div>

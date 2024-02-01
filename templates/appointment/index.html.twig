@@ -4,11 +4,13 @@
 
 {% block contents %}
     <div class="widget">
-        <div class="widget-heading">
-            <h1>Appointments</h1>
-        </div>
-        <div class="widget-body">
-            {{ include('appointment/list.html.twig') }}
+        <div class="widget-wrapper">
+            <div class="widget-heading">
+                <h1>Appointments</h1>
+            </div>
+            <div class="widget-body">
+                {{ include('appointment/list.html.twig') }}
+            </div>
         </div>
     </div>
 {% endblock %}
