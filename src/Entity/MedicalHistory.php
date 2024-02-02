@@ -25,8 +25,12 @@ class MedicalHistory
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
-    #[ORM\OneToOne(mappedBy: 'MedicalHistory', cascade: ['persist', 'remove'])]
-    private ?ExamPhysical $examPhysical = null;
+    public const STATUS_NOT_STARTED = '1';
+    public const STATUS_IN_PROGRESS = '2';
+    public const STATUS_AWAITING_RESULTS = '3';
+    public const STATUS_EVALUATION = '4';
+    public const STATUS_CLOSED_PASS = '5';
+    public const STATUS_CLOSED_FAIL = '6';
 
     public function getCrew(): ?Crew
     {
@@ -76,20 +80,4 @@ class MedicalHistory
         return $this;
     }
 
-    public function getExamPhysical(): ?ExamPhysical
-    {
-        return $this->examPhysical;
-    }
-
-    public function setExamPhysical(ExamPhysical $examPhysical): static
-    {
-        // set the owning side of the relation if necessary
-        if ($examPhysical->getMedicalHistory() !== $this) {
-            $examPhysical->setMedicalHistory($this);
-        }
-
-        $this->examPhysical = $examPhysical;
-
-        return $this;
-    }
 }
