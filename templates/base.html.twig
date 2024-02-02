@@ -31,7 +31,10 @@
                 {% endblock %}
     
                 <div class="dashboard-wrapper">
-                    <div class="dashboard-content row g-3">
+                    {% block breadcrumbs %}
+                        {% include 'components/breadcrumbs.html.twig' %}
+                    {% endblock %}
+                    <div class="dashboard-content row g-4">
                         {% block contents %}
                         {% endblock %}
                     </div>

@@ -1,0 +1,48 @@
+@import 'variables';
+
+.crew-avatar {
+    margin-right: 20px;
+
+    img {
+
+        max-width: 80px;
+    }
+}
+
+.crew-info {
+    h1 {
+        font-size: 21px;
+        font-weight: 600;
+    }
+    span {
+        color: $color-main;
+    }
+}
+
+.crew-information {
+    margin: -20px;
+    .h2 {
+        font-weight: 700;
+    }
+
+    label {
+        &.form-label {
+            font-weight: 500;
+        }
+    }
+
+    .accordion-button {
+        font-weight: 600;
+        background-color: #fff;
+        font-family: $font-family-main;
+        &:not(.collapsed), &:focus {
+            color: $color-default;
+            box-shadow: none;
+            background-color: #fff;
+        }
+
+
+    }
+
+
+}

@@ -32,16 +32,27 @@
                     border-radius: $border-radius;
       
                     i {
-                        padding-right: 8px;
+                        padding: 8px;
+                        background-color: #f5f6fa;
+                        margin-right: 12px;
+                        border-radius: 3px;
                     }
 
                     &:hover {
                         color: $color-main;
+                        background-color: #f5f6fa;
+
+                        i {
+                            background-color: #e7e9f1;
+                        }
                     }
 
                     &.active {
                         background-color: $color-main;
                         color: #fff;
+                        i {
+                            color: $color-main;
+                        }
                     }
                 }
             }

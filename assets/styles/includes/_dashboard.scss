@@ -12,27 +12,35 @@
 }
 
 .dashboard-content {
-    margin:10px 20px;
+    margin:8px 16px;
 
     .widget {
+        
+        &.main {
+            .widget-heading {
+                background-color: lighten($color-main, 70%);
+            }
+        }
+
         .widget-wrapper {
             background-color: #fff;
             border-radius: $border-radius;
             border: 1px solid #dbe3ea;
+            box-shadow: 0 3px 4px 0 #00000008;
 
             .widget-heading {
                 border-bottom: 1px solid #dbe3ea; 
                 padding: $padding-default;
                 h1 {
-                    font-size: 21px;
+                    font-size: 18px;
                     margin:0;
                 }
             }
+
             .widget-body {
                 padding: $padding-default;
             }
         }
-      
         
     }
 }
@@ -79,15 +87,13 @@
         font-size: 1em;
         border-radius: $border-radius;
         background-color: #fff;
-        color: $color-main;
-        border: 1px solid $color-main;
-
-
-
+        color: $color-default;
+        border: 1px solid $color-default;
     }   
 }
 
 .table-filter {
+
     ul {
         padding:0;
         margin:0;
@@ -97,7 +103,6 @@
             display:inline-block;
             margin:0 10px;
             cursor: pointer;
-
             &:last-child {
                 margin-right: 0;
             }
@@ -105,7 +110,6 @@
 
         .active {
             border-radius: $border-radius;
-
             color: #0d68c5;
             background-color: #eff6ff;
             padding:10px 30px;
@@ -232,30 +236,9 @@
     }
 }
 
-.crew-information {
-    margin: -20px;
-    .h2 {
-        font-weight: 700;
+.widget-column {
+    margin-top:0;
+    .widget {
+        margin-top: 1.5rem;
     }
-
-    label {
-        &.form-label {
-            font-weight: 500;
-        }
-    }
-
-    .accordion-button {
-        font-weight: 600;
-        background-color: #f7fbff;
-        font-family: $font-family-main;
-        &:not(.collapsed), &:focus {
-            color: $color-default;
-            box-shadow: none;
-            background-color: #f7fbff;
-        }
-
-
-    }
-
-
 }
