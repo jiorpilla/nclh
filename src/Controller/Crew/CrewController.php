@@ -9,6 +9,7 @@ use App\Entity\MedicalHistory;
 use App\Form\CrewType;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/crew', name: 'crew_')]
 class CrewController extends BaseController
 {
+    public function __construct(PaginatorInterface $paginator)
+    {
+        parent::__construct($paginator);
+        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => 'crew_index'];
+    }
+
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(Request $request, CrewRepository $crewRepository): Response
     {
@@ -54,10 +61,24 @@ class CrewController extends BaseController
     }
 
     #[Route('/detail/{id}', name: 'show', methods: ['GET'])]
-    public function show(Crew $crew): Response
+    public function show(Crew $crew, CrewRepository $crewRepository): Response
     {
+        $this->breadcrumbs[] = ['name' => $crew->getFullName(), 'path' => 'crew_index'];
+
+//        $medicalHistories = $crew->getMedicalHistory();
+//        foreach ($medicalHistories as $medicalHistory) {
+//            dump($medicalHistory);
+//        }
+        $activeAppointment = $crewRepository->findActiveMedicalHistoryByCrew($crew);
+        $medicalHistories = $crewRepository->findMedicalHistoryByCrew($crew);
+//        print_r($activeAppointment);
+        dump($activeAppointment);
+
         return $this->render('crew/show.html.twig', [
             'crew' => $crew,
+            'activeAppointment' => $activeAppointment,
+            'medicalHistories' => $medicalHistories,
+            'breadcrumbs' => $this->breadcrumbs,
         ]);
     }
 

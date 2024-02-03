@@ -15,11 +15,18 @@ class BaseController extends AbstractController
      */
     private int $page_limit = 15;
 
+    /**
+     * the home will always be set as the first instance unless overridden
+     * @var array
+     */
+    public $breadcrumbs = [];
+
     /*
      * $paginator -> paginator from KNP
      */
     public function __construct(private PaginatorInterface $paginator)
     {
+        $this->breadcrumbs[] = ['name' => 'Home', 'path' => 'dashboard'];
     }
 
     protected function getPageLimit():int

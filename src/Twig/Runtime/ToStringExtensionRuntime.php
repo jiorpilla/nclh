@@ -4,6 +4,7 @@ namespace App\Twig\Runtime;
 
 use App\Entity\Appointment;
 use App\Entity\Crew;
+use App\Entity\MedicalHistory;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class ToStringExtensionRuntime implements RuntimeExtensionInterface
@@ -50,6 +51,26 @@ class ToStringExtensionRuntime implements RuntimeExtensionInterface
                 return 'Confirmed';
             case Appointment::STATUS_CHECKED_IN:
                 return 'Checked-in';
+            default:
+                return 'Error';
+        }
+    }
+
+    public function medicalHistoryStatusToString($status)
+    {
+        switch ($status) {
+            case MedicalHistory::STATUS_NOT_STARTED:
+                return '<span class="badge rounded-pill text-bg-secondary">NOT STARTED</span>';
+            case MedicalHistory::STATUS_IN_PROGRESS:
+                return '<span class="badge rounded-pill text-bg-primary">IN PROGRESS</span>';
+            case MedicalHistory::STATUS_AWAITING_RESULTS:
+                return '<span class="badge rounded-pill text-bg-info">AWAITING RESULTS</span>';
+            case MedicalHistory::STATUS_EVALUATION:
+                return '<span class="badge rounded-pill text-bg-success">EVALUATION</span>';
+            case MedicalHistory::STATUS_CLOSED_PASS:
+                return '<span class="badge rounded-pill text-bg-secondary">CLOSED</span>';
+            case MedicalHistory::STATUS_CLOSED_FAIL:
+                return '<span class="badge rounded-pill text-bg-danger">CLOSED</span>';
             default:
                 return 'Error';
         }

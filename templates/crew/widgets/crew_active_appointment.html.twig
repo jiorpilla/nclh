@@ -1,0 +1,49 @@
+<div class="widget">
+    <div class="widget-wrapper">
+        <div class="widget-heading">
+            <h1>Active Appointments</h1>
+        </div>
+        <div class="widget-body">
+            {% if activeAppointment is defined and activeAppointment|length > 0 %}
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered  align-middle">
+                        <thead>
+                        <tr>
+                            <th scope="col">Appointment Date</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Confirmation</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+{#                        {{ dump(activeAppointment) }}#}
+{#                        {{ dump(activeAppointment.appointments.0.getCreatedAt) }}#}
+{#                        {{ dump(activeAppointment.appointments.getCreatedAt) }}#}
+{#                        {% for data in activeAppointment %}#}
+                            <tr>
+
+{#                                {% for appointment in data.appointments %}#}
+{#                                    {% set appointmentDate = appointment.appointmentDate %}#}
+{#                                    {% set createdAt = appointment.createdAt %}#}
+{#                                    {% set a_status = appointment.status %}#}
+{#                                {% endfor %}#}
+{#                                {% for medicalHistory in data.medicalHistory %}#}
+{#                                    {% set m_status = medicalHistory.status %}#}
+{#                                {% endfor %}#}
+                                <td>{{ activeAppointment.appointments.0.appointmentDate|date('Y-m-d') }}</td>
+                                <td>{{ activeAppointment.appointments.0.createdAt|date('Y-m-d') }}</td>
+                                <td>{{ activeAppointment.appointments.0.status|appointmentStatusToString }}</td>
+                                <td>{{ activeAppointment.medicalHistory.0.status|medicalHistoryStatusToString }}</td>
+                            </tr>
+{#                        {% endfor %}#}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <span class="d-block text-center">No items to show</span>
+            {% endif %}
+
+
+        </div>
+    </div>
+</div>

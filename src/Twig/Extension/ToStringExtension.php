@@ -18,6 +18,7 @@ class ToStringExtension extends AbstractExtension
             new TwigFilter('civilStatusToString', [ToStringExtensionRuntime::class, 'personCivilStatusToString'], ['is_safe' => ['html']] ),
             new TwigFilter('genderToString', [ToStringExtensionRuntime::class, 'genderToString'], ['is_safe' => ['html']] ),
             new TwigFilter('appointmentStatusToString', [ToStringExtensionRuntime::class, 'appointmentStatusToString'], ['is_safe' => ['html']] ),
+            new TwigFilter('medicalHistoryStatusToString', [ToStringExtensionRuntime::class, 'medicalHistoryStatusToString'], ['is_safe' => ['html']] ),
         ];
     }
 

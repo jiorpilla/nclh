@@ -1,0 +1,27 @@
+<div class="widget">
+    <div class="widget-wrapper crew-header">
+        <div class="widget-body">
+            <div class="crew-header-wrapper d-flex justify-content-between">
+                <div class="crew-header-info d-flex align-items-center">
+                    <div class="crew-avatar">
+                        <img class="img-fluid" src="https://placehold.co/80x80/black/white"/>
+                    </div>
+                    <div class="crew-info">
+                        <h1>
+                            {{ crew.getFullName() }}
+                            <div class="crew-status d-inline-block mx-2">
+                                <span class="badge rounded-pill text-bg-success">Awaiting Results</span>
+                            </div>
+                        </h1>
+                        <span>{{ crew.company }} - {{ crew.Position }}</span>
+                    </div>
+                </div>
+                <div class="crew-header-options">
+                    <button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                        <i class="bi bi-plus"></i>
+                        Add New Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

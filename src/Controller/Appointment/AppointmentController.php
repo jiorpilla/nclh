@@ -5,11 +5,13 @@ namespace App\Controller\Appointment;
 use App\Controller\BaseController;
 use App\Entity\Appointment;
 use App\Entity\Crew;
+use App\Entity\MedicalHistory;
 use App\Form\AppointmentSearchType;
 use App\Form\AppointmentType;
 use App\Repository\AppointmentRepository;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -60,7 +62,7 @@ class AppointmentController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Extract the crew data from the submitted form
-            $crewData = $form->get('crew')->getData();
+            $crewData = $form->get('Crew')->getData();
 
             // Check if Crew with the same email, passportNumber, or seamanBookNumber exists
             $existingCrew = $crewRepository->findExistingCrewByAttributes([
@@ -79,11 +81,19 @@ class AppointmentController extends BaseController
                 $crewData->setType(0); // new
             }
 
+            // Assuming you have a MedicalHistory entity associated with Crew
+            $medicalHistory = new MedicalHistory();
+            $medicalHistory->setStatus(MedicalHistory::STATUS_NOT_STARTED); // Set the status as NOTSTARTED
+            $entityManager->persist($medicalHistory);
+
+            $crew->addMedicalHistory($medicalHistory);
+
             // persist the Crew
             $entityManager->persist($crew);
 
             // Set the Crew for the Appointment
             $appointment->setCrew($crew);
+
 
             //set `pending` since this is the registration.
             $appointment->setStatus(Appointment::STATUS_PENDING);
@@ -104,7 +114,6 @@ class AppointmentController extends BaseController
         ]);
     }
 
-
     #[Route('/confirm-appointment/{id}', name: 'confirm', methods: ['GET'])]
     public function registerAppointment(Appointment $appointment, EntityManagerInterface $entityManager): Response
     {
@@ -123,6 +132,28 @@ class AppointmentController extends BaseController
 
 
         return $this->render('appointment/confirm.html.twig');
+
+    }
+
+    #[Route('/check-in-appointment/{id}', name: 'confirm', methods: ['GET'])]
+    public function checkInAppointment(Appointment $appointment, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        // Check if the appointment exists
+        if (!$appointment) {
+            // Handle the case where the appointment is not found
+            throw $this->createNotFoundException('Appointment not found');
+        }
+
+        $medicalHistory = $appointment->getCrew()->getMedicalHistory();
+        $medicalHistory->setStartDate(new \DateTime()); // Set the start date as the current date
+        $medicalHistory->setStatus(MedicalHistory::STATUS_IN_PROGRESS); // Set the status as STATUS_IN_PROGRESS
+
+        // Persist and .flush the MedicalHistory entity
+        $entityManager->persist($medicalHistory);
+        $entityManager->flush();
+
+        // Redirect to the 'crew_show' route
+        return $this->redirectToRoute('crew_show', ['id' => $appointment->getCrew()->getId()]);
 
     }
 }

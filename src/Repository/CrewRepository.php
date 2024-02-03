@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Crew;
+use App\Entity\MedicalHistory;
 use App\Utils\Traits\CommonRepositoryTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -52,6 +53,59 @@ class CrewRepository extends ServiceEntityRepository
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
 
+    }
+
+    /**
+     * Fetch connected Current 'Appointment'/MedicalHistory for a given Crew
+     *
+     * @param Crew $crew
+     * @return array
+     */
+    public function findActiveMedicalHistoryByCrew(Crew $crew): Crew
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c')
+            ->join('c.medicalHistory', 'm')
+            ->join('c.appointments', 'a')
+            ->andWhere('c = :crew')
+            ->andWhere('m.status NOT IN (:status)')
+            ->setParameter('crew', $crew->getId()->toBinary())
+            ->setParameter('status', [MedicalHistory::STATUS_CLOSED_PASS, MedicalHistory::STATUS_CLOSED_FAIL])
+            ->getQuery()
+            ->getOneOrNullResult();
+
+//        return $this->createQueryBuilder('c')
+//            ->select('c, m, a')
+//            ->innerJoin('App\Entity\Appointment', 'a', 'WITH', 'a.Crew = c')
+//            ->innerJoin('App\Entity\MedicalHistory', 'm', 'WITH', 'm.Crew = c')
+//            ->andWhere('a.deleted = :appointmentDeleted')
+//            ->andWhere('m.deleted = :medicalHistoryDeleted')
+//            ->andWhere('c = :crew')
+//            ->orderBy('a.appointmentDate', 'ASC')
+//            ->setParameter('appointmentDeleted', 0)
+//            ->setParameter('medicalHistoryDeleted', 0)
+//            ->setParameter('crew', $crew->getId()->toBinary())
+//            ->getQuery()
+//            ->getResult();
+    }
+
+    /**
+     * Fetch connected MedicalHistory for a given Crew
+     *
+     * @param Crew $crew
+     * @return array
+     */
+    public function findMedicalHistoryByCrew(Crew $crew): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select(['c', 'm'])
+            ->join('c.medicalHistory', 'm')
+            ->andWhere('c = :crew')
+            ->andWhere('m.status IN (:status)')
+            ->setParameter('crew', $crew->getId()->toBinary())
+            ->setParameter('status', [MedicalHistory::STATUS_CLOSED_PASS, MedicalHistory::STATUS_CLOSED_FAIL])
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

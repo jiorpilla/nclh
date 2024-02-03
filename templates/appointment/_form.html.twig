@@ -17,7 +17,7 @@
 				{#            </div>#}
 				{#        </div>#}
 					<div class="col-md-6"> {{ form_row(form.appointmentDate) }}
-					{{ form_row(form.crew.email,
+					{{ form_row(form.Crew.email,
                 {
                     attr : {
                         'data-action' : 'input->appointment-crew#findCrew',
@@ -25,7 +25,7 @@
                     }
                 })
             }}
-					{{ form_row(form.crew.passportNumber,
+					{{ form_row(form.Crew.passportNumber,
                 {
                     attr : {
                     'data-action' : 'input->appointment-crew#findCrew',
@@ -33,7 +33,7 @@
                 }
                 })
             }}
-					{{ form_row(form.crew.seamanBookNumber,
+					{{ form_row(form.Crew.seamanBookNumber,
                 {
                     attr : {
                     'data-action' : 'input->appointment-crew#findCrew',
@@ -41,22 +41,22 @@
                 }
                 })
             }}
-					{{ form_row(form.crew.firstName, { attr: stimulus_target('appointment_crew', 'firstName').toArray() }) }}
-					{{ form_row(form.crew.middleName, { attr: stimulus_target('appointment_crew', 'middleName').toArray() }) }}
-					{{ form_row(form.crew.lastName, { attr: stimulus_target('appointment_crew', 'lastName').toArray() }) }}
-					{{ form_row(form.crew.suffix, { attr: stimulus_target('appointment_crew', 'suffix').toArray() }) }}
-					{{ form_row(form.crew.phoneNumber, { attr: stimulus_target('appointment_crew', 'phoneNumber').toArray() }) }}
+					{{ form_row(form.Crew.firstName, { attr: stimulus_target('appointment_crew', 'firstName').toArray() }) }}
+					{{ form_row(form.Crew.middleName, { attr: stimulus_target('appointment_crew', 'middleName').toArray() }) }}
+					{{ form_row(form.Crew.lastName, { attr: stimulus_target('appointment_crew', 'lastName').toArray() }) }}
+					{{ form_row(form.Crew.suffix, { attr: stimulus_target('appointment_crew', 'suffix').toArray() }) }}
+					{{ form_row(form.Crew.phoneNumber, { attr: stimulus_target('appointment_crew', 'phoneNumber').toArray() }) }}
 				</div>
 				<div class="col-md-6">
-					{{ form_row(form.crew.civilStatus, { attr: stimulus_target('appointment_crew', 'civilStatus').toArray() }) }}
-					{{ form_row(form.crew.gender, { attr: stimulus_target('appointment_crew', 'gender').toArray() }) }}
-					{{ form_row(form.crew.address, { attr: stimulus_target('appointment_crew', 'address').toArray() }) }}
-					{{ form_row(form.crew.dateOfBirth, { attr: stimulus_target('appointment_crew', 'dateOfBirth').toArray() }) }}
-					{{ form_row(form.crew.locationOfBirth, { attr: stimulus_target('appointment_crew', 'locationOfBirth').toArray() }) }}
-					{{ form_row(form.crew.company, { attr: stimulus_target('appointment_crew', 'company').toArray() }) }}
-					{{ form_row(form.crew.ship, { attr: stimulus_target('appointment_crew', 'ship').toArray() }) }}
-					{{ form_row(form.crew.position, { attr: stimulus_target('appointment_crew', 'position').toArray() }) }}
-					{{ form_row(form.crew.nationality, { attr: stimulus_target('appointment_crew', 'nationality').toArray() }) }}
+					{{ form_row(form.Crew.civilStatus, { attr: stimulus_target('appointment_crew', 'civilStatus').toArray() }) }}
+					{{ form_row(form.Crew.gender, { attr: stimulus_target('appointment_crew', 'gender').toArray() }) }}
+					{{ form_row(form.Crew.address, { attr: stimulus_target('appointment_crew', 'address').toArray() }) }}
+					{{ form_row(form.Crew.dateOfBirth, { attr: stimulus_target('appointment_crew', 'dateOfBirth').toArray() }) }}
+					{{ form_row(form.Crew.locationOfBirth, { attr: stimulus_target('appointment_crew', 'locationOfBirth').toArray() }) }}
+					{{ form_row(form.Crew.company, { attr: stimulus_target('appointment_crew', 'company').toArray() }) }}
+					{{ form_row(form.Crew.ship, { attr: stimulus_target('appointment_crew', 'ship').toArray() }) }}
+					{{ form_row(form.Crew.position, { attr: stimulus_target('appointment_crew', 'position').toArray() }) }}
+					{{ form_row(form.Crew.nationality, { attr: stimulus_target('appointment_crew', 'nationality').toArray() }) }}
 				</div>
 				<div class="col-md-12">
 					<button class="btn btn-primary btn-cta">{{ button_label|default('Save Appointment') }}</button>
