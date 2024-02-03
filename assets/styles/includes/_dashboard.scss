@@ -8,6 +8,7 @@
 .dashboard-wrapper {
     position:relative;
     margin-left:260px;
+    margin-bottom:80px;
     top:70px;
 }
 
@@ -29,19 +30,45 @@
             box-shadow: 0 3px 4px 0 #00000008;
 
             .widget-heading {
-                border-bottom: 1px solid #dbe3ea; 
+                border-bottom: 1px solid #dbe3ea;
+                justify-content:space-between;
+                display:flex;
                 padding: $padding-default;
+
+                .btn-edit {
+                    font-size: 14px;
+                    border-radius: 4px;
+                    background-color: #fff;
+                    color: #4d4d4d;
+                    border: 0;
+                    padding:0;
+                }
+
                 h1 {
-                    font-size: 18px;
+                    font-size: 16px;
                     margin:0;
                 }
             }
 
             .widget-body {
                 padding: $padding-default;
+
+                .form-section {
+                    &.accordion-item {
+                        border:0;
+                    }
+                    .accordion-button {
+                        width: auto;
+
+                        &::after {
+                            margin-left: 0.8rem;
+                            scale:0.8;
+                        }
+                    }
+                }
+
             }
         }
-        
     }
 }
 
@@ -84,7 +111,7 @@
     }
 
     .btn-table-control {
-        font-size: 1em;
+        font-size: 13px;
         border-radius: $border-radius;
         background-color: #fff;
         color: $color-default;
@@ -231,6 +258,7 @@
 }
 
 .table {
+    margin-bottom:0;
     a {
         color: $color-default;
     }

@@ -5,20 +5,20 @@
 
 {% block contents %}
 	{# <h1>Crew</h1>
-			
-			    <div>
-			        <a href="{{ path('crew_index') }}" class="btn btn-outline-primary">back to list</a>
-			        <a href="{{ path('crew_edit', {'id': crew.id}) }}" class="btn btn-secondary">edit</a>
-			        {{ include('crew/_delete_form.html.twig') }}
-			    </div>
-			
-			    <div>
-			        <ul>
-			            <li>Patients records</li>
-			            <li><a href="{{ path('crew_medical_history', {'id': crew.id}) }}">medical history</a></li>
-			        </ul>
-			    </div>
-			#}
+				
+				    <div>
+				        <a href="{{ path('crew_index') }}" class="btn btn-outline-primary">back to list</a>
+				        <a href="{{ path('crew_edit', {'id': crew.id}) }}" class="btn btn-secondary">edit</a>
+				        {{ include('crew/_delete_form.html.twig') }}
+				    </div>
+				
+				    <div>
+				        <ul>
+				            <li>Patients records</li>
+				            <li><a href="{{ path('crew_medical_history', {'id': crew.id}) }}">medical history</a></li>
+				        </ul>
+				    </div>
+				#}
 	<div class="widget">
 		<div class="widget-wrapper crew-header">
 			<div class="widget-body">
@@ -32,46 +32,38 @@
 								{{ crew.firstName }}
 								{{ crew.middleName }}
 								<div class="crew-status d-inline-block mx-2">
-								<span class="badge rounded-pill text-bg-success">Awaiting Results</span>
-							</div></h1>
+									<span class="badge rounded-pill text-bg-success">Awaiting Results</span>
+								</div>
+							</h1>
 							<span>{{crew.company}}
 								-
 								{{crew.Position}}</span>
-						
+
 
 						</div>
 					</div>
 					<div class="crew-header-options">
-<button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal"><i class="bi bi-plus"></i> Add New Appointment</button><div class="dropdown">
-								<button class="btn btn-secondary btn-table-control show" type="button" data-bs-toggle="dropdown" aria-expanded="true">
-									<i class="bi bi-three-dots"></i>
-								</button>
-								<ul class="dropdown-menu p-1 show" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 36.8px, 0px);" data-popper-placement="bottom-start">
-									<li>
-										<a class="dropdown-item" href="#">Export Filter Results...</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">Data Import...</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">Merge Duplicates</a>
-									</li>
-								</ul>
-							</div>
+						<button class="btn btn-primary btn-cta shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+							<i class="bi bi-plus"></i>
+							Add New Appointment</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="widget-column col-md-3">
+	<div class="widget-column col-md-8">
 		<div class="widget">
 			<div class="widget-wrapper">
+				<div class="widget-heading">
+					<h1>Crew Information</h1>
+					<button id="formEdit" class="btn btn-secondary btn-edit"> <i class="bi bi-pencil-fill"></i></button>
+				</div>
 				<div class="widget-body">
 					<div class="right-info-wrapper">
 						<div class="right-info">
 							{{ include('crew/crew_information.html.twig') }}
-							<div class="crew-avatar">
+							{# <div class="crew-avatar">
 								<img src="{{ vich_uploader_asset(crew) }}" alt="" class="img-fluid">
 								<div class="dropdown ">
 									<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -97,7 +89,7 @@
 								<div class="avatar-caption">
 									<a href="{{ qr_code_url(crew.idNumber, 'pdf') }}" download>DOWNLOAD PDF</a>
 								</div>
-							</div>
+							</div> #}
 
 						</div>
 					</div>
@@ -106,7 +98,7 @@
 		</div>
 	</div>
 
-	<div class="widget-column col-md-9">
+	<div class="widget-column col-md-4">
 
 		<div class="widget">
 			<div class="widget-wrapper">
@@ -114,96 +106,16 @@
 					<h1>Active Appointments</h1>
 				</div>
 				<div class="widget-body">
-				<div class="table-controls d-flex justify-content-start align-items-center">
-						<div class="controls-right d-flex">
-							<div class="dropdown">
-								<button class="btn btn-secondary btn-table-control dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-									<i class="bi bi-filter"></i>
-									Filter
-								</button>
-								<ul class="dropdown-menu p-1" style="">
-									<li>
-										<a class="dropdown-item active" href="/appointment/?dateFilter=today">Today</a>
-									</li>
-									<li>
-										<a class="dropdown-item " href="/appointment/?dateFilter=tomorrow">Tomorrow</a>
-									</li>
-									<li>
-										<a class="dropdown-item " href="/appointment/?dateFilter=next-week">Next-week</a>
-									</li>
-									<li>
-										<a class="dropdown-item " href="/appointment/?dateFilter=overdue">Overdue</a>
-									</li>
-								</ul>
-							</div>
-
-
-							<div class="dropdown">
-								<button class="btn btn-secondary btn-table-control dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-									<i class="bi bi-filter"></i>
-									Search Filter
-								</button>
-								<div class="dropdown-menu">
-									<form name="appointment_search" method="get">
-										<div class="d-flex flex-column">
-											<div class="mb-3">
-												<label for="appointment_search_search" class="form-label">Search</label><input type="text" id="appointment_search_search" name="appointment_search[search]" placeholder="Search..." class="form-control">
-											</div>
-											<div class="mb-3">
-												<label for="appointment_search_startDate" class="form-label">Start date</label><input type="date" id="appointment_search_startDate" name="appointment_search[startDate]" class="form-control">
-											</div>
-											<div class="mb-3">
-												<label for="appointment_search_endDate" class="form-label">End date</label><input type="date" id="appointment_search_endDate" name="appointment_search[endDate]" class="form-control">
-											</div>
-											<fieldset class="mb-3">
-												<legend class="col-form-label required">Appointment status</legend>
-												<div id="appointment_search_appointmentStatus">
-													<div class="form-check"><input type="checkbox" id="appointment_search_appointmentStatus_0" name="appointment_search[appointmentStatus][]" class="form-check-input" value="pending" checked="checked">
-														<label class="form-check-label" for="appointment_search_appointmentStatus_0">Pending</label>
-													</div>
-													<div class="form-check"><input type="checkbox" id="appointment_search_appointmentStatus_1" name="appointment_search[appointmentStatus][]" class="form-check-input" value="confirmed" checked="checked">
-														<label class="form-check-label" for="appointment_search_appointmentStatus_1">Confirmed</label>
-													</div>
-													<div class="form-check"><input type="checkbox" id="appointment_search_appointmentStatus_2" name="appointment_search[appointmentStatus][]" class="form-check-input" value="checked_in">
-														<label class="form-check-label" for="appointment_search_appointmentStatus_2">Checked In</label>
-													</div>
-												</div>
-											</fieldset>
-											<button class="btn btn-primary btn-cta shadow-sm">Search</button>
-										</div>
-
-										<input type="hidden" id="appointment_search__token" name="appointment_search[_token]" value="b17c7b67e507dc4807b48d051.OOv2LfwYNI-e446GrESOqBm4-1lEfxAraWLsCaNc9pU.DZi1d8l-UPrnjbv07Qvr5W-BgQMcM2JGHTikaOJvqdh6uoJ5lSlF_-3Xyw"></form>
-
-								</div>
-							</div>
-
-							<div class="dropdown">
-								<button class="btn btn-secondary btn-table-control" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="bi bi-three-dots"></i>
-								</button>
-								<ul class="dropdown-menu p-1" style="">
-									<li>
-										<a class="dropdown-item" href="#">Export Filter Results...</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">Data Import...</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">Merge Duplicates</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+					
 					<div class="table-responsive">
 						<table class="table table-hover table-bordered  align-middle">
 							<thead>
 								<tr>
 									<th scope="col">ID</th>
-									<th scope="col">Appointment Date</th>
+									<th scope="col">Start Date</th>
 									<th scope="col">Last Updated</th>
-									
-									<th scope="col">Remaining Exams</th>
+
+
 									<th scope="col">Actions</th>
 									<th scope="col">Status</th>
 								</tr>
@@ -212,15 +124,9 @@
 								<tr>
 									<td>abc123</td>
 									<td>2024-02-02</td>
-									<td>
-										<a href="/crew/detail/01HNMY1NEGEFDF42ZH742XRREV">
-											Gray, Meredith L.,
-										</a>
-									</td>
-									
-									<td>
-										4
-									</td>
+									<td>2024-02-02</td>
+
+
 									<td>
 										<div class="data-actions">
 											<a href="/crew/register-appointment/01HNMY1NEGEFDF42ZH742XRREV" class="btn  btn-sm">
@@ -228,7 +134,9 @@
 												Check-in</a>
 										</div>
 									</td>
-									<td><span class="badge rounded-pill text-bg-success">Started</span></td>
+									<td>
+										<span class="badge rounded-pill text-bg-success">Started</span>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -238,25 +146,25 @@
 				</div>
 			</div>
 			{# <div class="widget-wrapper">
-										<div class="widget-heading">
-											<h1>Current Appointment</h1>
-										</div>
-										<div class="widget-body">
-										
-											<div class=" main-info">
-												<div class="crew-tabs">
-													<div class="tab-content" id="myTabContent">
-														<div class="tab-pane fade show active" id="crew-information-tab-panel" {{ include('crew/crew_appointments.html.twig') }} </div>
-														
-														<div class="tab-pane fade" id="exam-records-tab-pane" role="tabpanel" aria-labelledby="exam-records-tab" tabindex="0"> {{ include('crew/crew_exams.html.twig') }} </div>
-														
-														<div class="tab-pane fade" id="assess-notes-tab-pane" role="tabpanel" aria-labelledby="assess-notes-tab" tabindex="0"> {{ include('crew/crew_notes.html.twig') }}
+													<div class="widget-heading">
+														<h1>Current Appointment</h1>
+													</div>
+													<div class="widget-body">
+													
+														<div class=" main-info">
+															<div class="crew-tabs">
+																<div class="tab-content" id="myTabContent">
+																	<div class="tab-pane fade show active" id="crew-information-tab-panel" {{ include('crew/crew_appointments.html.twig') }} </div>
+																	
+																	<div class="tab-pane fade" id="exam-records-tab-pane" role="tabpanel" aria-labelledby="exam-records-tab" tabindex="0"> {{ include('crew/crew_exams.html.twig') }} </div>
+																	
+																	<div class="tab-pane fade" id="assess-notes-tab-pane" role="tabpanel" aria-labelledby="assess-notes-tab" tabindex="0"> {{ include('crew/crew_notes.html.twig') }}
+																	</div>
+																</div>
+															</div>
 														</div>
 													</div>
-												</div>
-											</div>
-										</div>
-									</div> #}
+												</div> #}
 		</div>
 
 		<div class="widget">
@@ -353,7 +261,7 @@
 							<thead>
 								<tr>
 									<th scope="col">ID</th>
-									<th scope="col">Appointment Start Date</th>
+									<th scope="col">Start Date</th>
 									<th scope="col">Last Updated</th>
 									<th scope="col">Status</th>
 								</tr>
@@ -373,42 +281,66 @@
 				</div>
 			</div>
 			{# <div class="widget-wrapper">
-										<div class="widget-heading">
-											<h1>Current Appointment</h1>
-										</div>
-										<div class="widget-body">
-										
-											<div class=" main-info">
-												<div class="crew-tabs">
-													<div class="tab-content" id="myTabContent">
-														<div class="tab-pane fade show active" id="crew-information-tab-panel" {{ include('crew/crew_appointments.html.twig') }} </div>
-														
-														<div class="tab-pane fade" id="exam-records-tab-pane" role="tabpanel" aria-labelledby="exam-records-tab" tabindex="0"> {{ include('crew/crew_exams.html.twig') }} </div>
-														
-														<div class="tab-pane fade" id="assess-notes-tab-pane" role="tabpanel" aria-labelledby="assess-notes-tab" tabindex="0"> {{ include('crew/crew_notes.html.twig') }}
+													<div class="widget-heading">
+														<h1>Current Appointment</h1>
+													</div>
+													<div class="widget-body">
+													
+														<div class=" main-info">
+															<div class="crew-tabs">
+																<div class="tab-content" id="myTabContent">
+																	<div class="tab-pane fade show active" id="crew-information-tab-panel" {{ include('crew/crew_appointments.html.twig') }} </div>
+																	
+																	<div class="tab-pane fade" id="exam-records-tab-pane" role="tabpanel" aria-labelledby="exam-records-tab" tabindex="0"> {{ include('crew/crew_exams.html.twig') }} </div>
+																	
+																	<div class="tab-pane fade" id="assess-notes-tab-pane" role="tabpanel" aria-labelledby="assess-notes-tab" tabindex="0"> {{ include('crew/crew_notes.html.twig') }}
+																	</div>
+																</div>
+															</div>
 														</div>
 													</div>
-												</div>
-											</div>
-										</div>
-									</div> #}
+												</div> #}
 		</div>
+
+		<div class="widget">
+			<div class="widget-wrapper">
+				<div class="widget-heading">
+					<h1>Exams</h1>
+				</div>
+				<div class="widget-body">
+					<span class="d-block text-center">No items to show</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="widget">
+			<div class="widget-wrapper">
+				<div class="widget-heading">
+					<h1>Files</h1>
+				</div>
+				<div class="widget-body">
+					<span class="d-block text-center">No items to show</span>
+				</div>
+			</div>
+		</div>
+
 
 	</div>
 
 
+
 	{# <div class="crew-tabs-control">
-							<ul class="nav nav-underline " id="myTab" role="tablist">
-								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="appointments-tab" data-bs-toggle="tab" data-bs-target="#appointments-tab-pane" type="button" role="tab" aria-controls="appointments-tab-pane" aria-selected="false">Medical History</button>
-								</li>
-								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="exam-records-tab" data-bs-toggle="tab" data-bs-target="#exam-records-tab-pane" type="button" role="tab" aria-controls="exam-records-tab-pane" aria-selected="false">Exam Records</button>
-								</li>
-								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="assess-notes-tab" data-bs-toggle="tab" data-bs-target="#assess-notes-tab-pane" type="button" role="tab" aria-controls="assess-notes-tab-pane" aria-selected="false">Assess Notes</button>
-								</li>
-							</ul>
-						</div> #}
+								<ul class="nav nav-underline " id="myTab" role="tablist">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="appointments-tab" data-bs-toggle="tab" data-bs-target="#appointments-tab-pane" type="button" role="tab" aria-controls="appointments-tab-pane" aria-selected="false">Medical History</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="exam-records-tab" data-bs-toggle="tab" data-bs-target="#exam-records-tab-pane" type="button" role="tab" aria-controls="exam-records-tab-pane" aria-selected="false">Exam Records</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="assess-notes-tab" data-bs-toggle="tab" data-bs-target="#assess-notes-tab-pane" type="button" role="tab" aria-controls="assess-notes-tab-pane" aria-selected="false">Assess Notes</button>
+									</li>
+								</ul>
+							</div> #}
 {% endblock %}
 

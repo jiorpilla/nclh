@@ -1,120 +1,136 @@
 <div class="crew-information">
 
-<div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
-  <div class="accordion-item">
+<div class="accordion accordion-flush" id="widgetBodyAccordion">
+  <div class="accordion-item form-section">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
         Primary Details
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-      <div class="accordion-body">
-         <div class="mb-3">
+      <div class="accordion-body row">
+         <div class="mb-3 col-md-6">
             <label for="" class="form-label">First Name</label>
             <input type="text" disabled class="form-control" value ="{{ crew.firstName }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="" class="form-label">Last Name</label>
              <input type="text" disabled class="form-control" value ="{{ crew.lastName }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="" class="form-label">Middle Name</label>
             <input type="text" disabled class="form-control" value ="{{ crew.middleName }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Suffix</label>
              <input type="text" disabled class="form-control" value ="{{ crew.suffix }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Nationality</label>
             <input type="text" disabled class="form-control" value ="{{ crew.nationality }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Postion</label>
             <input type="text" disabled class="form-control" value ="{{ crew.position }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Passport Number</label>
             <input type="text" disabled class="form-control" value ="{{ crew.passportNumber }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Seaman Book Number</label>
             <input type="text" disabled class="form-control" value ="{{ crew.seamanBookNumber }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Company</label>
             <input type="text" disabled class="form-control" value ="{{ crew.company }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Birth Address</label>
             <input type="text" disabled class="form-control" value ="{{ crew.locationOfBirth }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Birth date</label>
             <input type="text" disabled class="form-control" value ="{{ crew.dateOfBirth ? crew.dateOfBirth|date('Y-m-d H:i:s') : '' }}">
         </div>
         
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Gender</label>
             <input type="text" disabled class="form-control" value ="{{ crew.gender }}">
         </div>
       </div>
     </div>
   </div>
-  <div class="accordion-item">
+  <div class="accordion-item form-section">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+      <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
         Contact Details
       </button>
     </h2>
     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
-      <div class="accordion-body">
-      <div class="mb-3">
+      <div class="accordion-body row">
+      <div class="mb-3 col-md-6">
             <label for="email" class="form-label">Email</label>
              <input type="text" disabled class="form-control" value ="{{ crew.email }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="phoneNumber" class="form-label">Phone</label>
             <input type="text" disabled class="form-control" value ="{{ crew.phoneNumber }}">
         </div>
         
-        <div class="mb-3">
+        <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Address</label>
             <input type="text" disabled class="form-control" value ="{{ crew.address }}">
         </div>
       </div>
     </div>
   </div>
-  <div class="accordion-item">
+  {# <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
         Other Details
       </button>
     </h2>
     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
-      <div class="accordion-body">
-    <div class="mb-3">
+      <div class="accordion-body row">
+    <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Created by</label>
             <p><strong>{{ get_username(crew.createdBy) }}</strong></p>
         </div>
-        <div class="mb-3 col-md-6">
+    <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Updated by</label>
             <p><strong>{{ get_username(crew.updatedBy) }}</strong></p>
         </div>
-        <div class="mb-3 col-md-6">
+    <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Created at</label>
             <p><strong>{{ crew.createdAt ? crew.createdAt|date('Y-m-d H:i:s') : '' }}</strong></p>
         </div>
-        <div class="mb-3 col-md-6">
+    <div class="mb-3 col-md-6">
             <label for="username" class="form-label">Updated at</label>
             <p><strong>{{ crew.updatedAt ? crew.updatedAt|date('Y-m-d H:i:s') : '' }}</strong></p>
         </div>
       </div>
     </div>
-  </div>
+  </div> #}
 </div>
 
     {# {{ include('crew/_delete_form.html.twig') }}
     <a href="{{ path('crew_edit', {'id': crew.id}) }}" class="btn btn-primary btn-cta">Edit</a> #}
+    <div class="widget-button-wrapper d-flex justify-content-end d-none">
+    <button class="btn btn-primary btn-cta shadow-sm ">Update</button>
+    </div>
 
 </div>
+
+	<script>
+
+	document.getElementById('formEdit').addEventListener("click", function() {
+		var formFields = document.querySelectorAll('.crew-information input[type="text"]');
+ 		for (var i = 0; i < formFields.length; i++) {
+                formFields[i].toggleAttribute('disabled');
+            }
+		this.classList.toggle('d-none');
+    document.querySelector('.widget-button-wrapper').classList.toggle('d-none');
+	});
+
+	</script>
