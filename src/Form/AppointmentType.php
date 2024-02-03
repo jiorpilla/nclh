@@ -16,7 +16,7 @@ class AppointmentType extends AbstractType
             ->add('appointmentDate', DateType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('crew', AppointmentCrewType::class)
+            ->add('Crew', AppointmentCrewType::class)
         ;
     }
 

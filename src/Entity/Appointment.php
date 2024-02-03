@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\AppointmentRepository;
 use App\Utils\Traits\CommonEntityTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,7 +18,8 @@ class Appointment
     private ?\DateTimeInterface $appointmentDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'appointments')]
-    private ?Crew $crew = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Crew $Crew = null;
 
     #[ORM\Column(nullable: true)]
     private ?string $status = null;
@@ -42,12 +45,12 @@ class Appointment
 
     public function getCrew(): ?Crew
     {
-        return $this->crew;
+        return $this->Crew;
     }
 
     public function setCrew(?Crew $crew): static
     {
-        $this->crew = $crew;
+        $this->Crew = $crew;
 
         return $this;
     }

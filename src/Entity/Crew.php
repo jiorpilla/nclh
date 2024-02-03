@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\CrewRepository;
 use App\Utils\Traits\ImageUploadEntityTrait;
 use App\Utils\Traits\PersonEntityTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -38,6 +40,18 @@ class Crew
 
     #[ORM\Column(nullable: true)]
     private ?int $type = null;
+
+    #[ORM\OneToMany(mappedBy: 'Crew', targetEntity: MedicalHistory::class)]
+    private Collection $medicalHistory;
+
+    #[ORM\OneToMany(mappedBy: 'Crew', targetEntity: Appointment::class)]
+    private Collection $appointments;
+
+    public function __construct()
+    {
+        $this->medicalHistory = new ArrayCollection();
+        $this->appointments = new ArrayCollection();
+    }
 
     public const GENDER_MALE = 'male';
     public const GENDER_FEMALE = 'female';
@@ -139,6 +153,65 @@ class Crew
     public function setType(?int $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MedicalHistory>
+     */
+    public function getMedicalHistory(): Collection
+    {
+        return $this->medicalHistory;
+    }
+
+    public function addMedicalHistory(MedicalHistory $medicalHistory): static
+    {
+        if (!$this->medicalHistory->contains($medicalHistory)) {
+            $this->medicalHistory->add($medicalHistory);
+            $medicalHistory->setCrew($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedicalHistory(MedicalHistory $medicalHistory): static
+    {
+        if ($this->medicalHistory->removeElement($medicalHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($medicalHistory->getCrew() === $this) {
+                $medicalHistory->setCrew(null);
+            }
+        }
+
+        return $this;
+    }
+    /**
+     * @return Collection<int, Appointment>
+     */
+    public function getAppointments(): Collection
+    {
+        return $this->appointments;
+    }
+
+    public function addAppointments(Appointment $appointment): static
+    {
+        if (!$this->appointments->contains($appointment)) {
+            $this->appointments->add($appointment);
+            $appointment->setCrew($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAppointments(Appointment $appointment): static
+    {
+        if ($this->appointments->removeElement($appointment)) {
+            // set the owning side to null (unless already changed)
+            if ($appointment->getCrew() === $this) {
+                $appointment->setCrew(null);
+            }
+        }
 
         return $this;
     }

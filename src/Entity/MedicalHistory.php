@@ -12,11 +12,11 @@ class MedicalHistory
 {
     use CommonEntityTrait;
 
-    #[ORM\ManyToOne(inversedBy: 'medicalHistories')]
+    #[ORM\ManyToOne(inversedBy: 'medicalHistory')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Crew $Crew = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]

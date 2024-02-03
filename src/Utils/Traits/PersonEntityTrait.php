@@ -175,6 +175,19 @@ trait PersonEntityTrait
 
         return $this;
     }
+    /**
+     * get FUllname on fullname format
+     * LastName, FirstName {{ crew.middleName|first }}., {{ crew.suffix }}
+     * @return string|null
+     */
+    public function getFullName(): ?string
+    {
+        $fullname = $this->getLastName() . ", " .  $this->getFirstName() . " " .  substr($this->getMiddleName(), 0, 1) . ".";
+        if($this->getSuffix()){
+            $fullname .= ', ' . $this->suffix;
+        }
+        return $fullname;
+    }
 
     /**
      * Calculate the age based on the birthdate
