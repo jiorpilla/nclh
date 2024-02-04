@@ -4,7 +4,12 @@
             <div class="crew-header-wrapper d-flex justify-content-between">
                 <div class="crew-header-info d-flex align-items-center">
                     <div class="crew-avatar">
-                        <img class="img-fluid" src="https://placehold.co/80x80/black/white"/>
+                        {% if vich_uploader_asset(crew) is not null %}
+                            <img class="img-fluid" src="{{ vich_uploader_asset(crew) }}"/>
+                        {% else %}
+                            <img class="img-fluid" src="https://placehold.co/80x80/black/white"/>
+                        {% endif %}
+
                     </div>
                     <div class="crew-info">
                         <h1>
