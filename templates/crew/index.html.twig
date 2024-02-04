@@ -111,7 +111,7 @@
                                 <td>{{ crew.idNumber }}</td>
                                 <td>
                                     <a href="{{ path('crew_show', {'id': crew.id}) }}">
-                                        {{ crew.lastName }}, {{ crew.firstName }} {{ crew.middleName|first }}., {{ crew.suffix }}
+                                        {{ crew.fullName }}
                                     </a>
                                 </td>
                                 <td>{{ crew.gender }}</td>
@@ -121,7 +121,7 @@
                                 <td>{{ crew.position }}</td>
                                 <td>{{ crew.company }}</td>
                                 <td>
-                                    <a href="{{ path('crew_edit', {'id': crew.id}) }}">edit</a>
+                                    <a href="{{ path('crew_show', {'id': crew.id}) }}">View</a>
                                 </td>
                             </tr>
                         {% else %}
@@ -132,29 +132,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination-wrapper mt-5">
-                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                <ul class="pagination">
-                    <li class="page-item ">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                    </li>
-                </ul>
-                </nav>
-                </div>
 
                 {{ knp_pagination_render(crews) }}
             </div>
         </div>
     </div>
-    {{ knp_pagination_render(crews) }}
 {% endblock %}
