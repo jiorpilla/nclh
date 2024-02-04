@@ -1,0 +1,300 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crew{% endblock %}
+
+{% block contents %}
+ 
+    {% include 'crew/widgets/crew_header.html.twig' %}
+
+	<div class="widget">
+		<div class="widget-wrapper">
+			<div class="widget-heading appointment-heading">
+				<div class="appointment-info">
+					<h1><i class="bi bi-calendar me-1"></i> Appointment ABC2341</h1>
+				</div>
+
+				<div class="crew-header-options">
+					<button class="btn btn-primary shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+							Print Routing Form</button>
+				</div>
+
+			</div>
+			<div class="widget-body">
+				<div class="appointment-status status-bar-wrapper d-flex justify-content-between">
+					<label for="status1">
+						<span>Not Started</span>
+						<input type="radio" id="status1" name="status" value="Not Started" />
+					</label>
+
+					<label for="status2">
+						<span>In Progess</span>
+						<input type="radio" id="status2" name="status" value="In Progess" />
+					</label>
+
+					<label for="status3" class="active">
+						<span>Awaiting Results</span>
+						<input type="radio" id="status3" name="status" value="Awaiting Results" />
+					</label>
+
+					<label for="status4">
+						<span>Evaluation</span>
+						<input type="radio" id="status4" name="status" value="Evaluation" />
+					</label>
+
+					<label for="status5">
+						<span>Closed</span>
+						<input type="radio" id="status5" name="status" value="Closed" />
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="widget-column col-md-8">
+
+		<div class="widget">
+			<div class="widget-wrapper">
+				<div class="widget-heading appointment-heading">
+					<div class="appointment-info">
+						<h1>X-Ray</h1>
+					</div>
+					<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Appointment ABC2341</a></li>
+							<li class="breadcrumb-item active" aria-current="page">X-Ray</li>
+						</ol>
+					</nav>
+				</div>
+				<div class="widget-body">
+					<div class="exam-wrapper row">
+                                        
+                        <div class="mb-3 col-md-6">
+                            <label for="" class="form-label">Bony Cage</label>
+                            <select class="form-select form-control" aria-label="Default select example">
+                                <option selected hidden>Select One</option>
+                                <option value="1">Normal</option>
+                                <option value="2">Abnormal</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="" class="form-label">Heart</label>
+                            <select class="form-select form-control" aria-label="Default select example">
+                                <option selected hidden>Select One</option>
+                                <option value="1">Normal</option>
+                                <option value="2">Abnormal</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="" class="form-label">Lungs</label>
+                            <select class="form-select form-control" aria-label="Default select example">
+                                <option selected hidden>Select One</option>
+                                <option value="1">Normal</option>
+                                <option value="2">Abnormal</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="" class="form-label">Diaphragms</label>
+                            <select class="form-select form-control" aria-label="Default select example">
+                                <option selected hidden>Select One</option>
+                                <option value="1">Normal</option>
+                                <option value="2">Abnormal</option>
+                            </select>
+                        </div>
+
+                       <div class="mb-3">
+                            <label for="" class="form-label">Findings</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div class="widget">
+            <div class="widget-wrapper">
+                <div class="widget-heading">
+                <h1><i class="bi bi-journal-text me-1"></i>Notes</h1>
+                <div class="crew-header-options">
+                        <button class="btn btn-primary shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                                Add Note</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                <ul class="list-group exams-list">
+                            <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                <div class="note-heading">
+                                    Lorem ipsum dolor sit amet, consectetu...
+                                    <span>by admin</span>
+                                </div>
+                                <span>
+                                Feb 3, 2024
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                <div class="note-heading">
+                                    <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
+                                    <span>by admin</span>
+                                </div>
+                                <span>
+                                Feb 3, 2024
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                <div class="note-heading">
+                                    <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
+                                    <span>by admin</span>
+                                </div>
+                                <span>
+                                Feb 3, 2024
+                                </span>
+                            </li>
+                        </ul>
+                    
+                </div>
+            </div>
+	    </div>
+
+ <div class="widget">
+            <div class="widget-wrapper">
+                <div class="widget-heading">
+                <h1><i class="bi bi-file-earmark me-1"></i>Files</h1>
+                <div class="crew-header-options">
+                        <button class="btn btn-primary shadow-sm " data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                                Add File</button>
+                    </div>
+                </div>
+                <div class="widget-body">
+                <ul class="list-group exams-list">
+						<li class="list-group-item d-flex justify-content-between align-items-center ">
+							<a href="#" >
+							xray-test.scanned.jpg
+							</a>
+
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center " >
+							<a href="#">
+							cbc-result-scanned.pdf
+							</a>
+
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<a href="#">
+							xray-retake-scanned.jpg
+							</a>
+							
+						</li>
+					</ul>
+                </div>
+            </div>
+	    </div>
+
+	</div>
+
+	<div class="widget-column col-md-4">
+
+	<div class="widget">
+		<div class="widget-wrapper">
+			<div class="widget-heading">
+			<h1><i class="bi bi-clipboard d-inline-block pe-1"></i>Exams</h1>
+			<span>
+			2 of 4 completed
+			</span>
+			</div>
+			<div class="widget-body">
+				<ul class="list-group exams-list">
+					<li class="list-group-item d-flex justify-content-between align-items-center ">
+						<a href="#" class="link-success">
+						Medical History (Form A)
+						<i class="bi bi-check2-all"></i>
+						</a>
+						<span class="badge bg-success rounded-pill">Awaiting Results</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-center " >
+						<a href="#" class="link-success">
+						X-ray
+						<i class="bi bi-check2-all"></i>
+						</a>
+						<span class="badge text-bg-success rounded-pill">Awaiting Results</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						<a href="#">
+						EKG
+						</a>
+						<span class="badge text-bg-secondary rounded-pill">Not Started</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						<a href="#">
+						Blood Chem
+						</a>
+						<span class="badge text-bg-secondary rounded-pill">Not Started</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="widget">
+		<div class="widget-wrapper">
+			<div class="widget-heading">
+			<h1><i class="bi bi-clock-history"></i> X-ray History</h1>
+			</div>
+			<div class="widget-body">
+				<ul class="list-group exams-list">
+						<li class="list-group-item d-flex justify-content-between align-items-center ">
+							<a href="#" >
+							Appointment 123
+							</a>
+                            <span>Dec 12,2023</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center " >
+							<a href="#">
+							Appointment 124
+							</a>
+	                        <span>Dec 12,2023</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<a href="#">
+							Appointment 125
+							</a>
+							<span>Dec 12,2023</span>
+						</li>
+					</ul>
+				
+			</div>
+		</div>
+	</div>
+
+
+
+
+	
+
+
+
+{#		{% include 'crew/widgets/crew_exam.html.twig' %}#}
+{#		{% include 'crew/widgets/crew_files.html.twig' %}#}
+
+	</div>
+
+	<script>
+
+	const progressButtons = document.querySelectorAll('.appointment-status input[type="radio"]');
+
+	progressButtons.forEach(progressButton => {
+		progressButton.addEventListener('change', function handleClick(event) {
+			const labels = document.querySelectorAll('.appointment-status label');
+			labels.forEach(label => {
+				label.classList.remove('active');
+			});
+			this.parentElement.classList.add('active');
+
+  		});
+	});
+
+
+	</script>
+{% endblock %}
