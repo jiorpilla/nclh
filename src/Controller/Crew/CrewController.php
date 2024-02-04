@@ -114,7 +114,7 @@ class CrewController extends BaseController
     #[Route('/{id}/medical-history', name: 'medical_history', methods: ['GET'])]
     public function medicalHistory(Crew $crew): Response
     {
-        return $this->render('crew/medical_history_chest.html.twig', [
+        return $this->render('crew/medical_history.html.twig', [
             'crew' => $crew,
         ]);
     }
