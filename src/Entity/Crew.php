@@ -8,6 +8,9 @@ use App\Utils\Traits\PersonEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\DependencyInjection\Attribute\Exclude;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CrewRepository::class)]
@@ -41,9 +44,11 @@ class Crew
     #[ORM\Column(nullable: true)]
     private ?int $type = null;
 
+    #[Ignore]
     #[ORM\OneToMany(mappedBy: 'Crew', targetEntity: MedicalHistory::class)]
     private Collection $medicalHistory;
 
+    #[Ignore]
     #[ORM\OneToMany(mappedBy: 'Crew', targetEntity: Appointment::class)]
     private Collection $appointments;
 
