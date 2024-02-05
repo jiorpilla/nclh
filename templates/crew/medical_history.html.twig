@@ -3,285 +3,282 @@
 {% block title %}Crew{% endblock %}
 
 {% block contents %}
- 
+
     {% include 'crew/widgets/crew_header.html.twig' %}
 
-	<div class="widget">
-		<div class="widget-wrapper">
-			<div class="widget-heading appointment-heading">
-				<div class="appointment-info">
-					<h1><i class="bi bi-calendar me-1"></i> Appointment ABC2341</h1>
-				</div>
+    <div class="widget">
+        <div class="widget-wrapper">
+            <div class="widget-heading appointment-heading">
+                <div class="appointment-info">
+                    <h1><i class="bi bi-calendar me-1"></i> Appointment ABC2341</h1>
+                </div>
 
-				<div class="crew-header-options">
-					<button class="btn btn-cta-secondary">
-							Print Routing Form</button>
-						<div class="dropdown">
-            <button class="btn btn-secondary btn-table-control dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                <i class="bi bi-three-dots"></i> 
-            </button>
-             <ul class="dropdown-menu p-1" style="">
-                                    <li>
-                        <a class="dropdown-item active" href="#">Generate Medical Certificates</a>
-                    </li>
-                                    <li>
-                        <a class="dropdown-item " href="/appointment/?dateFilter=tomorrow">Export All Files</a>
-                    </li>
-                                  
-                            </ul>
+                <div class="crew-header-options">
+                    <button class="btn btn-cta-secondary">
+                        Print Routing Form
+                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-table-control dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                            <i class="bi bi-three-dots"></i>
+                        </button>
+                        <ul class="dropdown-menu p-1" style="">
+                            <li>
+                                <a class="dropdown-item active" href="#">Generate Medical Certificates</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item " href="/appointment/?dateFilter=tomorrow">Export All Files</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="widget-body">
+                <div class="appointment-status status-bar-wrapper d-flex justify-content-between">
+                    <label for="status1">
+                        <span>Not Started</span>
+                        <input type="radio" id="status1" name="status" value="Not Started"/>
+                    </label>
+
+                    <label for="status2">
+                        <span>In Progess</span>
+                        <input type="radio" id="status2" name="status" value="In Progess"/>
+                    </label>
+
+                    <label for="status3">
+                        <span>Awaiting Results</span>
+                        <input type="radio" id="status3" name="status" value="Awaiting Results"/>
+                    </label>
+
+                    <label for="status4" class="active">
+                        <span>Evaluation</span>
+                        <input type="radio" id="status4" name="status" value="Evaluation"/>
+                    </label>
+
+                    <label for="status5">
+                        <span>Closed</span>
+                        <input type="radio" id="status5" name="status" value="Closed"/>
+                    </label>
+                </div>
+            </div>
         </div>
-				</div>
+    </div>
 
-			</div>
-			<div class="widget-body">
-				<div class="appointment-status status-bar-wrapper d-flex justify-content-between">
-					<label for="status1">
-						<span>Not Started</span>
-						<input type="radio" id="status1" name="status" value="Not Started" />
-					</label>
+    <div class="widget-column col-md-8">
 
-					<label for="status2">
-						<span>In Progess</span>
-						<input type="radio" id="status2" name="status" value="In Progess" />
-					</label>
+        <div class="widget">
+            <div class="widget-wrapper">
+                <div class="widget-heading appointment-heading">
+                    <div class="appointment-info">
+                        <h1>TImeline</h1>
+                    </div>
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Appointment ABC2341</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">TImeline</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="widget-body">
+                    <div class="timeline-wrapper">
+                        <div class="timeline-group">
+                            <div class="timeline-heading">
+                                Feb 3, 2024
+                            </div>
+                            <div class="timeline-list">
+                                <div class="timeline-item d-flex ">
+                                    <div class="time">
+                                        03:34 PM
+                                    </div>
+                                    <div class="timeline-icon mx-4 bg-secondary">
+                                        <i class="bi bi-calendar"></i>
+                                    </div>
+                                    <div class="timeline-description">
+                                        Appointment ABC2341 Created
+                                        <span class="d-block">By Admin</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item d-flex">
+                                    <div class="time">
+                                        03:34 PM
+                                    </div>
+                                    <div class="timeline-icon mx-4 bg-secondary">
+                                        <i class="bi bi-calendar"></i>
+                                    </div>
+                                    <div class="timeline-description">
+                                        Appointment ABC2341 Status Updated to In Progress
+                                        <span class="d-block">By Admin</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item d-flex ">
+                                    <div class="time">
+                                        03:34 PM
+                                    </div>
+                                    <div class="timeline-icon mx-4 bg-secondary">
+                                        <i class="bi bi-clipboard "></i>
+                                    </div>
+                                    <div class="timeline-description">
+                                        Xray Status Updated to In Progress
+                                        <span class="d-block">By Admin</span>
+                                    </div>
+                                </div>
 
-					<label for="status3" class="active">
-						<span>Awaiting Results</span>
-						<input type="radio" id="status3" name="status" value="Awaiting Results" />
-					</label>
+                            </div>
 
-					<label for="status4">
-						<span>Evaluation</span>
-						<input type="radio" id="status4" name="status" value="Evaluation" />
-					</label>
 
-					<label for="status5">
-						<span>Closed</span>
-						<input type="radio" id="status5" name="status" value="Closed" />
-					</label>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="widget-column col-md-8">
+    <div class="widget-column col-md-4">
 
-		<div class="widget">
-			<div class="widget-wrapper">
-				<div class="widget-heading appointment-heading">
-					<div class="appointment-info">
-						<h1>TImeline</h1>
-					</div>
-					<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Appointment ABC2341</a></li>
-							<li class="breadcrumb-item active" aria-current="page">TImeline</li>
-						</ol>
-					</nav>
-				</div>
-				<div class="widget-body">
-					<div class="timeline-wrapper">
-						<div class="timeline-group">
-							<div class="timeline-heading">
-							Feb 3, 2024
-							</div>
-							<div class="timeline-list">
-								<div class="timeline-item d-flex ">
-									<div class="time">
-									03:34 PM
-									</div>
-									<div class="timeline-icon mx-4 bg-secondary">
-										<i class="bi bi-calendar"></i>
-									</div>
-									<div class="timeline-description">
-									Appointment ABC2341 Created
-									<span class="d-block">By Admin</span>
-									</div>
-								</div>
-								<div class="timeline-item d-flex">
-									<div class="time">
-									03:34 PM
-									</div>
-									<div class="timeline-icon mx-4 bg-secondary">
-										<i class="bi bi-calendar"></i>
-									</div>
-									<div class="timeline-description">
-									Appointment ABC2341 Status Updated to In Progress
-									<span class="d-block">By Admin</span>
-									</div>
-								</div>
-								<div class="timeline-item d-flex ">
-									<div class="time">
-									03:34 PM
-									</div>
-									<div class="timeline-icon mx-4 bg-secondary">
-										<i class="bi bi-clipboard "></i>
-									</div>
-									<div class="timeline-description">
-									Xray Status Updated to In Progress
-									<span class="d-block">By Admin</span>
-									</div>
-								</div>
-								
-							</div>
-
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="widget-column col-md-4">
-
-	<div class="widget">
-		<div class="widget-wrapper">
-			<div class="widget-heading">
-			<h1><i class="bi bi-clipboard d-inline-block pe-1"></i>Exams</h1>
-			<span>
+        <div class="widget">
+            <div class="widget-wrapper">
+                <div class="widget-heading">
+                    <h1><i class="bi bi-clipboard d-inline-block pe-1"></i>Exams</h1>
+                    <span>
 			2 of 4 completed
 			</span>
-			</div>
-			<div class="widget-body">
-				<ul class="list-group exams-list">
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<a href="#" class="link-success">
-						Medical History (Form A)
-						<i class="bi bi-check2-all"></i>
-						</a>
-						<span class="badge bg-success rounded-pill">Awaiting Results</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center " >
-						<a href="#" class="link-success">
-						X-ray
-						<i class="bi bi-check2-all"></i>
-						</a>
-						<span class="badge text-bg-success rounded-pill">Awaiting Results</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<a href="#">
-						EKG
-						</a>
-						<span class="badge text-bg-secondary rounded-pill">Not Started</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<a href="#">
-						Blood Chem
-						</a>
-						<span class="badge text-bg-secondary rounded-pill">Not Started</span>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+                </div>
+                <div class="widget-body">
+                    <ul class="list-group exams-list">
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <a href="#" class="link-success">
+                                Medical History (Form A)
+                                <i class="bi bi-check2-all"></i>
+                            </a>
+                            <span class="badge bg-success rounded-pill">Awaiting Results</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <a href="#" class="link-success">
+                                X-ray
+                                <i class="bi bi-check2-all"></i>
+                            </a>
+                            <span class="badge text-bg-success rounded-pill">Awaiting Results</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#">
+                                EKG
+                            </a>
+                            <span class="badge text-bg-secondary rounded-pill">Not Started</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#">
+                                Blood Chem
+                            </a>
+                            <span class="badge text-bg-secondary rounded-pill">Not Started</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-	<div class="widget">
-		<div class="widget-wrapper">
-			<div class="widget-heading">
-			<h1><i class="bi bi-file-earmark"></i> Related Files</h1>
-			</div>
-			<div class="widget-body">
-				<ul class="list-group exams-list">
-                            <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                <div class="note-heading">
-                                    Lorem ipsum dolor sit amet, consectetu...
-                                    <span>by admin</span>
-                                </div>
-                                <span>
+        <div class="widget">
+            <div class="widget-wrapper">
+                <div class="widget-heading">
+                    <h1><i class="bi bi-file-earmark"></i> Related Files</h1>
+                </div>
+                <div class="widget-body">
+                    <ul class="list-group exams-list">
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="note-heading">
+                                Lorem ipsum dolor sit amet, consectetu...
+                                <span>by admin</span>
+                            </div>
+                            <span>
                                 Feb 3, 2024
                                 </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                <div class="note-heading">
-                                    <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
-                                    <span>by admin</span>
-                                </div>
-                                <span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="note-heading">
+                                <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
+                                <span>by admin</span>
+                            </div>
+                            <span>
                                 Feb 3, 2024
                                 </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                <div class="note-heading">
-                                    <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
-                                    <span>by admin</span>
-                                </div>
-                                <span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="note-heading">
+                                <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
+                                <span>by admin</span>
+                            </div>
+                            <span>
                                 Feb 3, 2024
                                 </span>
-                            </li>
-                        </ul>
-				
-			</div>
-		</div>
-	</div>
+                        </li>
+                    </ul>
 
-		<div class="widget">
-		<div class="widget-wrapper">
-			<div class="widget-heading">
-			<h1><i class="bi bi-journal-text"></i> Related Notes</h1>
-			</div>
-			<div class="widget-body">
-			<ul class="list-group exams-list">
-						<li class="list-group-item d-flex justify-content-between align-items-center ">
-							<div class="note-heading">
-								<div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
-							 	<span>by admin</span>
-							</div>
-							<a href="#" >
-							X-ray
-							</a>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-center ">
-							<div class="note-heading">
-								<div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
-							 	<span>by admin</span>
-							</div>
-							<a href="#" >
-							X-ray
-							</a>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-center ">
-							<div class="note-heading">
-								<div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
-							 	<span>by admin</span>
-							</div>
-							<a href="#" >
-							X-ray
-							</a>
-						</li>
-					</ul>
-				
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
 
+        <div class="widget">
+            <div class="widget-wrapper">
+                <div class="widget-heading">
+                    <h1><i class="bi bi-journal-text"></i> Related Notes</h1>
+                </div>
+                <div class="widget-body">
+                    <ul class="list-group exams-list">
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="note-heading">
+                                <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
+                                <span>by admin</span>
+                            </div>
+                            <a href="#">
+                                X-ray
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="note-heading">
+                                <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
+                                <span>by admin</span>
+                            </div>
+                            <a href="#">
+                                X-ray
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                            <div class="note-heading">
+                                <div class="fw-bold">Lorem ipsum dolor sit amet, consectetu...</div>
+                                <span>by admin</span>
+                            </div>
+                            <a href="#">
+                                X-ray
+                            </a>
+                        </li>
+                    </ul>
 
-
-	
+                </div>
+            </div>
+        </div>
 
 
+        {# {% include 'crew/widgets/crew_exam.html.twig' %} #}
+        {# {% include 'crew/widgets/crew_files.html.twig' %} #}
 
-{#		{% include 'crew/widgets/crew_exam.html.twig' %}#}
-{#		{% include 'crew/widgets/crew_files.html.twig' %}#}
+    </div>
 
-	</div>
+    <script>
 
-	<script>
+        const progressButtons = document.querySelectorAll('.appointment-status input[type="radio"]');
 
-	const progressButtons = document.querySelectorAll('.appointment-status input[type="radio"]');
+        progressButtons.forEach(progressButton => {
+            progressButton.addEventListener('change', function handleClick(event) {
+                const labels = document.querySelectorAll('.appointment-status label');
+                labels.forEach(label => {
+                    label.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
 
-	progressButtons.forEach(progressButton => {
-		progressButton.addEventListener('change', function handleClick(event) {
-			const labels = document.querySelectorAll('.appointment-status label');
-			labels.forEach(label => {
-				label.classList.remove('active');
-			});
-			this.parentElement.classList.add('active');
-
-  		});
-	});
+            });
+        });
 
 
-	</script>
+    </script>
 {% endblock %}

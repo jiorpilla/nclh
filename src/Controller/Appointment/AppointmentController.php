@@ -10,6 +10,7 @@ use App\Form\AppointmentSearchType;
 use App\Form\AppointmentType;
 use App\Repository\AppointmentRepository;
 use App\Repository\CrewRepository;
+use App\Repository\MedicalHistoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -165,11 +166,16 @@ class AppointmentController extends BaseController
             throw $this->createNotFoundException('Appointment not found');
         }
 
-        $medicalHistory = $appointment->getCrew()->getMedicalHistory();
+
+        $crew = $appointment->getCrew();
+        $medicalHistoryRepository = $entityManager->getRepository(MedicalHistory::class);
+        $medicalHistory = $medicalHistoryRepository->findLatestMedicalHistoryByCrew($crew);
+
         $medicalHistory->setStartDate(new \DateTime()); // Set the start date as the current date
         $medicalHistory->setStatus(MedicalHistory::STATUS_IN_PROGRESS); // Set the status as STATUS_IN_PROGRESS
-
+        $appointment->setStatus(Appointment::STATUS_CHECKED_IN);
         // Persist and .flush the MedicalHistory entity
+        $entityManager->persist($appointment);
         $entityManager->persist($medicalHistory);
         $entityManager->flush();
 

@@ -2,10 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\Crew;
 use App\Entity\MedicalHistory;
 use App\Utils\Traits\CommonRepositoryTrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Faker\Provider\Medical;
 
 /**
  * @extends ServiceEntityRepository<MedicalHistory>
@@ -24,6 +26,27 @@ class MedicalHistoryRepository extends ServiceEntityRepository
         parent::__construct($registry, MedicalHistory::class);
     }
 
+
+    /**
+     * Fetch connected MedicalHistory for a given Crew
+     *
+     * @param Crew $crew
+     * @return array
+     */
+    public function findLatestMedicalHistoryByCrew(Crew $crew): ?MedicalHistory
+    {
+        return $this->createQueryBuilder('m')
+            ->select('m')
+            ->join('m.Crew', 'c')
+            ->andWhere('c = :crew')
+            ->andWhere('m.deleted = :deleted')
+            ->setParameter('crew', $crew->getId()->toBinary())
+            ->setParameter('deleted', 0)
+            ->orderBy('m.startDate', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 //    /**
 //     * @return MedicalHistory[] Returns an array of MedicalHistory objects
 //     */

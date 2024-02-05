@@ -13,29 +13,17 @@
                             <th scope="col">Start Date</th>
                             <th scope="col">Confirmation</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-{#                        {{ dump(activeAppointment) }}#}
-{#                        {{ dump(activeAppointment.appointments.0.getCreatedAt) }}#}
-{#                        {{ dump(activeAppointment.appointments.getCreatedAt) }}#}
-{#                        {% for data in activeAppointment %}#}
                             <tr>
-
-{#                                {% for appointment in data.appointments %}#}
-{#                                    {% set appointmentDate = appointment.appointmentDate %}#}
-{#                                    {% set createdAt = appointment.createdAt %}#}
-{#                                    {% set a_status = appointment.status %}#}
-{#                                {% endfor %}#}
-{#                                {% for medicalHistory in data.medicalHistory %}#}
-{#                                    {% set m_status = medicalHistory.status %}#}
-{#                                {% endfor %}#}
                                 <td>{{ activeAppointment.appointments.0.appointmentDate|date('Y-m-d') }}</td>
                                 <td>{{ activeAppointment.appointments.0.createdAt|date('Y-m-d') }}</td>
                                 <td>{{ activeAppointment.appointments.0.status|appointmentStatusToString }}</td>
                                 <td>{{ activeAppointment.medicalHistory.0.status|medicalHistoryStatusToString }}</td>
+                                <td><a href="{{ path('crew_medical_history', {'id': activeAppointment.id}) }}">View</a></td>
                             </tr>
-{#                        {% endfor %}#}
                         </tbody>
                     </table>
                 </div>
