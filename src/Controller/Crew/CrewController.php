@@ -32,8 +32,6 @@ class CrewController extends BaseController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(Request $request, CrewRepository $crewRepository): Response
     {
-        $this->breadcrumbs[] = ['name' => $crew->getFullName()];
-
         $query = $crewRepository->getListQuery();
         $page = $request->query->get('page', 1);
 
