@@ -16,6 +16,19 @@
     margin:8px 16px;
 
     .widget {
+
+        .btn-edit {
+            font-size: 14px;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #4d4d4d;
+            border: 0;
+            padding:0;
+        }
+
+        &.sticky-top {
+            top:102px;
+        }
         
         &.main {
             .widget-heading {
@@ -49,14 +62,7 @@
 
                 }
 
-                .btn-edit {
-                    font-size: 14px;
-                    border-radius: 4px;
-                    background-color: #fff;
-                    color: #4d4d4d;
-                    border: 0;
-                    padding:0;
-                }
+   
 
                 h1 {
                     font-size: 16px;
@@ -130,7 +136,7 @@
                 }
             }
         }
-    }
+    }   
 
     .btn-table-control {
         font-size: 13px;

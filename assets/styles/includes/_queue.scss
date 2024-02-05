@@ -1,0 +1,12 @@
+@import 'variables';
+
+.waiting-list-table, .room-waiting-list-table {
+    
+    td, th {
+        &:first-child {
+            max-width: 20px;
+            text-align: center;
+        }
+    }
+}
+
