@@ -32,6 +32,8 @@ class CrewController extends BaseController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(Request $request, CrewRepository $crewRepository): Response
     {
+        $this->breadcrumbs[] = ['name' => $crew->getFullName()];
+
         $query = $crewRepository->getListQuery();
         $page = $request->query->get('page', 1);
 
@@ -39,6 +41,7 @@ class CrewController extends BaseController
 
         return $this->render('crew/index.html.twig', [
             'crews' => $result,
+            'breadcrumbs' => $this->breadcrumbs,
         ]);
     }
 

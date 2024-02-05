@@ -11,6 +11,7 @@ use App\Form\AppointmentType;
 use App\Repository\AppointmentRepository;
 use App\Repository\CrewRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/appointment', name: 'appointment_')]
 class AppointmentController extends BaseController
 {
+
+    public function __construct(PaginatorInterface $paginator)
+    {
+        parent::__construct($paginator);
+        $this->breadcrumbs[] = ['name' => 'Appointment', 'path' => 'appointment_main'];
+    }
+
     #[Route('/', name: 'main', methods: ['GET','POST'])]
     public function index(Request $request, AppointmentRepository $appointmentRepository): Response
     {
@@ -43,6 +51,7 @@ class AppointmentController extends BaseController
         return $this->render('appointment/index.html.twig', [
             'appointment_lists' => $appointment_lists,
             'dateRangeForm' => $form,
+            'breadcrumbs' => $this->breadcrumbs,
         ]);
     }
 
@@ -55,6 +64,8 @@ class AppointmentController extends BaseController
     #[Route('/new', name: 'create', methods: ['GET','POST'])]
     public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository, MailerInterface $mailer): Response
     {
+        $this->breadcrumbs[] = ['name' => 'Create'];
+
         $appointment = new Appointment();
         $form = $this->createForm(AppointmentType::class, $appointment);
         $form->handleRequest($request);
@@ -120,6 +131,7 @@ class AppointmentController extends BaseController
         return $this->render('appointment/new.html.twig', [
             'appointment' => $appointment,
             'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs,
         ]);
     }
 
