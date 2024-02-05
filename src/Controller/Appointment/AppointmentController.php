@@ -53,7 +53,7 @@ class AppointmentController extends BaseController
     }
 
     #[Route('/new', name: 'create', methods: ['GET','POST'])]
-    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository): Response
+    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository, MailerInterface $mailer): Response
     {
         $appointment = new Appointment();
         $form = $this->createForm(AppointmentType::class, $appointment);
@@ -104,6 +104,15 @@ class AppointmentController extends BaseController
 
             //flush
             $entityManager->flush();
+
+            $email = (new Email())
+                ->from('NCLH@janivanorpilla.com')
+                ->to($appointment->getCrew()->getEmail())
+                ->subject('You have an appointment at NCLH clinic at ' . $appointment->getAppointmentDate()->format('Y-m-d'))
+                ->text('Just show up')
+                ->html('<p>Just show up</p>');
+
+            $mailer->send($email);
 
             return $this->redirectToRoute('appointment_main', [], Response::HTTP_SEE_OTHER);
         }
