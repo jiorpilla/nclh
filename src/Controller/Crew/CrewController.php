@@ -84,6 +84,13 @@ class CrewController extends BaseController
             'crew' => $crew,
         ]);
     }
+    #[Route('/{id}/medical-exam', name: 'medical_exam', methods: ['GET'])]
+    public function medicalExam(Crew $crew): Response
+    {
+        return $this->render('crew/medical_history_chest.html.twig', [
+            'crew' => $crew,
+        ]);
+    }
 
     /**
      * this is used in Room Queue QR Scanner - Stimulus JS
