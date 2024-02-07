@@ -9,7 +9,7 @@ endroid_qr_code:
         validateResult: false
     pdf:
         writer: Endroid\QrCode\Writer\PdfWriter
-        size: 200
+        size: 400
         margin: 10
         encoding: 'UTF-8'
         errorCorrectionLevel: 'low'
