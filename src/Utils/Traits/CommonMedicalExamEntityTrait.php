@@ -2,6 +2,8 @@
 
 namespace App\Utils\Traits;
 
+use App\Entity\Assessments;
+use App\Entity\Findings;
 use App\Entity\MedicalHistory;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Ulid;
@@ -19,9 +21,15 @@ trait CommonMedicalExamEntityTrait
     #[ORM\Column(type: 'ulid', nullable: true)]
     private ?Ulid $evaluator = null;
 
-    #[ORM\OneToOne(inversedBy: 'examPhysical', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?MedicalHistory $MedicalHistory = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Findings $Findings = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Assessments $Assessments = null;
 
     public function getFasting(): ?int
     {
@@ -67,6 +75,30 @@ trait CommonMedicalExamEntityTrait
     public function setMedicalHistory(MedicalHistory $MedicalHistory): static
     {
         $this->MedicalHistory = $MedicalHistory;
+
+        return $this;
+    }
+
+    public function getFindings(): ?Findings
+    {
+        return $this->Findings;
+    }
+
+    public function setFindings(?Findings $Findings): static
+    {
+        $this->Findings = $Findings;
+
+        return $this;
+    }
+
+    public function getAssessments(): ?Assessments
+    {
+        return $this->Assessments;
+    }
+
+    public function setAssessments(?Assessments $Assessments): static
+    {
+        $this->Assessments = $Assessments;
 
         return $this;
     }
