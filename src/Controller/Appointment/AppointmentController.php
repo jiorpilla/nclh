@@ -10,14 +10,13 @@ use App\Form\AppointmentSearchType;
 use App\Form\AppointmentType;
 use App\Repository\AppointmentRepository;
 use App\Repository\CrewRepository;
-use App\Repository\MedicalHistoryRepository;
+use App\Service\TwigTemplateEmailSender;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/appointment', name: 'appointment_')]
@@ -63,7 +62,7 @@ class AppointmentController extends BaseController
     }
 
     #[Route('/new', name: 'create', methods: ['GET','POST'])]
-    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository, MailerInterface $mailer): Response
+    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository, TwigTemplateEmailSender $emailSender): Response
     {
         $this->breadcrumbs[] = ['name' => 'Create'];
 
@@ -117,14 +116,16 @@ class AppointmentController extends BaseController
             //flush
             $entityManager->flush();
 
-            $email = (new Email())
-                ->from('NCLH@janivanorpilla.com')
-                ->to($appointment->getCrew()->getEmail())
-                ->subject('You have an appointment at NCLH clinic at ' . $appointment->getAppointmentDate()->format('Y-m-d'))
-                ->text('Just show up')
-                ->html('<p>Just show up</p>');
-
-            $mailer->send($email);
+            $recipientEmail = Address::create($appointment->getCrew()->getFullName() . ' <' . $appointment->getCrew()->getEmail() . '>');
+            $subject = 'You have an Appointment NCLH on : ' . $appointment->getAppointmentDate()->format('Y-m-d');
+            $template = 'templates/emails/appointment_registration.html.twig';
+            $context = [
+                'full_name' => $appointment->getCrew()->getFullName(),
+                'confirmation_link' => $request->getSchemeAndHttpHost() . '/appointment/confirm-appointment/' . $appointment->getId(),
+                'appointment_date' => $appointment->getAppointmentDate()->format('Y-m-d'),
+            ];
+            //send Email
+            $emailSender->sendTemplatedEmail($recipientEmail, $subject, $template, $context);
 
             return $this->redirectToRoute('appointment_main', [], Response::HTTP_SEE_OTHER);
         }
@@ -137,7 +138,7 @@ class AppointmentController extends BaseController
     }
 
     #[Route('/confirm-appointment/{id}', name: 'confirm', methods: ['GET'])]
-    public function registerAppointment(Appointment $appointment, EntityManagerInterface $entityManager): Response
+    public function confirmAppointment(Appointment $appointment, EntityManagerInterface $entityManager): Response
     {
         // Check if the appointment exists
         if (!$appointment) {
@@ -152,13 +153,13 @@ class AppointmentController extends BaseController
         $entityManager->persist($appointment);
         $entityManager->flush();
 
-
         return $this->render('appointment/confirm.html.twig');
+
 
     }
 
     #[Route('/check-in-appointment/{id}', name: 'confirm', methods: ['GET'])]
-    public function checkInAppointment(Appointment $appointment, EntityManagerInterface $entityManager): RedirectResponse
+    public function checkInAppointment(Appointment $appointment, EntityManagerInterface $entityManager, TwigTemplateEmailSender $emailSender, Request $request): RedirectResponse
     {
         // Check if the appointment exists
         if (!$appointment) {
@@ -178,6 +179,18 @@ class AppointmentController extends BaseController
         $entityManager->persist($appointment);
         $entityManager->persist($medicalHistory);
         $entityManager->flush();
+
+        //prepare the email to be sent
+        $attachmentPath = $request->getSchemeAndHttpHost() . '/qr-code/pdf/' . $appointment->getCrew()->getId();
+        $recipientEmail = Address::create($appointment->getCrew()->getFullName() . ' <' . $appointment->getCrew()->getEmail() . '>');
+        $subject = 'You have Confirmed the Appointment on : ' . $appointment->getAppointmentDate()->format('Y-m-d');
+        $template = 'templates/emails/appointment_confirmation.html.twig';
+        $context = [
+            'full_name' => $appointment->getCrew()->getFullName(),
+            'appointment_date' => $appointment->getAppointmentDate()->format('Y-m-d'),
+        ];
+        //send Email
+        $emailSender->sendTemplatedEmail($recipientEmail, $subject, $template, $context, $attachmentPath);
 
         // Redirect to the 'crew_show' route
         return $this->redirectToRoute('crew_show', ['id' => $appointment->getCrew()->getId()]);
