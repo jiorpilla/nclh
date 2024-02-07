@@ -143,3 +143,13 @@ label.form-label {
 
 
 }
+
+.nav-off {
+    .dashboard-wrapper {
+        margin-left:0;
+    }
+
+    .sidebar {
+        left: -100%;
+    }
+}

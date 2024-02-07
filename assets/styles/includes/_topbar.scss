@@ -13,8 +13,15 @@
     z-index: 1;
 
     .logo {
-        max-width: 180px;
-        padding-left:12px;
+        .menu-toggle {
+            font-size:23px;
+            cursor: pointer;
+        }
+        img {
+            max-width: 200px;
+            padding-left:12px;
+            margin-left:12px;
+        }
   
     }
 
@@ -50,3 +57,4 @@
     }
 
 }
+
