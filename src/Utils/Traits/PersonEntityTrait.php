@@ -2,7 +2,6 @@
 
 namespace App\Utils\Traits;
 
-use App\Entity\Address;
 use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

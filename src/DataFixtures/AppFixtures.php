@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Address;
 use App\Entity\Branch;
 use App\Entity\Crew;
 use App\Entity\Users;

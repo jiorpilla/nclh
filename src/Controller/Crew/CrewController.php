@@ -3,7 +3,6 @@
 namespace App\Controller\Crew;
 
 use App\Controller\BaseController;
-use App\Entity\Appointee;
 use App\Entity\Crew;
 use App\Entity\MedicalHistory;
 use App\Form\CrewContactDetailsType;
