@@ -1,5 +1,4 @@
 <div class="sidebar">
-
     <div class="sidebar-wrapper">
 
         <div class="navbar-left">
@@ -8,10 +7,10 @@
                     <a href="{{ path('dashboard') }}" {{ app.request.attributes.get('_route') == 'dashboard' ? 'class="active"' : '' }}><i class="bi bi-house"></i> Home</a>
                 </li>
                 <li>
-                    <a href="{{ path('crew_index') }}" {{ app.request.attributes.get('_route') == 'crew_index' ? 'class="active"' : '' }}><i class="bi bi-people"></i> Crew</a>
+                    <a href="{{ path('crew_index') }}" {{ app.request.attributes.get('_route') starts with 'crew' or app.request.attributes.get('_route') starts with 'medical' ? 'class="active"' : '' }}><i class="bi bi-people"></i> Crew</a>
                 </li>
                 <li>
-                    <a href="{{ path('appointment_main') }}" {{ app.request.attributes.get('_route') == 'appointment_main' ? 'class="active"' : '' }}><i class="bi bi-calendar"></i> Appointments</a>
+                    <a href="{{ path('appointment_main') }}" {{ app.request.attributes.get('_route') starts with 'appointment' ? 'class="active"' : '' }}><i class="bi bi-calendar"></i> Appointments</a>
                 </li>
                 <li>
                     <a href="/queue"><i class="bi bi-door-closed"></i> Room Queue</a>
