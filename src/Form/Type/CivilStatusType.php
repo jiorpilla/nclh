@@ -20,7 +20,7 @@ class CivilStatusType extends AbstractType
                 'Widowed' => '4',
                 // Add other civil status options as needed
             ],
-            'expanded' => true,
+            'expanded' => false,
             'multiple' => false,
             'data' => '1',
             'label_attr' => ['class' => 'radio-inline'],
