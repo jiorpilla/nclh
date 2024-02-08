@@ -25,12 +25,13 @@ class CrewController extends BaseController
     public function __construct(PaginatorInterface $paginator)
     {
         parent::__construct($paginator);
-        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => 'crew_index'];
     }
 
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(Request $request, CrewRepository $crewRepository): Response
     {
+        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => $this->generateUrl('crew_index')];
+
         $query = $crewRepository->getListQuery();
         $page = $request->query->get('page', 1);
 
@@ -45,7 +46,8 @@ class CrewController extends BaseController
     #[Route('/detail/{id}', name: 'show', methods: ['GET', 'POST'])]
     public function show(Request $request, Crew $crew, CrewRepository $crewRepository, EntityManagerInterface $entityManager): Response
     {
-        $this->breadcrumbs[] = ['name' => $crew->getFullName(), 'path' => 'crew_index'];
+        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => $this->generateUrl('crew_index')];
+        $this->breadcrumbs[] = ['name' => $crew->getFullName(), $this->generateUrl('crew_show', ['id' => $crew->getId()])];
 
         $form_primary_details = $this->createForm(CrewPrimaryDetailsType::class, $crew);
         $form_primary_details->handleRequest($request);
