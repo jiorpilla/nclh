@@ -44,7 +44,7 @@ label.form-label {
     margin-top: 40px;
 }
 
-.form-control {
+.form-control, .form-select {
     color: $color-default;
     border: 1px solid #9dabbb;
     font-size:14px;
@@ -70,6 +70,8 @@ label.form-label {
         } 
     }
 }
+
+
 
 .nav-underline {
     margin-bottom:-21px;
