@@ -21,28 +21,18 @@ class ExamChestXrayRepository extends ServiceEntityRepository
         parent::__construct($registry, ExamChestXray::class);
     }
 
-//    /**
-//     * @return ExamChestXray[] Returns an array of ExamChestXray objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?ExamChestXray
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * @return Exam Object Returns an array of the exam fetched
+     */
+    public function findByMedicalHistoryField($medicalHistory): ?ExamChestXray
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.MedicalHistory = :val')
+            ->andWhere('e.deleted = :deleted')
+            ->setParameter('val', $medicalHistory->getId()->toBinary())
+            ->setParameter('deleted', 0)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }
