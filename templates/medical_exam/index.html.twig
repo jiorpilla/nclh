@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crew{% endblock %}
+
+{% block contents %}
+
+{#    {% include 'crew/widgets/crew_header.html.twig' %}#}
+
+    {{ include('medical_exam/widgets/header.html.twig') }}
+
+    <div class="widget-column col-md-8">
+
+        {{ include('medical_exam/widgets/exam.html.twig') }}
+        {{ include('medical_exam/widgets/notes.html.twig') }}
+        {{ include('medical_exam/widgets/files.html.twig') }}
+
+
+
+    </div>
+
+    <div class="widget-column col-md-4">
+        {{ include('medical_exam/widgets/exam_history.html.twig') }}
+
+    </div>
+
+    <script>
+
+        const progressButtons = document.querySelectorAll('.appointment-status input[type="radio"]');
+
+        progressButtons.forEach(progressButton => {
+            progressButton.addEventListener('change', function handleClick(event) {
+                const labels = document.querySelectorAll('.appointment-status label');
+                labels.forEach(label => {
+                    label.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
+
+            });
+        });
+
+
+    </script>
+{% endblock %}

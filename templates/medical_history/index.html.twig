@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medical History - {{ crew.fullName }}{% endblock %}
+
+{% block contents %}
+
+    {{ include('medical_history/widgets/header.html.twig') }}
+
+    <div class="widget-column col-md-8">
+
+
+        {{ include('medical_history/widgets/exams.html.twig') }}
+        {{ include('medical_history/widgets/assessments.html.twig') }}
+        {{ include('medical_history/widgets/timeline.html.twig') }}
+
+    </div>
+
+    <div class="widget-column col-md-4">
+
+
+         {% include 'medical_history/widgets/files.html.twig' %}
+         {% include 'medical_history/widgets/notes.html.twig' %}
+
+    </div>
+
+    <script>
+        const progressButtons = document.querySelectorAll('.appointment-status input[type="radio"]');
+
+        progressButtons.forEach(progressButton => {
+            progressButton.addEventListener('change', function handleClick(event) {
+                const labels = document.querySelectorAll('.appointment-status label');
+                labels.forEach(label => {
+                    label.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
+
+            });
+        });
+    </script>
+{% endblock %}
