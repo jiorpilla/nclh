@@ -75,4 +75,76 @@ class ToStringExtensionRuntime implements RuntimeExtensionInterface
                 return 'Error';
         }
     }
+
+    public function examNameToString($name)
+    {
+        switch ($name) {
+            case "ExamAudiometry":
+                return "Audiometry";
+
+            case "ExamBloodChemistry":
+                return "Blood Chemistry";
+
+            case "ExamBloodType":
+                return "Blood Type";
+
+            case "ExamCBC":
+                return "CBC";
+
+            case "ExamChestXray":
+                return "Chest X-ray";
+
+            case "ExamDrugs":
+                return "Drugs";
+
+            case "ExamEKG":
+                return "EKG";
+
+            case "ExamHbsAG":
+                return "HbsAG";
+
+            case "ExamHepA":
+                return "HepA";
+
+            case "ExamHIV":
+                return "HIV";
+
+            case "ExamOvaAndParasites":
+                return "Ova And Parasites";
+
+            case "ExamPhysical":
+                return "Physical";
+
+            case "ExamPregnancyTest":
+                return "Pregnancy Test";
+
+            case "ExamPSA":
+                return "PSA";
+
+            case "ExamPsychological":
+                return "Psychological";
+
+            case "ExamRiba":
+                return "Riba";
+
+            case "ExamRPR":
+                return "RPR";
+
+            case "ExamStoolCulture":
+                return "Stool Culture";
+
+            case "ExamUrinalysis":
+                return "Urinalysis";
+
+            case "ExamVaccines":
+                return "Vaccines";
+
+            case "ExamVisualAcuity":
+                return "Visual Acuity";
+
+            default:
+                return "Unknown Exam";
+
+        }
+    }
 }
