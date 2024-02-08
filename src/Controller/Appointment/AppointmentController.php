@@ -161,7 +161,7 @@ class AppointmentController extends BaseController
 
     }
 
-    #[Route('/check-in-appointment/{id}', name: 'confirm', methods: ['GET'])]
+    #[Route('/check-in-appointment/{id}', name: 'checkin', methods: ['GET'])]
     public function checkInAppointment(Appointment $appointment, EntityManagerInterface $entityManager, TwigTemplateEmailSender $emailSender, Request $request): RedirectResponse
     {
         // Check if the appointment exists
