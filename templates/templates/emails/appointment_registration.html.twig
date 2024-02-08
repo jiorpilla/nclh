@@ -1,8 +1,23 @@
-<h1>Welcome {{ full_name }}!</h1>
-
+<h2>Hello {{ full_name }}!</h2>
+<p>You have an appointment at NCLH clinic at : {{ appointment_date }}</p>
 <p>your email:<code>{{ email.to[0].address }}</code></p>
+<p>
+    **IMPORTANT REMINDERS**
+
+    Please proceed to the clinic at least 10-15 minutes prior to your appointment schedule. Please note that all patients with confirmed appointments will be attended on a FIRST COME FIRST SERVE BASIS.
+    Only one (1) companion of Senior Citizen/PWD is allowed inside the clinic premises.
+    FOR CONSULT and/or PROCEDURES: Please be reminded to bring you all necessary document/s and/or available results and Doctor’s referral or request form (if any).
+    FOR PEME: Please bring your endorsement / PEME slip issued by your company.
+</p>
+<p>
+    For paperless transaction, please kindly fill-out the online forms thru this link <a href="https://confirm.katroncreative.com/1.php">https://confirm.katroncreative.com/1.php</a>
+    . Kindly accomplish this form ONLY within 24 hours prior to the date of your scheduled appointment.
+</p>
+<p>
+{#    <a href="#">Confirmation Link here: {{ confirmation_link }}</a>#}
+    Confirmation Link : <a href="https://confirm.katroncreative.com/1.php">Click Here</a>
+</p>
 
 <p>
-    <a href="#">Confirmation Link here: {{ confirmation_link }}</a>
-    <a href="#">appointment date: {{ appointment_date }}</a>
+    (This is an auto-generated message. Please do not reply to this email.)
 </p>
