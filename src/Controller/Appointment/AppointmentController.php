@@ -10,6 +10,7 @@ use App\Form\AppointmentSearchType;
 use App\Form\AppointmentType;
 use App\Repository\AppointmentRepository;
 use App\Repository\CrewRepository;
+use App\Service\ExamsGenerator;
 use App\Service\TwigTemplateEmailSender;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -62,7 +63,7 @@ class AppointmentController extends BaseController
     }
 
     #[Route('/new', name: 'create', methods: ['GET','POST'])]
-    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository, TwigTemplateEmailSender $emailSender): Response
+    public function createAppointment(Request $request, EntityManagerInterface $entityManager, CrewRepository $crewRepository, TwigTemplateEmailSender $emailSender, ExamsGenerator $examsGenerator): Response
     {
         $this->breadcrumbs[] = ['name' => 'Create'];
 
@@ -82,13 +83,12 @@ class AppointmentController extends BaseController
                 'seaman_book_number' => $crewData->getSeamanBookNumber(),
             ]);
 
+            $crew = $crewData;
             if ($existingCrew instanceof Crew) {
                 // Crew already exists, update it
-                $crew = $existingCrew;
                 $crewData->setType(1); // returnee
             } else {
                 // Crew does not exist, create a new one
-                $crew = $crewData;
                 $crewData->setType(0); // new
             }
 
@@ -115,6 +115,9 @@ class AppointmentController extends BaseController
 
             //flush
             $entityManager->flush();
+
+            //add exams here
+            $examsGenerator->createExams($crew, $medicalHistory);
 
             $recipientEmail = Address::create($appointment->getCrew()->getFullName() . ' <' . $appointment->getCrew()->getEmail() . '>');
             $subject = 'You have an Appointment NCLH on : ' . $appointment->getAppointmentDate()->format('Y-m-d');
@@ -184,7 +187,7 @@ class AppointmentController extends BaseController
         $attachmentPath = $request->getSchemeAndHttpHost() . '/qr-code/pdf/' . $appointment->getCrew()->getId();
         $recipientEmail = Address::create($appointment->getCrew()->getFullName() . ' <' . $appointment->getCrew()->getEmail() . '>');
         $subject = 'You have Confirmed the Appointment on : ' . $appointment->getAppointmentDate()->format('Y-m-d');
-        $template = 'templates/emails/appointment_confirmation.html.twig';
+        $template = 'templates/emails/appointment_checkedin.html.twig';
         $context = [
             'full_name' => $appointment->getCrew()->getFullName(),
             'appointment_date' => $appointment->getAppointmentDate()->format('Y-m-d'),
