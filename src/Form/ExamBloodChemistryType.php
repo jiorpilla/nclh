@@ -16,15 +16,16 @@ class ExamBloodChemistryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('glucose', ExamFieldStatusType::class)
-            ->add('bun', ExamFieldStatusType::class)
-            ->add('creatinine', ExamFieldStatusType::class)
-            ->add('totalBilirubin', ExamFieldStatusType::class)
-            ->add('alt', ExamFieldStatusType::class)
-            ->add('ast', ExamFieldStatusType::class)
-            ->add('totalCholesterol', ExamFieldStatusType::class)
-            ->add('triglycerides', ExamFieldStatusType::class)
+            ->add('glucose', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('bun', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('creatinine', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('totalBilirubin', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('alt', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('ast', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('totalCholesterol', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('triglycerides', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

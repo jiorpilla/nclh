@@ -16,19 +16,20 @@ class ExamCBCType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('leukocytes', ExamFieldStatusType::class)
-            ->add('erythrocytes', ExamFieldStatusType::class)
-            ->add('hemoglobin', ExamFieldStatusType::class)
-            ->add('hematocrit', ExamFieldStatusType::class)
-            ->add('meanCorpuscularVolume', ExamFieldStatusType::class)
-            ->add('meanCorpuscularHemoglobin', ExamFieldStatusType::class)
-            ->add('neutrophils', ExamFieldStatusType::class)
-            ->add('lymphocytes', ExamFieldStatusType::class)
-            ->add('monocytes', ExamFieldStatusType::class)
-            ->add('eosinophils', ExamFieldStatusType::class)
-            ->add('basophils', ExamFieldStatusType::class)
-            ->add('plateletCount', ExamFieldStatusType::class)
+            ->add('leukocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('erythrocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('hemoglobin', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('hematocrit', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('meanCorpuscularVolume', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('meanCorpuscularHemoglobin', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('neutrophils', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('lymphocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('monocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('eosinophils', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('basophils', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('plateletCount', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

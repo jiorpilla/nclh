@@ -1,54 +1,23 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 <div class="widget">
     <div class="widget-wrapper">
         <div class="widget-heading appointment-heading">
             <div class="appointment-info">
-                <h1>X-Ray</h1>
+                <h1>{{ exam | examNameToString }}</h1>
             </div>
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Appointment ABC2341</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">X-Ray</li>
+                    <li class="breadcrumb-item"><a href="#">Medical - {{ medicalHistory.startDate | date('Y-m-d') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ exam | examNameToString }}</li>
                 </ol>
             </nav>
         </div>
         <div class="widget-body">
             <div class="exam-wrapper row">
-
-                <div class="mb-3 col-md-6">
-                    <label for="" class="form-label">Bony Cage</label>
-                    <select class="form-select form-control" aria-label="Default select example">
-                        <option selected hidden>Select One</option>
-                        <option value="1">Normal</option>
-                        <option value="2">Abnormal</option>
-                    </select>
-                </div>
-
-                <div class="mb-3 col-md-6">
-                    <label for="" class="form-label">Heart</label>
-                    <select class="form-select form-control" aria-label="Default select example">
-                        <option selected hidden>Select One</option>
-                        <option value="1">Normal</option>
-                        <option value="2">Abnormal</option>
-                    </select>
-                </div>
-
-                <div class="mb-3 col-md-6">
-                    <label for="" class="form-label">Lungs</label>
-                    <select class="form-select form-control" aria-label="Default select example">
-                        <option selected hidden>Select One</option>
-                        <option value="1">Normal</option>
-                        <option value="2">Abnormal</option>
-                    </select>
-                </div>
-
-                <div class="mb-3 col-md-6">
-                    <label for="" class="form-label">Diaphragms</label>
-                    <select class="form-select form-control" aria-label="Default select example">
-                        <option selected hidden>Select One</option>
-                        <option value="1">Normal</option>
-                        <option value="2">Abnormal</option>
-                    </select>
-                </div>
+                {{ form_start(form) }}
+                    {{ form_widget(form, {'attr': {'class': 'row'}}) }}
+                <button class="btn btn-dark">{{ button_label|default('Submit') }}</button>
+                {{ form_end(form) }}
 
                 <div class="mb-3">
                     <label for="" class="form-label">Findings</label>

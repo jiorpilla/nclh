@@ -16,16 +16,17 @@ class ExamVisualAcuityType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('colorVision', ExamFieldStatusType::class)
-            ->add('visualAcuityUnaidedRightEye', ExamFieldStatusType::class)
-            ->add('visualAcuityUnaidedLeftEye', ExamFieldStatusType::class)
-            ->add('visualAcuityUnaidedBinocular', ExamFieldStatusType::class)
-            ->add('visualAcuityAidedRightEye', ExamFieldStatusType::class)
-            ->add('visualAcuityAidedLeftEye', ExamFieldStatusType::class)
-            ->add('visualAcuityAidedBinocular', ExamFieldStatusType::class)
-            ->add('visualFieldsRightEye', ExamFieldStatusType::class)
-            ->add('visualFieldsLeftEye', ExamFieldStatusType::class)
+            ->add('colorVision', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualAcuityUnaidedRightEye', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualAcuityUnaidedLeftEye', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualAcuityUnaidedBinocular', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualAcuityAidedRightEye', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualAcuityAidedLeftEye', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualAcuityAidedBinocular', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualFieldsRightEye', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('visualFieldsLeftEye', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

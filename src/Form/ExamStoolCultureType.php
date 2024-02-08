@@ -16,9 +16,10 @@ class ExamStoolCultureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('culture', ExamFieldStatusType::class)
-            ->add('parasitology', ExamFieldStatusType::class)
+            ->add('culture', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('parasitology', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

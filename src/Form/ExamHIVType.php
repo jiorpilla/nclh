@@ -16,8 +16,9 @@ class ExamHIVType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('result', ExamFieldStatusType::class)
+            ->add('result', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

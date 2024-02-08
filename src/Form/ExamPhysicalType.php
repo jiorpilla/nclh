@@ -16,14 +16,15 @@ class ExamPhysicalType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('temperature', ExamFieldStatusType::class)
-            ->add('spo2', ExamFieldStatusType::class)
-            ->add('respiration', ExamFieldStatusType::class)
-            ->add('bp', ExamFieldStatusType::class)
-            ->add('height', ExamFieldStatusType::class)
-            ->add('weight', ExamFieldStatusType::class)
-            ->add('bmi', ExamFieldStatusType::class)
+            ->add('temperature', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('spo2', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('respiration', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('bp', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('height', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('weight', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('bmi', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

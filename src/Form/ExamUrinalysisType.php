@@ -16,20 +16,21 @@ class ExamUrinalysisType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('color', ExamFieldStatusType::class)
-            ->add('appearance', ExamFieldStatusType::class)
-            ->add('ph', ExamFieldStatusType::class)
-            ->add('nitrites', ExamFieldStatusType::class)
-            ->add('glucose', ExamFieldStatusType::class)
-            ->add('ketones', ExamFieldStatusType::class)
-            ->add('protein', ExamFieldStatusType::class)
-            ->add('urobilin', ExamFieldStatusType::class)
-            ->add('leucocytes', ExamFieldStatusType::class)
-            ->add('erythrocytes', ExamFieldStatusType::class)
-            ->add('epithelialCells', ExamFieldStatusType::class)
-            ->add('crystals', ExamFieldStatusType::class)
-            ->add('bacteria', ExamFieldStatusType::class)
+            ->add('color', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('appearance', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('ph', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('nitrites', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('glucose', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('ketones', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('protein', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('urobilin', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('leucocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('erythrocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('epithelialCells', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('crystals', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('bacteria', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

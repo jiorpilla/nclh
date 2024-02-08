@@ -16,11 +16,12 @@ class ExamChestXrayType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('bonyCage', ExamFieldStatusType::class)
-            ->add('heart', ExamFieldStatusType::class)
-            ->add('lungs', ExamFieldStatusType::class)
-            ->add('diaphragms', ExamFieldStatusType::class)
+            ->add('bonyCage', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('heart', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('lungs', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('diaphragms', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 
