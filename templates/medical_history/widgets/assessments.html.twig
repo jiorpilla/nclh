@@ -8,32 +8,16 @@
         </div>
         <div class="widget-body">
             <ul class="list-group exams-list">
-                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                    <a href="#" class="link-success">
-                        Medical History (Form A)
-                        <i class="bi bi-check2-all"></i>
-                    </a>
-                    <span class="badge bg-success rounded-pill">Awaiting Results</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center ">
-                    <a href="#" class="link-success">
-                        X-ray
-                        <i class="bi bi-check2-all"></i>
-                    </a>
-                    <span class="badge text-bg-success rounded-pill">Awaiting Results</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="#">
-                        EKG
-                    </a>
-                    <span class="badge text-bg-secondary rounded-pill">Not Started</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="#">
-                        Blood Chem
-                    </a>
-                    <span class="badge text-bg-secondary rounded-pill">Not Started</span>
-                </li>
+                {% for exam_name, exam in exams %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center ">
+                        <a href="{{ path('medical_history_exam', {'id': medicalHistory.id, 'exam': exam_name}) }}" class="{{ exam.status == 5 ? 'class="link-success"' : '' }}">
+                            {{ exam_name | examNameToString }}{{ exam.status == 5 ? '<i class="bi bi-check2-all"></i>' : '' }}
+
+                        </a>
+{#                        <p>findings</p>#}
+                        {{ exam.status|medicalHistoryStatusToString }}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     </div>
