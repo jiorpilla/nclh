@@ -223,30 +223,31 @@ class MedicalHistoryController extends BaseController
 
     }
 
+
     public function fetchExams(MedicalHistory $medicalHistory, EntityManagerInterface $entityManager)
     {
         return [
-            'ExamAudiometry' => $entityManager->getRepository(ExamAudiometry::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamBloodChemistry' => $entityManager->getRepository(ExamBloodChemistry::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamBloodType' => $entityManager->getRepository(ExamBloodType::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamCBC' => $entityManager->getRepository(ExamCBC::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamChestXray' => $entityManager->getRepository(ExamChestXray::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamDrugs' => $entityManager->getRepository(ExamDrugs::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamEKG' => $entityManager->getRepository(ExamEKG::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamHbsAG' => $entityManager->getRepository(ExamHbsAG::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamHepA' => $entityManager->getRepository(ExamHepA::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamHIV' => $entityManager->getRepository(ExamHIV::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamOvaAndParasites' => $entityManager->getRepository(ExamOvaAndParasites::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamPhysical' => $entityManager->getRepository(ExamPhysical::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamPregnancyTest' => $entityManager->getRepository(ExamPregnancyTest::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamPSA' => $entityManager->getRepository(ExamPSA::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamPsychological' => $entityManager->getRepository(ExamPsychological::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamRiba' => $entityManager->getRepository(ExamRiba::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamRPR' => $entityManager->getRepository(ExamRPR::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamStoolCulture' => $entityManager->getRepository(ExamStoolCulture::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamUrinalysis' => $entityManager->getRepository(ExamUrinalysis::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamVaccines' => $entityManager->getRepository(ExamVaccines::class)->findByMedicalHistoryField($medicalHistory),
-            'ExamVisualAcuity' => $entityManager->getRepository(ExamVisualAcuity::class)->findByMedicalHistoryField($medicalHistory),
+            'audiometry' => $entityManager->getRepository(ExamAudiometry::class)->findByMedicalHistoryField($medicalHistory),
+            'blood_chemistry' => $entityManager->getRepository(ExamBloodChemistry::class)->findByMedicalHistoryField($medicalHistory),
+            'blood_type' => $entityManager->getRepository(ExamBloodType::class)->findByMedicalHistoryField($medicalHistory),
+            'CBC' => $entityManager->getRepository(ExamCBC::class)->findByMedicalHistoryField($medicalHistory),
+            'chest_xray' => $entityManager->getRepository(ExamChestXray::class)->findByMedicalHistoryField($medicalHistory),
+            'drugs' => $entityManager->getRepository(ExamDrugs::class)->findByMedicalHistoryField($medicalHistory),
+            'EKG' => $entityManager->getRepository(ExamEKG::class)->findByMedicalHistoryField($medicalHistory),
+            'HbsAG' => $entityManager->getRepository(ExamHbsAG::class)->findByMedicalHistoryField($medicalHistory),
+            'HepA' => $entityManager->getRepository(ExamHepA::class)->findByMedicalHistoryField($medicalHistory),
+            'HIV' => $entityManager->getRepository(ExamHIV::class)->findByMedicalHistoryField($medicalHistory),
+            'ova_and_parasites' => $entityManager->getRepository(ExamOvaAndParasites::class)->findByMedicalHistoryField($medicalHistory),
+            'physical' => $entityManager->getRepository(ExamPhysical::class)->findByMedicalHistoryField($medicalHistory),
+            'pregnancy_test' => $entityManager->getRepository(ExamPregnancyTest::class)->findByMedicalHistoryField($medicalHistory),
+            'PSA' => $entityManager->getRepository(ExamPSA::class)->findByMedicalHistoryField($medicalHistory),
+            'psychological' => $entityManager->getRepository(ExamPsychological::class)->findByMedicalHistoryField($medicalHistory),
+            'Riba' => $entityManager->getRepository(ExamRiba::class)->findByMedicalHistoryField($medicalHistory),
+            'RPR' => $entityManager->getRepository(ExamRPR::class)->findByMedicalHistoryField($medicalHistory),
+            'stool_culture' => $entityManager->getRepository(ExamStoolCulture::class)->findByMedicalHistoryField($medicalHistory),
+            'urinalysis' => $entityManager->getRepository(ExamUrinalysis::class)->findByMedicalHistoryField($medicalHistory),
+            'vaccines' => $entityManager->getRepository(ExamVaccines::class)->findByMedicalHistoryField($medicalHistory),
+            'visual_acuity' => $entityManager->getRepository(ExamVisualAcuity::class)->findByMedicalHistoryField($medicalHistory),
         ];
     }
 }
