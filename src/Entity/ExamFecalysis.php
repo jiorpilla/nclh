@@ -3,23 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\ExamFecalysisRepository;
+use App\Utils\Traits\CommonMedicalExamEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ExamFecalysisRepository::class)]
 class ExamFecalysis
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use CommonMedicalExamEntityTrait;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $result = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getResult(): ?string
     {
