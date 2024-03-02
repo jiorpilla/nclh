@@ -79,67 +79,67 @@ class ToStringExtensionRuntime implements RuntimeExtensionInterface
     public function examNameToString($name)
     {
         switch ($name) {
-            case "ExamAudiometry":
+            case "audiometry":
                 return "Audiometry";
 
-            case "ExamBloodChemistry":
+            case "blood_chemistry":
                 return "Blood Chemistry";
 
-            case "ExamBloodType":
+            case "blood_type":
                 return "Blood Type";
 
-            case "ExamCBC":
+            case "CBC":
                 return "CBC";
 
-            case "ExamChestXray":
+            case "chest_xray":
                 return "Chest X-ray";
 
-            case "ExamDrugs":
+            case "drugs":
                 return "Drugs";
 
-            case "ExamEKG":
+            case "EKG":
                 return "EKG";
 
-            case "ExamHbsAG":
+            case "HbsAG":
                 return "HbsAG";
 
-            case "ExamHepA":
+            case "HepA":
                 return "HepA";
 
-            case "ExamHIV":
+            case "HIV":
                 return "HIV";
 
-            case "ExamOvaAndParasites":
+            case "ova_and_parasites":
                 return "Ova And Parasites";
 
-            case "ExamPhysical":
+            case "physical":
                 return "Physical";
 
-            case "ExamPregnancyTest":
+            case "pregnancy_test":
                 return "Pregnancy Test";
 
-            case "ExamPSA":
+            case "PSA":
                 return "PSA";
 
-            case "ExamPsychological":
+            case "psychological":
                 return "Psychological";
 
-            case "ExamRiba":
+            case "Riba":
                 return "Riba";
 
-            case "ExamRPR":
+            case "RPR":
                 return "RPR";
 
-            case "ExamStoolCulture":
+            case "stool_culture":
                 return "Stool Culture";
 
-            case "ExamUrinalysis":
+            case "urinalysis":
                 return "Urinalysis";
 
-            case "ExamVaccines":
+            case "vaccines":
                 return "Vaccines";
 
-            case "ExamVisualAcuity":
+            case "visual_acuity":
                 return "Visual Acuity";
 
             default:
