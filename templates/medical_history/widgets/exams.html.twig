@@ -10,15 +10,25 @@
         </div>
         <div class="widget-body">
             <ul class="list-group exams-list">
+
                 {% for exam_name, exam in exams %}
                 <li class="list-group-item d-flex justify-content-between align-items-center ">
-                    <a href="{{ path('medical_history_exam', {'id': medicalHistory.id, 'exam': exam_name}) }}" class="{{ exam.status == 5 ? 'class="link-success"' : '' }}">
+                    <a href="{{ path('exam_' ~ exam_name, {'id': exam.id}) }}" class="{{ exam.status == 5 ? 'class="link-success"' : '' }}">
                         {{ exam_name | examNameToString }}{{ exam.status == 5 ? '<i class="bi bi-check2-all"></i>' : '' }}
 
                     </a>
                     {{ exam.status|medicalHistoryStatusToString }}
                 </li>
                 {% endfor %}
+{#                {% for exam_name, exam in exams %}#}
+{#                <li class="list-group-item d-flex justify-content-between align-items-center ">#}
+{#                    <a href="{{ path('medical_history_exam', {'id': medicalHistory.id, 'exam': exam_name}) }}" class="{{ exam.status == 5 ? 'class="link-success"' : '' }}">#}
+{#                        {{ exam_name | examNameToString }}{{ exam.status == 5 ? '<i class="bi bi-check2-all"></i>' : '' }}#}
+
+{#                    </a>#}
+{#                    {{ exam.status|medicalHistoryStatusToString }}#}
+{#                </li>#}
+{#                {% endfor %}#}
             </ul>
         </div>
     </div>
