@@ -10,6 +10,7 @@ use App\Entity\ExamCBC;
 use App\Entity\ExamChestXray;
 use App\Entity\ExamDrugs;
 use App\Entity\ExamEKG;
+use App\Entity\ExamFecalysis;
 use App\Entity\ExamHbsAG;
 use App\Entity\ExamHepA;
 use App\Entity\ExamHIV;
@@ -61,6 +62,10 @@ class ExamsGenerator
         $ExamDrugs = new ExamDrugs();
         $ExamDrugs->setMedicalHistory($medicalHistory);
         $ExamDrugs->setStatus(1);
+
+        $ExamFecalysis = new ExamFecalysis();
+        $ExamFecalysis->setMedicalHistory($medicalHistory);
+        $ExamFecalysis->setStatus(1);
 
         $ExamHbsAG = new ExamHbsAG();
         $ExamHbsAG->setMedicalHistory($medicalHistory);
@@ -122,6 +127,7 @@ class ExamsGenerator
             $ExamPregnancyTest->setStatus(1);
             $this->entityManager->persist($ExamPregnancyTest);
         }
+
         $foodHandlersPosition = [
             'Food Handlers',
             'Housekeeping',
@@ -146,6 +152,7 @@ class ExamsGenerator
         $this->entityManager->persist($ExamCBC);
         $this->entityManager->persist($ExamChestXray);
         $this->entityManager->persist($ExamDrugs);
+        $this->entityManager->persist($ExamFecalysis);
         $this->entityManager->persist($ExamHbsAG);
         $this->entityManager->persist($ExamHepA);
         $this->entityManager->persist($ExamHIV);
