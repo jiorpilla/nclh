@@ -88,7 +88,7 @@ class ToStringExtensionRuntime implements RuntimeExtensionInterface
             case "blood_type":
                 return "Blood Type";
 
-            case "CBC":
+            case "cbc":
                 return "CBC";
 
             case "chest_xray":
@@ -97,16 +97,19 @@ class ToStringExtensionRuntime implements RuntimeExtensionInterface
             case "drugs":
                 return "Drugs";
 
-            case "EKG":
+            case "ekg":
                 return "EKG";
 
-            case "HbsAG":
+            case "fecalysis":
+                return "Fecalysis";
+
+            case "hbsag":
                 return "HbsAG";
 
-            case "HepA":
+            case "hepa":
                 return "HepA";
 
-            case "HIV":
+            case "hiv":
                 return "HIV";
 
             case "ova_and_parasites":
@@ -118,16 +121,16 @@ class ToStringExtensionRuntime implements RuntimeExtensionInterface
             case "pregnancy_test":
                 return "Pregnancy Test";
 
-            case "PSA":
+            case "psa":
                 return "PSA";
 
             case "psychological":
                 return "Psychological";
 
-            case "Riba":
+            case "riba":
                 return "Riba";
 
-            case "RPR":
+            case "rpr":
                 return "RPR";
 
             case "stool_culture":

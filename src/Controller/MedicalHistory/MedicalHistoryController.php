@@ -10,6 +10,7 @@ use App\Entity\ExamCBC;
 use App\Entity\ExamChestXray;
 use App\Entity\ExamDrugs;
 use App\Entity\ExamEKG;
+use App\Entity\ExamFecalysis;
 use App\Entity\ExamHbsAG;
 use App\Entity\ExamHepA;
 use App\Entity\ExamHIV;
@@ -230,20 +231,21 @@ class MedicalHistoryController extends BaseController
             'audiometry' => $entityManager->getRepository(ExamAudiometry::class)->findByMedicalHistoryField($medicalHistory),
             'blood_chemistry' => $entityManager->getRepository(ExamBloodChemistry::class)->findByMedicalHistoryField($medicalHistory),
             'blood_type' => $entityManager->getRepository(ExamBloodType::class)->findByMedicalHistoryField($medicalHistory),
-            'CBC' => $entityManager->getRepository(ExamCBC::class)->findByMedicalHistoryField($medicalHistory),
+            'cbc' => $entityManager->getRepository(ExamCBC::class)->findByMedicalHistoryField($medicalHistory),
             'chest_xray' => $entityManager->getRepository(ExamChestXray::class)->findByMedicalHistoryField($medicalHistory),
             'drugs' => $entityManager->getRepository(ExamDrugs::class)->findByMedicalHistoryField($medicalHistory),
-            'EKG' => $entityManager->getRepository(ExamEKG::class)->findByMedicalHistoryField($medicalHistory),
-            'HbsAG' => $entityManager->getRepository(ExamHbsAG::class)->findByMedicalHistoryField($medicalHistory),
-            'HepA' => $entityManager->getRepository(ExamHepA::class)->findByMedicalHistoryField($medicalHistory),
-            'HIV' => $entityManager->getRepository(ExamHIV::class)->findByMedicalHistoryField($medicalHistory),
+            'ekg' => $entityManager->getRepository(ExamEKG::class)->findByMedicalHistoryField($medicalHistory),
+            'fecalysis' => $entityManager->getRepository(ExamFecalysis::class)->findByMedicalHistoryField($medicalHistory),
+            'hbsag' => $entityManager->getRepository(ExamHbsAG::class)->findByMedicalHistoryField($medicalHistory),
+            'hepa' => $entityManager->getRepository(ExamHepA::class)->findByMedicalHistoryField($medicalHistory),
+            'hiv' => $entityManager->getRepository(ExamHIV::class)->findByMedicalHistoryField($medicalHistory),
             'ova_and_parasites' => $entityManager->getRepository(ExamOvaAndParasites::class)->findByMedicalHistoryField($medicalHistory),
             'physical' => $entityManager->getRepository(ExamPhysical::class)->findByMedicalHistoryField($medicalHistory),
             'pregnancy_test' => $entityManager->getRepository(ExamPregnancyTest::class)->findByMedicalHistoryField($medicalHistory),
-            'PSA' => $entityManager->getRepository(ExamPSA::class)->findByMedicalHistoryField($medicalHistory),
+            'psa' => $entityManager->getRepository(ExamPSA::class)->findByMedicalHistoryField($medicalHistory),
             'psychological' => $entityManager->getRepository(ExamPsychological::class)->findByMedicalHistoryField($medicalHistory),
-            'Riba' => $entityManager->getRepository(ExamRiba::class)->findByMedicalHistoryField($medicalHistory),
-            'RPR' => $entityManager->getRepository(ExamRPR::class)->findByMedicalHistoryField($medicalHistory),
+            'riba' => $entityManager->getRepository(ExamRiba::class)->findByMedicalHistoryField($medicalHistory),
+            'rpr' => $entityManager->getRepository(ExamRPR::class)->findByMedicalHistoryField($medicalHistory),
             'stool_culture' => $entityManager->getRepository(ExamStoolCulture::class)->findByMedicalHistoryField($medicalHistory),
             'urinalysis' => $entityManager->getRepository(ExamUrinalysis::class)->findByMedicalHistoryField($medicalHistory),
             'vaccines' => $entityManager->getRepository(ExamVaccines::class)->findByMedicalHistoryField($medicalHistory),
