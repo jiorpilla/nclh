@@ -3,12 +3,33 @@
 namespace App\Controller\Exam;
 
 use App\Controller\BaseController;
+use App\Entity\Crew;
 use App\Entity\ExamAudiometry;
 use App\Entity\ExamBloodChemistry;
 use App\Entity\ExamBloodType;
+use App\Entity\ExamCBC;
+use App\Entity\ExamChestXray;
+use App\Entity\ExamDrugs;
+use App\Entity\ExamEKG;
+use App\Entity\ExamFecalysis;
+use App\Entity\ExamHbsAG;
+use App\Entity\ExamHepA;
+use App\Entity\ExamHIV;
+use App\Entity\ExamOvaAndParasites;
+use App\Entity\ExamPhysical;
+use App\Entity\ExamPregnancyTest;
+use App\Entity\ExamPsychological;
+use App\Entity\ExamRiba;
+use App\Entity\ExamRPR;
+use App\Entity\ExamStoolCulture;
+use App\Entity\ExamUrinalysis;
+use App\Entity\ExamVaccines;
+use App\Entity\ExamVisualAcuity;
+use App\Entity\MedicalHistory;
 use App\Form\ExamAudiometryType;
 use App\Form\ExamBloodChemistryType;
 use App\Form\ExamBloodTypeType;
+use App\Form\ExamCBCType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,10 +45,19 @@ class ExamController extends BaseController
 //        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => $this->generateUrl('crew_index')];
     }
 
-    #[Route('/audiometry/{id}/', name: 'audiometry')]
-    public function ExamAudiometry(ExamAudiometry $audiometry, Request $request, EntityManagerInterface $entityManager)
+    public function createBreadcrumbs(Crew $crew, MedicalHistory $medicalHistory, string $exam_name)
     {
+        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => $this->generateUrl('crew_index')];
+        $this->breadcrumbs[] = ['name' => $crew->getFullName(), 'path' => $this->generateUrl('crew_show', ['id' => $crew->getId()])];
+        $this->breadcrumbs[] = ['name' => 'Medical - ' . $medicalHistory->getStartDate()->format('Y-m-d'), 'path' => $this->generateUrl('medical_history_detail', ['id' => $medicalHistory->getId()])];
+        $this->breadcrumbs[] = ['name' => $exam_name];
+    }
 
+    #[Route('/audiometry/{id}/', name: 'audiometry')]
+    public function ExamAudiometry(ExamAudiometry $exam, Request $request, EntityManagerInterface $entityManager)
+    {
+        $exam_name = 'Audiometry';
+        $exam_path = 'audiometry';
 
         $form = $this->createForm(ExamAudiometryType::class);
         $form->handleRequest($request);
@@ -38,34 +68,29 @@ class ExamController extends BaseController
             return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        $medicalHistory = $audiometry->getMedicalHistory();
+        $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
 
-        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => $this->generateUrl('crew_index')];
-        $this->breadcrumbs[] = ['name' => $crew->getFullName(), 'path' => $this->generateUrl('crew_show', ['id' => $crew->getId()])];
-        $this->breadcrumbs[] = ['name' => 'Medical - ' . $medicalHistory->getStartDate()->format('Y-m-d'), 'path' => $this->generateUrl('medical_history_detail', ['id' => $medicalHistory->getId()])];
-        $this->breadcrumbs[] = ['name' => 'Blood Chemistry', 'path' => 'crew_index'];
-
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
         return $this->render('medical_exam/index.html.twig', [
-            'test' => $audiometry,
-            'status' => $audiometry->getStatus(),
+            'test' => $exam,
+            'status' => $exam->getStatus(),
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
-            'exam' => 'Audiometry',
-            'exam_path' => 'audiometry',
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
             'form' => $form,
-//            'exams' => $exams,
-//            'exams_ctr' => $exams_ctr,
             'breadcrumbs' => $this->breadcrumbs
         ]);
 
     }
 
     #[Route('/blood-chemistry/{id}/', name: 'blood_chemistry')]
-    public function ExamBloodChemistry(ExamBloodChemistry $bloodChemistry, Request $request, EntityManagerInterface $entityManager): Response
+    public function ExamBloodChemistry(ExamBloodChemistry $exam, Request $request, EntityManagerInterface $entityManager): Response
     {
-
+        $exam_name = 'Blood Chemistry';
+        $exam_path = 'blood_chemistry';
 
         $form = $this->createForm(ExamBloodChemistryType::class);
         $form->handleRequest($request);
@@ -76,25 +101,19 @@ class ExamController extends BaseController
             return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        $medicalHistory = $bloodChemistry->getMedicalHistory();
+        $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
 
-        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => $this->generateUrl('crew_index')];
-        $this->breadcrumbs[] = ['name' => $crew->getFullName(), 'path' => $this->generateUrl('crew_show', ['id' => $crew->getId()])];
-        $this->breadcrumbs[] = ['name' => 'Medical - ' . $medicalHistory->getStartDate()->format('Y-m-d'), 'path' => $this->generateUrl('medical_history_detail', ['id' => $medicalHistory->getId()])];
-        $this->breadcrumbs[] = ['name' => 'Blood Chemistry', 'path' => 'crew_index'];
-
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
         return $this->render('medical_exam/index.html.twig', [
-            'test' => $bloodChemistry,
-            'status' => $bloodChemistry->getStatus(),
+            'test' => $exam,
+            'status' => $exam->getStatus(),
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
-            'exam' => 'Blood Chemistry',
-            'exam_path' => 'blood_chemistry',
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
             'form' => $form,
-//            'exams' => $exams,
-//            'exams_ctr' => $exams_ctr,
             'breadcrumbs' => $this->breadcrumbs
         ]);
     }
@@ -102,6 +121,9 @@ class ExamController extends BaseController
     #[Route('/blood-type/{id}/', name: 'blood_type')]
     public function ExamBloodType(ExamBloodType $exam, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $exam_name = 'Blood Type';
+        $exam_path = 'blood_type';
+
         $form = $this->createForm(ExamBloodTypeType::class);
         $form->handleRequest($request);
 
@@ -114,121 +136,625 @@ class ExamController extends BaseController
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
 
-        $this->breadcrumbs[] = ['name' => 'Crew', 'path' => $this->generateUrl('crew_index')];
-        $this->breadcrumbs[] = ['name' => $crew->getFullName(), 'path' => $this->generateUrl('crew_show', ['id' => $crew->getId()])];
-        $this->breadcrumbs[] = ['name' => 'Medical - ' . $medicalHistory->getStartDate()->format('Y-m-d'), 'path' => $this->generateUrl('medical_history_detail', ['id' => $medicalHistory->getId()])];
-        $this->breadcrumbs[] = ['name' => 'Blood Type'];
-
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
             'status' => $exam->getStatus(),
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
-            'exam' => 'Blood Type',
-            'exam_path' => 'blood_type',
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
             'form' => $form,
-//            'exams' => $exams,
-//            'exams_ctr' => $exams_ctr,
             'breadcrumbs' => $this->breadcrumbs
         ]);
-
     }
 
     #[Route('/cbc/{id}/', name: 'cbc')]
-    public function ExamCBC()
+    public function ExamCBC(ExamCBC $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'CBC';
+        $exam_path = 'cbc';
 
+        $form = $this->createForm(ExamCBCType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/chest-x-ray/{id}/', name: 'chest_xray')]
-    public function ExamChestXray()
+    public function ExamChestXray(ExamChestXray $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Chest X-ray';
+        $exam_path = 'chest_xray';
 
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/drugs/{id}/', name: 'drugs')]
-    public function ExamDrugs()
+    public function ExamDrugs(ExamDrugs $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Drugs';
+        $exam_path = 'drugs';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
-    #[Route('/drugs/{id}/', name: 'drugs')]
-    public function ExamEKG()
+    #[Route('/ekg/{id}/', name: 'drugs')]
+    public function ExamEKG(ExamEKG $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'EKG';
+        $exam_path = 'ekg';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/fecalysis/{id}/', name: 'fecalysis')]
-    public function ExamFecalysis()
+    public function ExamFecalysis(ExamFecalysis $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Fecalysis';
+        $exam_path = 'fecalysis';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/hbsag/{id}/', name: 'hbsag')]
-    public function ExamHbsAG()
+    public function ExamHbsAG(ExamHbsAG $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'HbsAG';
+        $exam_path = 'hbsag';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/HepA/{id}/', name: 'hepa')]
-    public function ExamHepA()
+    public function ExamHepA(ExamHepA $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'HepA';
+        $exam_path = 'hepa';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/hiv/{id}/', name: 'hiv')]
-    public function ExamHIV()
+    public function ExamHIV(ExamHIV $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'HIV';
+        $exam_path = 'hiv';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/ova-and-parasites/{id}/', name: 'ova_and_parasites')]
-    public function ExamOvaAndParasites()
+    public function ExamOvaAndParasites(ExamOvaAndParasites $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Ova And Parasites';
+        $exam_path = 'ova_and_parasites';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/physical/{id}/', name: 'physical')]
-    public function ExamPhysical()
+    public function ExamPhysical(ExamPhysical $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Physical';
+        $exam_path = 'physical';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/pregnancy-test/{id}/', name: 'pregnancy_test')]
-    public function ExamPregnancyTest()
+    public function ExamPregnancyTest(ExamPregnancyTest $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Pregnancy Test';
+        $exam_path = 'pregnancy_test';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/PSA/{id}/', name: 'psa')]
-    public function ExamPSA()
+    public function ExamPSA(ExamPsa $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'PSA';
+        $exam_path = 'psa';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/psychological/{id}/', name: 'psychological')]
-    public function ExamPsychological()
+    public function ExamPsychological(ExamPsychological $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Psychological';
+        $exam_path = 'psychological';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/Riba/{id}/', name: 'riba')]
-    public function ExamRiba()
+    public function ExamRiba(ExamRiba $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Riba';
+        $exam_path = 'riba';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/RPR/{id}/', name: 'rpr')]
-    public function ExamRPR()
+    public function ExamRPR(ExamRPR $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'RPR';
+        $exam_path = 'rpr';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/stool-culture/{id}/', name: 'stool_culture')]
-    public function ExamStoolCulture()
+    public function ExamStoolCulture(ExamStoolCulture $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Stool Culture';
+        $exam_path = 'stool_culture';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/urinalysis/{id}/', name: 'urinalysis')]
-    public function ExamUrinalysis()
+    public function ExamUrinalysis(ExamUrinalysis $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Urinalysis';
+        $exam_path = 'urinalysis';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/vaccines/{id}/', name: 'vaccines')]
-    public function ExamVaccines()
+    public function ExamVaccines(ExamVaccines $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Vaccines';
+        $exam_path = 'vaccines';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 
     #[Route('/visual-acuity/{id}/', name: 'visual_acuity')]
-    public function ExamVisualAcuity()
+    public function ExamVisualAcuity(ExamVisualAcuity $exam, Request $request, EntityManagerInterface $entityManager)
     {
+        $exam_name = 'Visual Acuity';
+        $exam_path = 'visual_acuity';
+
+        $form = $this->createForm(ExamBloodTypeType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
+        $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
+
+        return $this->render('medical_exam/index.html.twig', [
+            'test' => $exam,
+            'status' => $exam->getStatus(),
+            'medicalHistory' => $medicalHistory,
+            'crew' => $crew,
+            'exam' => $exam_name,
+            'exam_path' => $exam_path,
+            'form' => $form,
+            'breadcrumbs' => $this->breadcrumbs
+        ]);
     }
 }
