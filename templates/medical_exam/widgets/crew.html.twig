@@ -1,0 +1,31 @@
+<div class="widget">
+    <div class="widget-wrapper crew-header">
+        <div class="widget-body">
+            <div class="crew-header-wrapper d-flex justify-content-between">
+                <div class="crew-header-info d-flex align-items-center">
+                    <div class="crew-avatar">
+                        {% if vich_uploader_asset(crew) is not null %}
+                            <img class="img-fluid" src="{{ vich_uploader_asset(crew) }}"/>
+                        {% else %}
+                            <img class="img-fluid" src="https://placehold.co/80x80/black/white"/>
+                        {% endif %}
+
+                    </div>
+                    <div class="crew-info">
+                        <h1>
+                            {{ crew.getFullName() }}
+                        </h1>
+                        <span>{{ crew.company }} - {{ crew.Position }}</span>
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p><b>Age</b> : <span>{{ crew.age }}</span></p>
+                <p><b>Height</b> : <span>177cm</span></p>
+                <p><b>Weight</b> : <span>80kg</span></p>
+                <p><b>Blood Type</b> : <span>B+</span></p>
+            </div>
+        </div>
+    </div>
+</div>

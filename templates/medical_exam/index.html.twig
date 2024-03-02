@@ -10,15 +10,16 @@
 
     <div class="widget-column col-md-8">
 
-        {{ include('medical_exam/widgets/exam.html.twig') }}
+        {{ include('medical_exam/widgets/exams/' ~ exam_path ~ '.html.twig') }}
+        {{ include('medical_exam/widgets/findings.html.twig') }}
+        {{ include('medical_exam/widgets/assesment.html.twig') }}
         {{ include('medical_exam/widgets/notes.html.twig') }}
         {{ include('medical_exam/widgets/files.html.twig') }}
-
-
 
     </div>
 
     <div class="widget-column col-md-4">
+        {{ include('medical_exam/widgets/crew.html.twig') }}
         {{ include('medical_exam/widgets/exam_history.html.twig') }}
 
     </div>

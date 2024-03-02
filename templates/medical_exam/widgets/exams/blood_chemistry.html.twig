@@ -1,0 +1,54 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+<div class="widget" {{ stimulus_controller('exam_blood_chemistry') }}>
+    <div class="widget-wrapper">
+        <div class="widget-heading appointment-heading">
+            <div class="appointment-info">
+                <h1>{{ exam_path | examNameToString }}</h1>
+            </div>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Medical - {{ medicalHistory.startDate | date('Y-m-d') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ exam }}</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="widget-body">
+            <div class="exam-wrapper row">
+
+
+                {{ form_start(form) }}
+
+                 <div class="col-md-12">
+                     <div {{ stimulus_target('exam_blood_chemistry','result') }}>
+
+                     </div>
+                 </div>
+                    {{ form_row(form.glucose,
+                        {
+                            attr : {
+                            'data-action' : 'input->exam-blood-chemistry#alertGlucose',
+                            'data-exam-blood-chemistry-target' : 'glucoseField',
+                            },
+                            row_attr : {
+                                'class' : 'mb-3 col-md-6'
+                            }
+                        })
+                    }}
+                    {{ form_row(form.bun,
+                        {
+                            attr : {
+                            'data-action' : 'input->exam-blood-chemistry#alertBun',
+                            'data-exam-blood-chemistry-target' : 'bunField',
+                            },
+                            row_attr : {
+                                'class' : 'mb-3 col-md-6'
+                            }
+                        })
+                    }}
+                    {{ form_widget(form, {'attr': {'class': 'row'}}) }}
+                    <button class="btn btn-dark">{{ button_label|default('Submit') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
