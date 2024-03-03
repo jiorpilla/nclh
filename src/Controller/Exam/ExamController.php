@@ -18,6 +18,7 @@ use App\Entity\ExamHIV;
 use App\Entity\ExamOvaAndParasites;
 use App\Entity\ExamPhysical;
 use App\Entity\ExamPregnancyTest;
+use App\Entity\ExamPSA;
 use App\Entity\ExamPsychological;
 use App\Entity\ExamRiba;
 use App\Entity\ExamRPR;
@@ -30,6 +31,24 @@ use App\Form\ExamAudiometryType;
 use App\Form\ExamBloodChemistryType;
 use App\Form\ExamBloodTypeType;
 use App\Form\ExamCBCType;
+use App\Form\ExamChestXrayType;
+use App\Form\ExamDrugsType;
+use App\Form\ExamEKGType;
+use App\Form\ExamFecalysisType;
+use App\Form\ExamHbsAGType;
+use App\Form\ExamHepAType;
+use App\Form\ExamHIVType;
+use App\Form\ExamOvaAndParasitesType;
+use App\Form\ExamPhysicalType;
+use App\Form\ExamPregnancyTestType;
+use App\Form\ExamPSAType;
+use App\Form\ExamPsychologicalType;
+use App\Form\ExamRibaType;
+use App\Form\ExamRPRType;
+use App\Form\ExamStoolCultureType;
+use App\Form\ExamUrinalysisType;
+use App\Form\ExamVaccinesType;
+use App\Form\ExamVisualAcuityType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,6 +58,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/medical-history/exam', name: 'exam_')]
 class ExamController extends BaseController
 {
+    private $status = [
+        1 => 'Not Started',
+        2 => 'In Progress',
+        3 => 'Awaiting Results',
+        4 => 'Evaluation',
+        5 => 'Closed',
+    ];
+    
     public function __construct(PaginatorInterface $paginator)
     {
         parent::__construct($paginator);
@@ -75,7 +102,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -108,7 +135,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -140,7 +167,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -172,7 +199,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -188,7 +215,7 @@ class ExamController extends BaseController
         $exam_name = 'Chest X-ray';
         $exam_path = 'chest_xray';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamChestXrayType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -204,7 +231,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -220,7 +247,7 @@ class ExamController extends BaseController
         $exam_name = 'Drugs';
         $exam_path = 'drugs';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamDrugsType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -236,7 +263,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -252,7 +279,7 @@ class ExamController extends BaseController
         $exam_name = 'EKG';
         $exam_path = 'ekg';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamEKGType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -268,7 +295,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -284,7 +311,7 @@ class ExamController extends BaseController
         $exam_name = 'Fecalysis';
         $exam_path = 'fecalysis';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamFecalysisType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -300,7 +327,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -316,7 +343,7 @@ class ExamController extends BaseController
         $exam_name = 'HbsAG';
         $exam_path = 'hbsag';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamHbsAGType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -332,7 +359,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -348,7 +375,7 @@ class ExamController extends BaseController
         $exam_name = 'HepA';
         $exam_path = 'hepa';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamHepAType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -364,7 +391,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -380,7 +407,7 @@ class ExamController extends BaseController
         $exam_name = 'HIV';
         $exam_path = 'hiv';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamHIVType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -396,7 +423,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -412,7 +439,7 @@ class ExamController extends BaseController
         $exam_name = 'Ova And Parasites';
         $exam_path = 'ova_and_parasites';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamOvaAndParasitesType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -428,7 +455,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -444,7 +471,7 @@ class ExamController extends BaseController
         $exam_name = 'Physical';
         $exam_path = 'physical';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamPhysicalType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -460,7 +487,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -476,7 +503,7 @@ class ExamController extends BaseController
         $exam_name = 'Pregnancy Test';
         $exam_path = 'pregnancy_test';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamPregnancyTestType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -492,7 +519,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -503,12 +530,12 @@ class ExamController extends BaseController
     }
 
     #[Route('/PSA/{id}/', name: 'psa')]
-    public function ExamPSA(ExamPsa $exam, Request $request, EntityManagerInterface $entityManager)
+    public function ExamPSA(ExamPSA $exam, Request $request, EntityManagerInterface $entityManager)
     {
         $exam_name = 'PSA';
         $exam_path = 'psa';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamPSAType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -524,7 +551,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -540,7 +567,7 @@ class ExamController extends BaseController
         $exam_name = 'Psychological';
         $exam_path = 'psychological';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamPsychologicalType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -556,7 +583,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -572,7 +599,7 @@ class ExamController extends BaseController
         $exam_name = 'Riba';
         $exam_path = 'riba';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamRibaType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -588,7 +615,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -604,7 +631,7 @@ class ExamController extends BaseController
         $exam_name = 'RPR';
         $exam_path = 'rpr';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamRPRType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -620,7 +647,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -636,7 +663,7 @@ class ExamController extends BaseController
         $exam_name = 'Stool Culture';
         $exam_path = 'stool_culture';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamStoolCultureType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -652,7 +679,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -668,7 +695,7 @@ class ExamController extends BaseController
         $exam_name = 'Urinalysis';
         $exam_path = 'urinalysis';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamUrinalysisType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -684,7 +711,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -700,7 +727,7 @@ class ExamController extends BaseController
         $exam_name = 'Vaccines';
         $exam_path = 'vaccines';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamVaccinesType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -716,7 +743,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
@@ -732,7 +759,7 @@ class ExamController extends BaseController
         $exam_name = 'Visual Acuity';
         $exam_path = 'visual_acuity';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamVisualAcuityType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -748,7 +775,7 @@ class ExamController extends BaseController
 
         return $this->render('medical_exam/index.html.twig', [
             'test' => $exam,
-            'status' => $exam->getStatus(),
+            'status' => $this->status,
             'medicalHistory' => $medicalHistory,
             'crew' => $crew,
             'exam' => $exam_name,
