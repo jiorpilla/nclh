@@ -18,7 +18,7 @@ class ExamEKGType extends AbstractType
     {
         $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('result', ExamFieldStatusType::class, ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('result', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
         ;
     }
 
