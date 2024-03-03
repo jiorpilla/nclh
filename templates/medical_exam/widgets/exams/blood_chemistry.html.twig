@@ -1,4 +1,4 @@
-{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% form_theme form 'templates/theme/form/custom_form_theme.html.twig' %}
 <div class="widget" {{ stimulus_controller('exam_blood_chemistry') }}>
     <div class="widget-wrapper">
         <div class="widget-heading appointment-heading">
@@ -17,12 +17,12 @@
 
 
                 {{ form_start(form) }}
-
                  <div class="col-md-12">
                      <div {{ stimulus_target('exam_blood_chemistry','result') }}>
 
                      </div>
                  </div>
+                <div class="row">
                     {{ form_row(form.glucose,
                         {
                             attr : {
@@ -31,22 +31,47 @@
                             },
                             row_attr : {
                                 'class' : 'mb-3 col-md-6'
-                            }
+                            },
+                            append : 'mg/dL'
                         })
                     }}
                     {{ form_row(form.bun,
                         {
-                            attr : {
-                            'data-action' : 'input->exam-blood-chemistry#alertBun',
-                            'data-exam-blood-chemistry-target' : 'bunField',
-                            },
-                            row_attr : {
-                                'class' : 'mb-3 col-md-6'
-                            }
+                            append : 'mg/dL'
                         })
                     }}
-                    {{ form_widget(form, {'attr': {'class': 'row'}}) }}
-                    <button class="btn btn-dark">{{ button_label|default('Submit') }}</button>
+                    {{ form_row(form.creatinine,
+                        {
+                            append : 'mg/dL'
+                        })
+                    }}
+                    {{ form_row(form.totalBilirubin,
+                        {
+                            append : 'mg/dL'
+                        })
+                    }}
+                    {{ form_row(form.alt,
+                        {
+                            append : 'U/L'
+                        })
+                    }}
+                    {{ form_row(form.ast,
+                        {
+                            append : 'U/L'
+                        })
+                    }}
+                    {{ form_row(form.totalCholesterol,
+                        {
+                            append : 'mg/dL'
+                        })
+                    }}
+                    {{ form_row(form.triglycerides,
+                        {
+                            append : 'mg/dL'
+                        })
+                    }}
+                </div>
+                    <button class="btn btn-dark">{{ button_label|default('Save') }}</button>
                 {{ form_end(form) }}
             </div>
         </div>
