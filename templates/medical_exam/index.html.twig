@@ -8,7 +8,7 @@
 
     {{ include('medical_exam/widgets/header.html.twig') }}
 
-    <div class="widget-column col-md-8">
+    <div class="widget-column col-md-7">
 
         {{ include('medical_exam/widgets/exams/' ~ exam_path ~ '.html.twig') }}
         {{ include('medical_exam/widgets/findings.html.twig') }}
@@ -18,7 +18,7 @@
 
     </div>
 
-    <div class="widget-column col-md-4">
+    <div class="widget-column col-md-5">
         {{ include('medical_exam/widgets/crew.html.twig') }}
         {{ include('medical_exam/widgets/exam_history.html.twig') }}
 

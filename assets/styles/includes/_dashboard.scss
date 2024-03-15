@@ -50,6 +50,7 @@
                 justify-content:space-between;
                 display:flex;
                 padding: $padding-default;
+                background-color: #fdfdfd;
 
                 .breadcrumb {
                     margin-bottom:0;
@@ -67,7 +68,9 @@
 
                 h1 {
                     font-size: 16px;
+                    color:#000;
                     margin:0;
+                    text-transform: uppercase;
                 }
             }
 

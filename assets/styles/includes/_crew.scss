@@ -9,10 +9,24 @@
     }
 }
 
+.crew-header-options  {
+
+    .btn-control {
+        font-size: 13px;
+        border-radius: $border-radius;
+        background-color: #fff;
+        color: $color-default;
+        border: 1px solid $color-default;
+        margin-left:10px;
+        min-height: 35px;
+    }
+}
+
 .crew-info {
     h1 {
-        font-size: 21px;
+        font-size: 24px;
         font-weight: 600;
+        color: #000;
     }
     span {
         color: $color-main;
@@ -39,6 +53,24 @@
             color: $color-default;
             box-shadow: none;
             background-color: #fff;
+        }
+
+    }
+
+    .bi-pencil-fill {
+        &:hover {
+            background-color:#fdfdfd;
+        }
+    }
+
+    .widget-button-wrapper {
+        button:first-child {
+            margin-right:10px;
+        }
+        .btn-secondary {
+            background-color: #fff;
+            color: $color-default;
+            font-size: 14px;
         }
 
     }

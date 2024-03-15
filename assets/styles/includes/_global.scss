@@ -19,7 +19,7 @@ label.form-label {
 }
 
 .form-select {
-    font-size:13px;
+    font-size:16px;
     border-radius: 6px;
     color: $color-default;
     border: 1px solid #e8e8e8;
@@ -30,8 +30,6 @@ label.form-label {
 }
 
 .form-section {
-   
-
     h3 {
         font-size: 16px;
         background-color:#f7fbff;
@@ -47,7 +45,7 @@ label.form-label {
 .form-control, .form-select {
     color: $color-default;
     border: 1px solid #9dabbb;
-    font-size:14px;
+    font-size:16px;
     border-radius: $border-radius;
     transition: 200ms;
 
@@ -60,13 +58,7 @@ label.form-label {
         &:hover {
             background-color: #eee;
 
-            &::after {
-                background-color: #e4e4e4;
-                content:'test';
-                display:block;
-                width: 50px;
-                height:50px;
-            }
+           
         } 
     }
 }

@@ -9,7 +9,6 @@
                         {% else %}
                             <img class="img-fluid" src="https://placehold.co/80x80/black/white"/>
                         {% endif %}
-
                     </div>
                     <div class="crew-info">
                         <h1>
@@ -21,10 +20,20 @@
                         <span>{{ crew.company }} - {{ crew.Position }}</span>
                     </div>
                 </div>
-                <div class="crew-header-options">
-                    <button class="btn btn-primary btn-cta-secondary" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                <div class="crew-header-options d-flex align-items-start">
+                    <button class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
                         <i class="bi bi-plus"></i>
                         Add New Appointment</button>
+                    	<div class="dropdown">
+                            <button class="btn btn-secondary btn-control" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                            <ul class="dropdown-menu p-1">
+                                <li>
+                                    <a class="dropdown-item " href="/appointment/?dateFilter=tomorrow">Export All Files</a>
+                                </li>
+                            </ul>
+                        </div>
                 </div>
             </div>
         </div>

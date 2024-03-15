@@ -125,7 +125,7 @@
 	<script>
 
 	document.getElementById('formEdit').addEventListener("click", function() {
-		var formFields = document.querySelectorAll('.crew-information input[type="text"]');
+		var formFields = document.querySelectorAll('.crew-information input, .crew-information select,');
  		for (var i = 0; i < formFields.length; i++) {
                 formFields[i].toggleAttribute('disabled');
             }
