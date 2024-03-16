@@ -88,16 +88,16 @@ label.form-label {
 }
 
 .btn-cta {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 14px;
     border-radius: $border-radius;
-    background-color: $color-cta;
+    background-color: $color-main;
     border: 0;
     transition: 200ms;
     padding: 7px 1rem;
     
         &:hover, &:active {
-            background-color: lighten($color-cta, 10%) !important;
+            background-color: lighten($color-main, 10%) !important;
         }
 }
 
