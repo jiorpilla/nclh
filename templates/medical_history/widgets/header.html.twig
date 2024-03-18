@@ -3,15 +3,16 @@
     <div class="widget-wrapper">
         <div class="widget-heading appointment-heading">
             <div class="appointment-info">
-                <h1>
+                <h1 class="mb-2">
                     <i class="bi bi-calendar me-1"></i>
                     John Doe - Appointment {{ medicalHistory.startDate | date('Y-m-d') }}
                 </h1>
+                <small>Status last updated: 2024-03-15</small>
             </div>
 
             <div class="crew-header-options d-flex align-items-start">
-                <button class="btn btn-secondary btn-control" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
-                    <i class="bi bi-printer-fill"></i> Print Routing Forms</button>
+                    <button class="btn btn-secondary btn-control" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                        <i class="bi bi-printer-fill"></i> Print Routing Forms</button>
                     <div class="dropdown">
                         <button class="btn btn-secondary btn-control" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                             <i class="bi bi-three-dots"></i>
