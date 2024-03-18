@@ -1,29 +1,27 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 <div class="widget">
     <div class="widget-wrapper">
-        <div class="widget-heading appointment-heading">
-            <div class="appointment-info">
+        <div class="widget-heading findings-heading">
+            <div class="findings-info">
                 <h1>Findings</h1>
             </div>
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <small>Status last updated: 2024-03-15</small>
+            {# <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Medical - {{ medicalHistory.startDate | date('Y-m-d') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ exam }}</li>
                     <li class="breadcrumb-item active" aria-current="page">Findings</li>
                 </ol>
-            </nav>
+            </nav> #}
         </div>
         <div class="widget-body">
             <div class="exam-wrapper row">
                 <div class="mb-3">
-                    <label for="" class="form-label">Findings</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Findings here</textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter findings..."></textarea>
                 </div>
                 <div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">- Medtech Choco</label>
-                    </div>
-                    <button class="btn btn-dark">{{ button_label|default('Submit') }}</button>
+ 
+                    <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
                 </div>
             </div>
         </div>

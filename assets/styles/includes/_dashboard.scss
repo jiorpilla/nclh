@@ -64,13 +64,20 @@
 
                 }
 
-   
-
                 h1 {
                     font-size: 16px;
                     color:#000;
                     margin:0;
                     text-transform: uppercase;
+                }
+
+                &.appointment-heading {
+                    h1 {
+                        font-size: 24px;
+                        font-weight: 600;
+                        color: #000;
+                        text-transform: capitalize;
+                    }
                 }
             }
 
