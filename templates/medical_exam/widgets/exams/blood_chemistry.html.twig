@@ -1,16 +1,10 @@
 {% form_theme form 'templates/theme/form/custom_form_theme.html.twig' %}
 <div class="widget" {{ stimulus_controller('exam_blood_chemistry') }}>
     <div class="widget-wrapper">
-        <div class="widget-heading appointment-heading">
+        <div class="widget-heading">
             <div class="appointment-info">
-                <h1>{{ exam_path | examNameToString }}</h1>
+                <h1>Results</h1>
             </div>
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Medical - {{ medicalHistory.startDate | date('Y-m-d') }}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ exam }}</li>
-                </ol>
-            </nav>
         </div>
         <div class="widget-body">
             <div class="exam-wrapper row">
@@ -22,17 +16,18 @@
 
                      </div>
                  </div>
+   
                 <div class="row">
-
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Email address</label>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Sample Error</label>
                         <div class="input-group">
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                            <span class="input-group-text">testemail</span>
+                            <input type="text" class="form-control is-invalid">
+                            <span class="input-group-text ">mg/dL</span>
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                Abnormal
+                              </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
+                     </div>
                     {{ form_row(form.glucose,
                         {
                             attr : {

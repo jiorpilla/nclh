@@ -1,48 +1,9 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 <div class="widget">
     <div class="widget-wrapper">
-        <div class="widget-heading appointment-heading">
-            <div class="appointment-info">
-                <h1 class="mb-2"><i class="bi bi-clipboard d-inline-block pe-1"></i> {{ exam_path | examNameToString }}</h1>
-                <small>Status last updated: 2024-03-15</small>
-            </div>
-
-            <div class="crew-header-options d-flex align-items-start">
-                <button class="btn btn-primary btn-cta" data-bs-toggle="modal" data-bs-target="#newAppointmentModal"><i class="bi bi-play-fill"></i>
-                    Start Exam
-                </button>
-                {# <div class="dropdown">
-                    <button class="btn btn-secondary btn-control" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        <i class="bi bi-three-dots"></i>
-                    </button>
-                    <ul class="dropdown-menu p-1">
-                        <li>
-                            <a class="dropdown-item " href="/appointment/?dateFilter=tomorrow">Export All Files</a>
-                        </li>
-                    </ul>
-                </div> #}
-        </div>
-           
-        </div>
-        <div class="widget-body">
-            <div class="appointment-status status-bar-wrapper d-flex justify-content-between">
-                {% for key, item in status %}
-                <label for="status{{ key }}" {% if key == medicalHistory.status %}  class="active" {% endif %}>
-                    <span>{{ item }}</span>
-                    <input type="radio" id="status{{ key }}" name="status" value="{{ item }}"/>
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="widget">
-    <div class="widget-wrapper">
         <div class="widget-heading assessment-heading">
             <div class="assessment-info">
-                <h1>Exam Info</h1>
+                <h1>Results</h1>
             </div>
             <small>Status last updated: 2024-03-15</small>
             {# <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">

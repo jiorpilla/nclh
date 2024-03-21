@@ -1,29 +1,32 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 <div class="widget">
     <div class="widget-wrapper">
-        <div class="widget-heading appointment-heading">
+        <div class="widget-heading ">
             <div class="appointment-info">
-                <h1>{{ exam_path | examNameToString }}</h1>
+                <h1>Results</h1>
             </div>
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <small>Status last updated: 2024-03-15</small>
+            {# <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Medical - {{ medicalHistory.startDate | date('Y-m-d') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ exam }}</li>
                 </ol>
-            </nav>
+            </nav> #}
         </div>
         <div class="widget-body">
             <div class="exam-wrapper row">
                 {{ form_start(form) }}
 {#                {{ form_widget(form, {'attr': {'class': 'row'}}) }}#}
 
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th colspan="7" class="text-center">Frequency (Hz)</th>
-                    </tr>
-                    <tr>
-                        <th></th>
+          
+                <div class="table-responsive mt-3 mb-5">
+                    <label class="question" >Pure tone and audiometry (threshold values in dB)</label>
+   
+                <table class="table table-bordered align-middle ">
+                    <thead class="table-dark">
+
+                    <tr >
+                        <th style="min-width:150px;"></th>
                         <th>500hz</th>
                         <th>1000hz</th>
                         <th>2000hz</th>
@@ -32,49 +35,73 @@
                         <th>6000hz</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-group-divider">
                     <tr>
-                        <th scope="row">Right Ear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>Right Ear</th>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
                     </tr>
                     <tr>
-                        <th scope="row">Left Ear</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>Left Ear</th>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
+                        <td><input type="text" name="" class="form-control"></td>
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <label class="question" >Speech and whisper test</label>
+       
+            <div class="mb-3 col-md-6">
+                <label class="form-label ">Left Ear</label>
+                <select id="" name="" class="form-select">
+                    <option value="normal" selected="selected">Normal</option>
+                    <option value="defective">Defective</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label">Right Ear</label>
+                <select id="" name="" class="form-select">
+                    <option value="normal" selected="selected">Normal</option>
+                    <option value="defective">Defective</option>
+                </select>
+            </div>
+       
 
-                <table class="table table-bordered">
-                    <thead>
+
+            {# <div class="table-responsive">
+                <label class="form-label" >Speech and whisper test</label>
+                <table class="table table-bordered align-middle ">
+                    <thead class="table-dark">
                     <tr>
                         <th colspan="3" class="text-center">Normal Whisper</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-group-divider">
                     <tr>
-                        <th scope="row">Right Ear</th>
+       
+                        <td>Right Ear</td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <th scope="row">Left Ear</th>
+     
+                        <td>Left Ear</td>
                         <td></td>
                         <td></td>
                     </tr>
                     </tbody>
                 </table>
-
-                <button class="btn btn-dark">{{ button_label|default('Submit') }}</button>
+            </div> #}
+            
+                <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
                 {{ form_end(form) }}
             </div>
         </div>
