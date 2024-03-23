@@ -271,6 +271,14 @@ class AppointmentController extends BaseController
                     'widowed' => 4,
                     'widow' => 4,
                 ];
+                
+                if(in_array(strtolower($row['gender']), ['m', 'male'])){
+                    $gender = Crew::GENDER_MALE;
+                }
+                if(in_array(strtolower($row['gender']), ['f', 'female'])){
+                    $gender = Crew::GENDER_FEMALE;
+                }
+                $dateOfBirth = DateTime::createFromFormat('m-d-Y', $row['date_of_birth']);
 
                 // Set Crew entity properties from the CSV data
                 $crew->setEmail($row['email']);
@@ -282,10 +290,8 @@ class AppointmentController extends BaseController
                 $crew->setSuffix($row['suffix']);
                 $crew->setPhoneNumber($row['phone_number']);
                 $crew->setCivilStatus($civil_status[strtolower($row['civil_status'])]); //double check the value first.
-                $crew->setGender($row['gender']);
+                $crew->setGender($gender);
                 $crew->setAddress($row['address']);
-
-                $dateOfBirth = DateTime::createFromFormat('m-d-Y', $row['date_of_birth']);
                 $crew->setDateOfBirth($dateOfBirth);
                 $crew->setLocationOfBirth($row['location_of_birth']);
                 $crew->setCompany($row['company']);
