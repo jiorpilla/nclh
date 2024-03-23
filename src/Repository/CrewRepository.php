@@ -48,7 +48,7 @@ class CrewRepository extends ServiceEntityRepository
         }
 
         if (!empty($whereConditions)) {
-            $queryBuilder->where(implode(' AND ', $whereConditions));
+            $queryBuilder->where(implode(' OR ', $whereConditions));
         }
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
