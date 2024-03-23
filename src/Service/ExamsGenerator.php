@@ -37,7 +37,7 @@ class ExamsGenerator
         $this->entityManager = $entityManager;
     }
 
-    public function createExams(Crew $crew, MedicalHistory $medicalHistory)
+    public function createExams(Crew $crew, MedicalHistory $medicalHistory, bool $isFoodHandler = false)
     {
         $ExamAudiometry = new ExamAudiometry();
         $ExamAudiometry->setMedicalHistory($medicalHistory);
@@ -135,7 +135,7 @@ class ExamsGenerator
             'Waiter',
         ];
 
-        if (in_array($crew->getPosition(), $foodHandlersPosition)) {
+        if (in_array($crew->getPosition(), $foodHandlersPosition) || $isFoodHandler) {
             $ExamOvaAndParasites = new ExamOvaAndParasites();
             $ExamOvaAndParasites->setMedicalHistory($medicalHistory);
             $ExamOvaAndParasites->setStatus(1);

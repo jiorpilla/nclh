@@ -1,0 +1,37 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+<div class="modal fade" id="bulkAppointment" tabindex="-1" aria-labelledby="bulkAppointment" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Bulk Create Appointments</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Create appointments in bulk by grouping them in a single import file.</p>
+                <ol>
+                    <li class="mb-3">Download and use the template below to see exactly how to prepare the data for
+                        import.
+                        <br>
+                        <div class="list-group mt-3">
+                            <button type="button" class="list-group-item list-group-item-action"><a
+                                        href="/downloads/template.csv">template.csv</a></button>
+                        </div>
+                    </li>
+
+                    <li class="mb-3">All fields need to be entered in order for your bulk import to be successful. Make
+                        sure they are complete before you start importing.
+                    </li>
+
+                    <form>
+                        <div class="mb-4">
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                        <div class="btn-wrapper d-flex justify-content-start">
+                            <button class="btn btn-primary btn-cta">Upload CSV</button>
+                        </div>
+                    </form>
+            </div>
+
+        </div>
+    </div>
+</div>
