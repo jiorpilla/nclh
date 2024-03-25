@@ -35,7 +35,7 @@ class ExamBloodChemistry
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $triglycerides = null;
 
-    public function isGlucose(): ?string
+    public function getGlucose(): ?string
     {
         return $this->glucose;
     }
@@ -47,7 +47,7 @@ class ExamBloodChemistry
         return $this;
     }
 
-    public function isBun(): ?string
+    public function getBun(): ?string
     {
         return $this->bun;
     }
@@ -59,7 +59,7 @@ class ExamBloodChemistry
         return $this;
     }
 
-    public function isCreatinine(): ?string
+    public function getCreatinine(): ?string
     {
         return $this->creatinine;
     }
