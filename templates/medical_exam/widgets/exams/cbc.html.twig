@@ -15,7 +15,225 @@
         <div class="widget-body">
             <div class="exam-wrapper row">
                 {{ form_start(form) }}
-                {{ form_widget(form, {'attr': {'class': 'row'}}) }}
+
+
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Leukocytes</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.leukocytes == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.leukocytes, {'attr': widget_class }) }}
+                            <span class="input-group-text">x 10^9/L </span>
+
+                            {% if results.leukocytes == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Erythrocytes</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.erythrocytes == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.erythrocytes, {'attr': widget_class }) }}
+                            <span class="input-group-text">10^6/uL</span>
+                            {% if results.erythrocytes == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Hemoglobin</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.hematocrit == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.hemoglobin, {'attr': widget_class }) }}
+                            <span class="input-group-text">g/dL</span>
+
+                            {% if results.hemoglobin == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Hematocrit</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.hematocrit == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.hematocrit, {'attr': widget_class }) }}
+                            <span class="input-group-text">%</span>
+
+                            {% if results.hematocrit == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Mean Corpuscular Volume</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.meanCorpuscularVolume == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.meanCorpuscularVolume, {'attr': widget_class }) }}
+                            <span class="input-group-text">fL</span>
+
+                            {% if results.meanCorpuscularVolume == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Mean Corpuscular Hemoglobin</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.meanCorpuscularHemoglobin == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.meanCorpuscularHemoglobin, {'attr': widget_class }) }}
+                            <span class="input-group-text">g/dL</span>
+
+                            {% if results.meanCorpuscularHemoglobin == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Neutrophils</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.neutrophils == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.neutrophils, {'attr': widget_class }) }}
+                            <span class="input-group-text">x 10^9/L</span>
+
+                            {% if results.neutrophils == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Lymphocytes</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.lymphocytes == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.lymphocytes, {'attr': widget_class }) }}
+                            <span class="input-group-text">10^3/uL</span>
+
+                            {% if results.lymphocytes == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Monocytes</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.monocytes == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.monocytes, {'attr': widget_class }) }}
+                            <span class="input-group-text">10^3/uL</span>
+
+                            {% if results.monocytes == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Eosinophils</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.eosinophils == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.eosinophils, {'attr': widget_class }) }}
+                            <span class="input-group-text">x 10^9/L</span>
+
+                            {% if results.eosinophils == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Basophils</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.basophils == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.basophils, {'attr': widget_class }) }}
+                            <span class="input-group-text">x 10^9/L</span>
+
+                            {% if results.basophils == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exam_blood_chemistry_glucose" class="form-label required">Platelet Count</label>
+                        <div class="input-group">
+                            {%- set widget_class = {} -%}
+                            {% if results.plateletCount == 'abnormal' %}
+                                {% set widget_class = widget_class|merge({'class': 'form-control is-invalid'}) %}
+
+                            {% endif %}
+                            {{ form_widget(form.plateletCount, {'attr': widget_class }) }}
+                            <span class="input-group-text">x 10^9/L</span>
+
+                            {% if results.plateletCount == 'abnormal' %}
+                                <div class="invalid-feedback">
+                                    Abnormal
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
                 <button class="btn btn-dark">{{ button_label|default('Submit') }}</button>
                 {{ form_end(form) }}
             </div>

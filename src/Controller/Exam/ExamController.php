@@ -292,6 +292,8 @@ class ExamController extends BaseController
     {
         $exam_name = 'CBC';
         $exam_path = 'cbc';
+        $results = [
+        ];
 
         $form = $this->createForm(ExamCBCType::class, $exam);
         $form->handleRequest($request);
@@ -307,6 +309,105 @@ class ExamController extends BaseController
             return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
         }
 
+
+        // Normal abnormal validation
+        if($exam->getLeukocytes()){
+            $value = $exam->getLeukocytes();
+            if(4.3 <= $value && $value <= 10){
+                $results['leukocytes'] = 'normal';
+            }else{
+                $results['leukocytes'] = 'abnormal';
+            }
+        }
+        if($exam->getErythrocytes()){
+            $value = $exam->getErythrocytes();
+            if(4 <= $value && $value <= 6){
+                $results['erythrocytes'] = 'normal';
+            }else{
+                $results['erythrocytes'] = 'abnormal';
+            }
+        }
+        if($exam->getHemoglobin()){
+            $value = $exam->getHemoglobin();
+            if(12 <= $value && $value <= 17.5){
+                $results['hemoglobin'] = 'normal';
+            }else{
+                $results['hemoglobin'] = 'abnormal';
+            }
+        }
+        if($exam->getHematocrit()){
+            $value = $exam->getHematocrit();
+            if(42 <= $value && $value <= 50){
+                $results['hematocrit'] = 'normal';
+            }else{
+                $results['hematocrit'] = 'abnormal';
+            }
+        }
+        if($exam->getMeanCorpuscularVolume()){
+            $value = $exam->getMeanCorpuscularVolume();
+            if(80 <= $value && $value <= 99.9){
+                $results['meanCorpuscularVolume'] = 'normal';
+            }else{
+                $results['meanCorpuscularVolume'] = 'abnormal';
+            }
+        }
+        if($exam->getMeanCorpuscularHemoglobin()){
+            $value = $exam->getMeanCorpuscularHemoglobin();
+            if(33 <= $value && $value <= 37){
+                $results['meanCorpuscularHemoglobin'] = 'normal';
+            }else{
+                $results['meanCorpuscularHemoglobin'] = 'abnormal';
+            }
+        }
+        if($exam->getNeutrophils()){
+            $value = $exam->getNeutrophils();
+            if(1.8 <= $value && $value <= 7.2){
+                $results['neutrophils'] = 'normal';
+            }else{
+                $results['neutrophils'] = 'abnormal';
+            }
+        }
+        if($exam->getLymphocytes()){
+            $value = $exam->getLymphocytes();
+            if(1.2 <= $value && $value <= 3.4){
+                $results['lymphocytes'] = 'normal';
+            }else{
+                $results['lymphocytes'] = 'abnormal';
+            }
+        }
+        if($exam->getMonocytes()){
+            $value = $exam->getMonocytes();
+            if(0.1 <= $value && $value <= 0.6){
+                $results['monocytes'] = 'normal';
+            }else{
+                $results['monocytes'] = 'abnormal';
+            }
+        }
+        if($exam->getEosinophils()){
+            $value = $exam->getEosinophils();
+            if(0.04 <= $value && $value <= 0.40){
+                $results['eosinophils'] = 'normal';
+            }else{
+                $results['eosinophils'] = 'abnormal';
+            }
+        }
+        if($exam->getBasophils()){
+            $value = $exam->getBasophils();
+            if(0 <= $value && $value <= .20){
+                $results['basophils'] = 'normal';
+            }else{
+                $results['basophils'] = 'abnormal';
+            }
+        }
+        if($exam->getPlateletCount()){
+            $value = $exam->getPlateletCount();
+            if(140 <= $value && $value <= 440){
+                $results['plateletCount'] = 'normal';
+            }else{
+                $results['plateletCount'] = 'abnormal';
+            }
+        }
+
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
         return $this->render('medical_exam/index.html.twig', [
@@ -317,6 +418,7 @@ class ExamController extends BaseController
             'exam' => $exam_name,
             'exam_path' => $exam_path,
             'form' => $form,
+            'results' => $results,
             'breadcrumbs' => $this->breadcrumbs
         ]);
     }
