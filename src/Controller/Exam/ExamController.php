@@ -433,9 +433,11 @@ class ExamController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
             $entityManager->flush();
 
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
         }
 
         $medicalHistory = $exam->getMedicalHistory();
