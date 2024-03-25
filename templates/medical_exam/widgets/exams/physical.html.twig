@@ -1,22 +1,7 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
-<div class="widget">
-    <div class="widget-wrapper">
-        <div class="widget-heading">
-            <div class="appointment-info">
-                <h1>Vitals</h1>
-            </div>
-            <small>Status last updated: 2024-03-15</small>
-        </div>
-        <div class="widget-body">
-            <div class="exam-wrapper row">
-                {{ form_start(form) }}
-                {{ form_widget(form, {'attr': {'class': 'row'}}) }}
-                <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
-                {{ form_end(form) }}
-            </div>
-        </div>
-    </div>
-</div>
+{% form_theme formPhysical 'bootstrap_5_layout.html.twig' %}
+{% form_theme formEmotional 'bootstrap_5_layout.html.twig' %}
+{% form_theme formROM 'bootstrap_5_layout.html.twig' %}
 
 <div class="widget">
     <div class="widget-wrapper">
@@ -24,49 +9,58 @@
             <div class="appointment-info">
                 <h1>Vitals</h1>
             </div>
-            <small>Status last updated: 2024-03-15</small>
+            <small>Status last updated: {{ test.updatedAt | date('Y-m-d')  }}</small>
         </div>
         <div class="widget-body">
-            <form action="">
+            {{ form_start(form) }}
                 <div class="exam-wrapper row">
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Temperature</label>
-                        <input type="text" class="form-control">
+                        <div class="input-group">
+                            {{ form_widget(form.temperature) }}
+                            <span class="input-group-text">°Celsius</span>
+                        </div>
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Spo2</label>
-                        <input type="text" class="form-control">
+                        {{ form_widget(form.spo2) }}
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Respiration</label>
-                        <input type="text" class="form-control">
+                        {{ form_widget(form.respiration) }}
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Bp</label>
-                        <input type="text" class="form-control">
+                        {{ form_widget(form.bp) }}
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Height</label>
-                        <input type="text" class="form-control">
+                        <div class="input-group">
+                            {{ form_widget(form.height) }}
+                            <span class="input-group-text">cm</span>
+                        </div>
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Weight</label>
-                        <input type="text" class="form-control">
+                        <div class="input-group">
+                            {{ form_widget(form.weight) }}
+                            <span class="input-group-text">Kg</span>
+                        </div>
                     </div>
 
                     <div class="mb-3 col-md-6">
                         <label class="form-label ">Bmi</label>
-                        <input type="text" class="form-control">
+                        {{ form_widget(form.bmi) }}
                     </div>
                 </div>
-                <button class="btn btn-primary btn-cta">Update</button>
-            </form>
+                <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
+            {{ form_end(form) }}
         </div>
     </div>
 </div>
@@ -78,54 +72,38 @@
             <div class="appointment-info">
                 <h1>Physical Exam</h1>
             </div>
-            <small>Status last updated: 2024-03-15</small>
+            <small>Status last updated: {{ test.updatedAt | date('Y-m-d')  }}</small>
         </div>
         <div class="widget-body">
             <div class="exam-wrapper row">
-
-                <form action="">
+                {{ form_start(formPhysical) }}
 
                     <div class="exam-section row mb-3">
                         <label class="question">HEENT</label>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Mouth</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.heentMouth) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Tonsils</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.heentTonsil) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Pharynx</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.heentPharynx) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Ears</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.heentEars) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Eyes</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.heentEyes) }}
                         </div>
 
                     </div>
@@ -135,32 +113,23 @@
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Nodes</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.neckNodes) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Motion</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.neckMotion) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Thyroid</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formPhysical.neckThyroid) }}
                         </div>
 
                     </div>
 
-                    <button class="btn btn-primary btn-cta">Update</button>
-                </form>
+                <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
+                {{ form_end(formPhysical) }}
             </div>
         </div>
     </div>
@@ -172,21 +141,18 @@
             <div class="appointment-info">
                 <h1>Emotional Status</h1>
             </div>
-            <small>Status last updated: 2024-03-15</small>
+            <small>Status last updated: {{ test.updatedAt | date('Y-m-d')  }}</small>
         </div>
         <div class="widget-body">
             <div class="exam-wrapper row">
-                <form action="">
+                {{ form_start(formEmotional) }}
                     <div class="exam-section row">
                         <div class="col-md-6 mb-3">
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formEmotional.emotionalStatus) }}
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-cta">Update</button>
-                </form>
+                <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
+                {{ form_end(formEmotional) }}
             </div>
         </div>
     </div>
@@ -199,46 +165,32 @@
             <div class="appointment-info">
                 <h1>Range of Motion</h1>
             </div>
-            <small>Status last updated: 2024-03-15</small>
+            <small>Status last updated: {{ test.updatedAt | date('Y-m-d')  }}</small>
         </div>
         <div class="widget-body">
             <div class="exam-wrapper row">
-
-                <form action="">
-
+                {{ form_start(formROM) }}
                     <div class="exam-section row">
                         <label class="question mt-3">CERVICAL</label>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Forward Flexion</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romCervicalFF) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Extension</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romCervicalE) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Lateral flexion</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romCervicalLF) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Rotation</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romCervicalR) }}
                         </div>
 
                     </div>
@@ -248,55 +200,37 @@
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Forward elev</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romShoulderFE) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Backward elev</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romShoulderBE) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Abduction</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romShoulderAb) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Adduction</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romShoulderAd) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Int. Rotation</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romShoulderIR) }}
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label class="form-label ">Ext. Rotation</label>
-                            <select id="" name="" class="form-select">
-                                <option value="normal" selected="selected">Normal</option>
-                                <option value="abnormal">Abnormal</option>
-                            </select>
+                            {{ form_widget(formROM.romShoulderER) }}
                         </div>
 
                     </div>
-                    <button class="btn btn-primary btn-cta">Update</button>
-                </form>
+                    <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
+                {{ form_end(formROM) }}
             </div>
         </div>
     </div>

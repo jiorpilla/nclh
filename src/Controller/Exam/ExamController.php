@@ -39,6 +39,9 @@ use App\Form\ExamHbsAGType;
 use App\Form\ExamHepAType;
 use App\Form\ExamHIVType;
 use App\Form\ExamOvaAndParasitesType;
+use App\Form\ExamPhysical2Type;
+use App\Form\ExamPhysicalEmotionalStatusType;
+use App\Form\ExamPhysicalRangeOfMotionType;
 use App\Form\ExamPhysicalType;
 use App\Form\ExamPregnancyTestType;
 use App\Form\ExamPSAType;
@@ -432,6 +435,9 @@ class ExamController extends BaseController
         $form = $this->createForm(ExamChestXrayType::class, $exam);
         $form->handleRequest($request);
 
+        $medicalHistory = $exam->getMedicalHistory();
+        $crew = $medicalHistory->getCrew();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $exam->setStatus(3);
             $entityManager->persist($exam);
@@ -439,9 +445,6 @@ class ExamController extends BaseController
 
             return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
         }
-
-        $medicalHistory = $exam->getMedicalHistory();
-        $crew = $medicalHistory->getCrew();
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -686,18 +689,31 @@ class ExamController extends BaseController
     {
         $exam_name = 'Physical';
         $exam_path = 'physical';
+        $results = [];
 
-        $form = $this->createForm(ExamPhysicalType::class, $exam);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
+        $formVitals = $this->createForm(ExamPhysicalType::class, $exam);
+        $formVitals->handleRequest($request);
+        $formPhysical = $this->createForm(ExamPhysical2Type::class, $exam);
+        $formPhysical->handleRequest($request);
+        $formEmotional = $this->createForm(ExamPhysicalEmotionalStatusType::class, $exam);
+        $formEmotional->handleRequest($request);
+        $formROM = $this->createForm(ExamPhysicalRangeOfMotionType::class, $exam);
+        $formROM->handleRequest($request);
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if (($formVitals->isSubmitted() && $formVitals->isValid())
+        || ($formPhysical->isSubmitted() && $formPhysical->isValid())
+        || ($formEmotional->isSubmitted() && $formEmotional->isValid())
+        || ($formROM->isSubmitted() && $formROM->isValid())
+        ) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+//            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -708,7 +724,11 @@ class ExamController extends BaseController
             'crew' => $crew,
             'exam' => $exam_name,
             'exam_path' => $exam_path,
-            'form' => $form,
+            'form' => $formVitals,
+            'formPhysical' => $formPhysical,
+            'formEmotional' => $formEmotional,
+            'formROM' => $formROM,
+            'results' => $results,
             'breadcrumbs' => $this->breadcrumbs
         ]);
     }
