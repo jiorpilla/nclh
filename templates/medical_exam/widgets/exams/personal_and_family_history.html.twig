@@ -1,0 +1,743 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+<div class="widget">
+    <div class="widget-wrapper">
+        <div class="widget-heading ">
+            <div class="appointment-info">
+                <h1>Personal Medical History</h1>
+            </div>
+            <small>Status last updated: 2024-03-15</small>
+        </div>
+        <div class="widget-body">
+            <div class="exam-wrapper row">
+                {{ form_start(form) }}
+                <ol class="ps-4">
+                    <li class="mb-3">
+                        <div class="question">
+                            Do you have or have you ever been treated for the following conditions?
+                        </div>
+                        <div class="answer">
+                            <div class="form-check-wrapper row">
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice0"
+                                        value=" Are you aware of any medical problems,disease, illness?">
+                                    <label class="form-check-label" for="choice0">
+                                        Are you aware of any medical problems,disease, illness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice1"
+                                        value="Frequent Ear Infections?">
+                                    <label class="form-check-label" for="choice1">
+                                        Frequent Ear Infections? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice2"
+                                        value="Hearing Problem?">
+                                    <label class="form-check-label" for="choice2">
+                                        Hearing Problem? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice3"
+                                        value="Gynecological problems?">
+                                    <label class="form-check-label" for="choice3">
+                                        Gynecological problems? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice4"
+                                        value="Conjunctivitis? Glaucoma?">
+                                    <label class="form-check-label" for="choice4">
+                                        Conjunctivitis? Glaucoma? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice5"
+                                        value="Do you wear glasses/contact lenses?">
+                                    <label class="form-check-label" for="choice5">
+                                        Do you wear glasses/contact lenses? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice6"
+                                        value="Eye injury and / or Eye Problems?">
+                                    <label class="form-check-label" for="choice6">
+                                        Eye injury and / or Eye Problems? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice7"
+                                        value="Suffered COVID-?">
+                                    <label class="form-check-label" for="choice7">
+                                        Suffered COVID-? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice8"
+                                        value="Tested Positive for COVID-?">
+                                    <label class="form-check-label" for="choice8">
+                                        Tested Positive for COVID-? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice9"
+                                        value="Frequent Nose bleeds? Colds? Sinus Trouble?">
+                                    <label class="form-check-label" for="choice9">
+                                        Frequent Nose bleeds? Colds? Sinus Trouble? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice10"
+                                        value="Arthritis and / or numbness">
+                                    <label class="form-check-label" for="choice10">
+                                        Arthritis and / or numbness </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice11"
+                                        value="Swollen Lymph Nodes?">
+                                    <label class="form-check-label" for="choice11">
+                                        Swollen Lymph Nodes? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice12"
+                                        value="Asthma and / or Wheezing?">
+                                    <label class="form-check-label" for="choice12">
+                                        Asthma and / or Wheezing? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice13"
+                                        value="Bronchitis or Tuberculosis?">
+                                    <label class="form-check-label" for="choice13">
+                                        Bronchitis or Tuberculosis? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice14"
+                                        value="Blood in urine?">
+                                    <label class="form-check-label" for="choice14">
+                                        Blood in urine? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice15" value="Pneumonia?">
+                                    <label class="form-check-label" for="choice15">
+                                        Pneumonia? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice16"
+                                        value="Coughing up Blood?">
+                                    <label class="form-check-label" for="choice16">
+                                        Coughing up Blood? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice17"
+                                        value="Shortness of Breath?">
+                                    <label class="form-check-label" for="choice17">
+                                        Shortness of Breath? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice18"
+                                        value="Rheumatic Fever?">
+                                    <label class="form-check-label" for="choice18">
+                                        Rheumatic Fever? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice19"
+                                        value="High / Low Blood Pressure?">
+                                    <label class="form-check-label" for="choice19">
+                                        High / Low Blood Pressure? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice20"
+                                        value="Chest Pain and / or heart attack?">
+                                    <label class="form-check-label" for="choice20">
+                                        Chest Pain and / or heart attack? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice21"
+                                        value="Irregular heart beat or Poor Circulation?">
+                                    <label class="form-check-label" for="choice21">
+                                        Irregular heart beat or Poor Circulation? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice22"
+                                        value="Kidney Stones and / or cysts?">
+                                    <label class="form-check-label" for="choice22">
+                                        Kidney Stones and / or cysts? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice23"
+                                        value="Other Heart Disease?">
+                                    <label class="form-check-label" for="choice23">
+                                        Other Heart Disease? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice24"
+                                        value="Stroke and/or paralysis?">
+                                    <label class="form-check-label" for="choice24">
+                                        Stroke and/or paralysis? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice25"
+                                        value="Do you use any Recreational Drugs?">
+                                    <label class="form-check-label" for="choice25">
+                                        Do you use any Recreational Drugs? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice26"
+                                        value="Loss of sensation / Tingling?">
+                                    <label class="form-check-label" for="choice26">
+                                        Loss of sensation / Tingling? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice27"
+                                        value="Varicose veins? And/ or Leg Swelling?">
+                                    <label class="form-check-label" for="choice27">
+                                        Varicose veins? And/ or Leg Swelling? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice28" value="Deformities ?">
+                                    <label class="form-check-label" for="choice28">
+                                        Deformities ? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice29"
+                                        value="Stomach Pain/Ulcer/Problems or Disease?">
+                                    <label class="form-check-label" for="choice29">
+                                        Stomach Pain/Ulcer/Problems or Disease? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice30"
+                                        value="Gastric/Duodenal Ulcer?">
+                                    <label class="form-check-label" for="choice30">
+                                        Gastric/Duodenal Ulcer? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice31"
+                                        value="Frequent Diarrhea or Constipation?">
+                                    <label class="form-check-label" for="choice31">
+                                        Frequent Diarrhea or Constipation? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice32" value="Indigestion?">
+                                    <label class="form-check-label" for="choice32">
+                                        Indigestion? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice33"
+                                        value="Bleeding from Stomach or Bowels?">
+                                    <label class="form-check-label" for="choice33">
+                                        Bleeding from Stomach or Bowels? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice34"
+                                        value="Jaundice or Liver Problems?">
+                                    <label class="form-check-label" for="choice34">
+                                        Jaundice or Liver Problems? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice35" value="Diabetes?">
+                                    <label class="form-check-label" for="choice35">
+                                        Diabetes? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice36" value="Hemorrhoids?">
+                                    <label class="form-check-label" for="choice36">
+                                        Hemorrhoids? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice37"
+                                        value="Urinary tract Infection/Blood in Urine/Kidney Stones?">
+                                    <label class="form-check-label" for="choice37">
+                                        Urinary tract Infection/Blood in Urine/Kidney Stones? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice38"
+                                        value="Prostate Disease (males)?">
+                                    <label class="form-check-label" for="choice38">
+                                        Prostate Disease (males)? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice39"
+                                        value="Sexually Transmitted Disease?">
+                                    <label class="form-check-label" for="choice39">
+                                        Sexually Transmitted Disease? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice40"
+                                        value="Breast Mass/Tenderness?">
+                                    <label class="form-check-label" for="choice40">
+                                        Breast Mass/Tenderness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice41"
+                                        value="Skin Disease (e.g dermatitis or eczema)?">
+                                    <label class="form-check-label" for="choice41">
+                                        Skin Disease (e.g dermatitis or eczema)? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice42"
+                                        value="Any types of Allergies? Allergy to Medication?">
+                                    <label class="form-check-label" for="choice42">
+                                        Any types of Allergies? Allergy to Medication? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice43"
+                                        value="Any bone and/or joint pain,injury and/or problems?">
+                                    <label class="form-check-label" for="choice43">
+                                        Any bone and/or joint pain,injury and/or problems? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice44"
+                                        value="Arthritis/Hand or Wrist Problems or Pain?">
+                                    <label class="form-check-label" for="choice44">
+                                        Arthritis/Hand or Wrist Problems or Pain? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice45"
+                                        value="Neck Pain/Neck Injury?">
+                                    <label class="form-check-label" for="choice45">
+                                        Neck Pain/Neck Injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice46"
+                                        value="Sciatica/Scoliosis/Rheumatism?">
+                                    <label class="form-check-label" for="choice46">
+                                        Sciatica/Scoliosis/Rheumatism? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice47"
+                                        value="Degenerative Condition/Disease of the Back/Neck/Muscles/Joints?">
+                                    <label class="form-check-label" for="choice47">
+                                        Degenerative Condition/Disease of the Back/Neck/Muscles/Joints? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice48"
+                                        value="Do you feel healthy for the duties which you are applying ?">
+                                    <label class="form-check-label" for="choice48">
+                                        Do you feel healthy for the duties which you are applying ? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice49"
+                                        value="Any Sprains, Dislocations and/or Fractures?">
+                                    <label class="form-check-label" for="choice49">
+                                        Any Sprains, Dislocations and/or Fractures? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice50"
+                                        value="Any type of back pain and/or injury?">
+                                    <label class="form-check-label" for="choice50">
+                                        Any type of back pain and/or injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice51"
+                                        value="Any type of Knee Problems, Pain, and/or Injury?">
+                                    <label class="form-check-label" for="choice51">
+                                        Any type of Knee Problems, Pain, and/or Injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice52"
+                                        value="Any type of Leg Problems, Pain and/or Injury?">
+                                    <label class="form-check-label" for="choice52">
+                                        Any type of Leg Problems, Pain and/or Injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice53"
+                                        value="Any type of Elbow Pain/Elbow Injury?">
+                                    <label class="form-check-label" for="choice53">
+                                        Any type of Elbow Pain/Elbow Injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice54"
+                                        value="Any type of Foot/Ankle pain and/or injury?">
+                                    <label class="form-check-label" for="choice54">
+                                        Any type of Foot/Ankle pain and/or injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice55"
+                                        value="Any type of Shoulder pain/injury?">
+                                    <label class="form-check-label" for="choice55">
+                                        Any type of Shoulder pain/injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice56"
+                                        value="Any type of Hip pain/injury?">
+                                    <label class="form-check-label" for="choice56">
+                                        Any type of Hip pain/injury? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice57"
+                                        value="Any type of Muscular Weakness?">
+                                    <label class="form-check-label" for="choice57">
+                                        Any type of Muscular Weakness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice58"
+                                        value="Frequent Headaches and/or Loss of Consciousness?">
+                                    <label class="form-check-label" for="choice58">
+                                        Frequent Headaches and/or Loss of Consciousness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice59"
+                                        value="Depression and / or anxiety? Psychological Issues?">
+                                    <label class="form-check-label" for="choice59">
+                                        Depression and / or anxiety? Psychological Issues? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice60"
+                                        value="Seizures and/ or Epilepsy?">
+                                    <label class="form-check-label" for="choice60">
+                                        Seizures and/ or Epilepsy? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice61"
+                                        value="Nervous Breakdown?">
+                                    <label class="form-check-label" for="choice61">
+                                        Nervous Breakdown? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice62"
+                                        value="Muscular Weakness?">
+                                    <label class="form-check-label" for="choice62">
+                                        Muscular Weakness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice63"
+                                        value="Malaria or other Tropical Diseases?">
+                                    <label class="form-check-label" for="choice63">
+                                        Malaria or other Tropical Diseases? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice64"
+                                        value="Hepatitis A, B or C ? Other type of Hepatitis?">
+                                    <label class="form-check-label" for="choice64">
+                                        Hepatitis A, B or C ? Other type of Hepatitis? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice65"
+                                        value="Cancer or tumors or cysts?">
+                                    <label class="form-check-label" for="choice65">
+                                        Cancer or tumors or cysts? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice66"
+                                        value="Serious Accidents/Illness?">
+                                    <label class="form-check-label" for="choice66">
+                                        Serious Accidents/Illness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice67"
+                                        value="Thyroid Disease or illness?">
+                                    <label class="form-check-label" for="choice67">
+                                        Thyroid Disease or illness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice68"
+                                        value="Any Bleeding disorder or Blood Transfusion?">
+                                    <label class="form-check-label" for="choice68">
+                                        Any Bleeding disorder or Blood Transfusion? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice69"
+                                        value="Any neurological disorder?">
+                                    <label class="form-check-label" for="choice69">
+                                        Any neurological disorder? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice70"
+                                        value="Any psychological and / or psychiatric illness/disorder?">
+                                    <label class="form-check-label" for="choice70">
+                                        Any psychological and / or psychiatric illness/disorder? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice71"
+                                        value="Immunologic or lymphatic illness?">
+                                    <label class="form-check-label" for="choice71">
+                                        Immunologic or lymphatic illness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice72"
+                                        value="Endocrine Disease or Illness?">
+                                    <label class="form-check-label" for="choice72">
+                                        Endocrine Disease or Illness? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice73"
+                                        value="Any type of renal disease?">
+                                    <label class="form-check-label" for="choice73">
+                                        Any type of renal disease? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice74"
+                                        value="Any type of gallbladder disease / stones or polyps?">
+                                    <label class="form-check-label" for="choice74">
+                                        Any type of gallbladder disease / stones or polyps? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice75"
+                                        value="Autoimmune disease?">
+                                    <label class="form-check-label" for="choice75">
+                                        Autoimmune disease? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice76"
+                                        value="Are you currently undergoing dental treatment?">
+                                    <label class="form-check-label" for="choice76">
+                                        Are you currently undergoing dental treatment? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice77"
+                                        value="Do you have any illnesses today?">
+                                    <label class="form-check-label" for="choice77">
+                                        Do you have any illnesses today? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice78"
+                                        value="Any type of hernia and / or rupture?">
+                                    <label class="form-check-label" for="choice78">
+                                        Any type of hernia and / or rupture? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice79"
+                                        value="Have you ever been Hospitalized? For What?">
+                                    <label class="form-check-label" for="choice79">
+                                        Have you ever been Hospitalized? For What? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice80"
+                                        value="Have you ever received a blood transfusion?">
+                                    <label class="form-check-label" for="choice80">
+                                        Have you ever received a blood transfusion? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice81"
+                                        value="Have you had any operations?">
+                                    <label class="form-check-label" for="choice81">
+                                        Have you had any operations? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice82"
+                                        value="Have you ever been repatriated for medical reasons?">
+                                    <label class="form-check-label" for="choice82">
+                                        Have you ever been repatriated for medical reasons? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice83"
+                                        value="Have you ever been certified unfit before?">
+                                    <label class="form-check-label" for="choice83">
+                                        Have you ever been certified unfit before? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice84"
+                                        value="Are you taking any medications (incl. vitamins, CBD Oil)?">
+                                    <label class="form-check-label" for="choice84">
+                                        Are you taking any medications (incl. vitamins, CBD Oil)? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice85"
+                                        value="Are you currently undergoing medical treatment?">
+                                    <label class="form-check-label" for="choice85">
+                                        Are you currently undergoing medical treatment? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice86"
+                                        value="Do you drink Alcohol? How much per day:___week?____">
+                                    <label class="form-check-label" for="choice86">
+                                        Do you drink Alcohol? How much per day:___week?____ </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice87"
+                                        value="Do you smoke? How much per day? ____________">
+                                    <label class="form-check-label" for="choice87">
+                                        Do you smoke? How much per day? ____________ </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice88"
+                                        value="Have you ever had an MRI?">
+                                    <label class="form-check-label" for="choice88">
+                                        Have you ever had an MRI? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice89"
+                                        value="Have you ever had a CT scan?">
+                                    <label class="form-check-label" for="choice89">
+                                        Have you ever had a CT scan? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice90"
+                                        value="Do you do Vaping,E-Cigs, Hookah, Dripping or other?">
+                                    <label class="form-check-label" for="choice90">
+                                        Do you do Vaping,E-Cigs, Hookah, Dripping or other? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice91"
+                                        value="Any other conditions not listed above?">
+                                    <label class="form-check-label" for="choice91">
+                                        Any other conditions not listed above? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice92"
+                                        value="Females Only: Have you had any pregnancies?miscarriges?">
+                                    <label class="form-check-label" for="choice92">
+                                        Females Only: Have you had any pregnancies?miscarriges? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice93"
+                                        value="Females Only:Are you or do you think you may be pregnant?">
+                                    <label class="form-check-label" for="choice93">
+                                        Females Only:Are you or do you think you may be pregnant? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice94"
+                                        value="Females Only: Date of your last menstrual period?">
+                                    <label class="form-check-label" for="choice94">
+                                        Females Only: Date of your last menstrual period? </label>
+                                </div>
+                                <div class="form-check col-md-4 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice95"
+                                        value="Have you ever had lumps, cysts or tumors in your breasts?">
+                                    <label class="form-check-label" for="choice95">
+                                        Have you ever had lumps, cysts or tumors in your breasts? </label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="question mb-3">
+                            If you've answered yes to any of the items above, please write the details here:
+                        </div>
+                        <div class="answer">
+                            <textarea class="form-control is-invalid"></textarea>
+                            <div id="invalidCheck3Feedback" class="invalid-feedback">
+                                Sample Error Message
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="widget">
+    <div class="widget-wrapper">
+        <div class="widget-heading ">
+            <div class="appointment-info">
+                <h1>Family Medical History</h1>
+            </div>
+            <small>Status last updated: 2024-03-15</small>
+        </div>
+        <div class="widget-body">
+            <div class="exam-wrapper row">
+                {{ form_start(form) }}
+                <ol class="ps-4">
+                    <li class="mb-3">
+                        <div class="question">
+                            Does any member of your family have or ever had the following medical conditions?
+                        </div>
+                        <div class="answer">
+                            <div class="form-check-wrapper row">
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice0"
+                                        value="Heart condition / angina?">
+                                    <label class="form-check-label" for="choice0">
+                                        Heart condition / angina? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice1"
+                                        value="Blood pressure problems?">
+                                    <label class="form-check-label" for="choice1">
+                                        Blood pressure problems? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice2"
+                                        value="Stroke / vascular disease?">
+                                    <label class="form-check-label" for="choice2">
+                                        Stroke / vascular disease? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice3"
+                                        value="Nervous disorder?">
+                                    <label class="form-check-label" for="choice3">
+                                        Nervous disorder? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice4" value="Diabetes?">
+                                    <label class="form-check-label" for="choice4">
+                                        Diabetes? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice5" value="Arthritis?">
+                                    <label class="form-check-label" for="choice5">
+                                        Arthritis? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice6"
+                                        value="Kidney / Renal disease?">
+                                    <label class="form-check-label" for="choice6">
+                                        Kidney / Renal disease? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice7"
+                                        value="Immunologic and / or lymphatic disease / illness?">
+                                    <label class="form-check-label" for="choice7">
+                                        Immunologic and / or lymphatic disease / illness? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice8"
+                                        value="Any type of psychological disorders?">
+                                    <label class="form-check-label" for="choice8">
+                                        Any type of psychological disorders? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice9" value="Tuberculosis?">
+                                    <label class="form-check-label" for="choice9">
+                                        Tuberculosis? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice10"
+                                        value="Asthma and / or eczema?">
+                                    <label class="form-check-label" for="choice10">
+                                        Asthma and / or eczema? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice11" value="Glaucoma?">
+                                    <label class="form-check-label" for="choice11">
+                                        Glaucoma? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice12"
+                                        value="Epilepsy, fits, nervous breakdown?">
+                                    <label class="form-check-label" for="choice12">
+                                        Epilepsy, fits, nervous breakdown? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice13"
+                                        value="Cancer, tumor, cysts?">
+                                    <label class="form-check-label" for="choice13">
+                                        Cancer, tumor, cysts? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice14"
+                                        value="Any type of allergies?">
+                                    <label class="form-check-label" for="choice14">
+                                        Any type of allergies? </label>
+                                </div>
+                                <div class="form-check col-md-6 mb-3">
+                                    <input class="form-check-input" type="checkbox" id="choice15"
+                                        value="Endocrine disease or illness?">
+                                    <label class="form-check-label" for="choice15">
+                                        Endocrine disease or illness? </label>
+                                </div>
+
+                            </div>
+                    </li>
+
+                    <li class="mb-3">
+                        <div class="question">
+                            If you've answered yes to any of the items above, please write the details here:
+                        </div>
+                        <div class="answer">
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </li>
+                </ol>
+                <button class="btn btn-primary btn-cta">{{ button_label|default('Update') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
