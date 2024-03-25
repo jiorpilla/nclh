@@ -156,6 +156,14 @@ class ExamController extends BaseController
         $exam_name = 'Blood Chemistry';
         $exam_path = 'blood_chemistry';
         $results = [
+            'glucose' => '',
+            'bun' => '',
+            'creatinine' => '',
+            'totalBilirubin' => '',
+            'ast' => '',
+            'alt' => '',
+            'totalCholesterol' => '',
+            'triglycerides' => '',
         ];
 
         $form = $this->createForm(ExamBloodChemistryType::class, $exam);
