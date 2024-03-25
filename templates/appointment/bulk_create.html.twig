@@ -11,7 +11,14 @@
                 <div class="widget-heading">
                     <h1>Bulk Create Appointments</h1>
                 </div>
-                <div class="widget-body"><p>Create appointments in bulk by grouping them in a single import file.</p>
+                <div class="widget-body">
+                    {% if error_msg is defined and error_msg is not empty %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error_msg }}
+                        </div>
+                    {% endif %}
+
+                    <p>Create appointments in bulk by grouping them in a single import file.</p>
                     <ol>
                         <li class="mb-3">Download and use the template below to see exactly how to prepare the data for
                             import.

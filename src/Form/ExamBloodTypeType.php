@@ -6,6 +6,7 @@ use App\Entity\Assessments;
 use App\Entity\ExamBloodType;
 use App\Entity\Findings;
 use App\Entity\MedicalHistory;
+use App\Form\Type\BloodTypeType;
 use App\Form\Type\ExamFieldStatusType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +19,7 @@ class ExamBloodTypeType extends AbstractType
     {
         $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('bloodType', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('bloodType', BloodTypeType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

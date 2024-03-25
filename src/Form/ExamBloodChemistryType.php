@@ -17,16 +17,15 @@ class ExamBloodChemistryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('glucose', TextType::class, options: ['row_attr' => $row_attr])
-            ->add('bun', TextType::class, options: ['row_attr' => $row_attr])
-            ->add('creatinine', TextType::class, options: ['row_attr' => $row_attr])
-            ->add('totalBilirubin', TextType::class, options: ['row_attr' => $row_attr])
-            ->add('alt', TextType::class, options: ['row_attr' => $row_attr])
-            ->add('ast', TextType::class, options: ['row_attr' => $row_attr])
-            ->add('totalCholesterol', TextType::class, options: ['row_attr' => $row_attr])
-            ->add('triglycerides', TextType::class, options: ['row_attr' => $row_attr])
+            ->add('glucose', TextType::class)
+            ->add('bun', TextType::class)
+            ->add('creatinine', TextType::class)
+            ->add('totalBilirubin', TextType::class)
+            ->add('alt', TextType::class)
+            ->add('ast', TextType::class)
+            ->add('totalCholesterol', TextType::class)
+            ->add('triglycerides', TextType::class)
         ;
     }
 

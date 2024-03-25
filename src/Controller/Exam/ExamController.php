@@ -85,18 +85,51 @@ class ExamController extends BaseController
     {
         $exam_name = 'Audiometry';
         $exam_path = 'audiometry';
+        $results = [];
 
-        $form = $this->createForm(ExamAudiometryType::class);
+        $form = $this->createForm(ExamAudiometryType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
             $entityManager->flush();
 
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+//            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
         }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        // Normal abnormal validation
+        if($exam->getLeft500()){
+            $total = $exam->getLeft500()
+                + $exam->getLeft1000()
+                + $exam->getLeft2000()
+                + $exam->getLeft3000()
+                + $exam->getLeft4000()
+                + $exam->getLeft6000();
+            $average = $total / 6;
+            if(29 < $average && $average < 41){
+                $results['leftEar'] = 'Normal';
+            }else{
+                $results['leftEar'] = 'Abnormal';
+            }
+        }
+        if($exam->getRight500()){
+            $total = $exam->getRight500()
+                + $exam->getRight1000()
+                + $exam->getRight2000()
+                + $exam->getRight3000()
+                + $exam->getRight4000()
+                + $exam->getRight6000();
+            $average = $total / 6;
+            if(29 < $average && $average < 41){
+                $results['rightEar'] = 'Normal';
+            }else{
+                $results['rightEar'] = 'Abnormal';
+            }
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -108,6 +141,7 @@ class ExamController extends BaseController
             'exam' => $exam_name,
             'exam_path' => $exam_path,
             'form' => $form,
+            'results' => $results,
             'breadcrumbs' => $this->breadcrumbs
         ]);
 
@@ -118,14 +152,86 @@ class ExamController extends BaseController
     {
         $exam_name = 'Blood Chemistry';
         $exam_path = 'blood_chemistry';
+        $results = [
+        ];
 
-        $form = $this->createForm(ExamBloodChemistryType::class);
+        $form = $this->createForm(ExamBloodChemistryType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
             $entityManager->flush();
 
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+//            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+
+        // Normal abnormal validation
+        if($exam->getGlucose()){
+            $value = $exam->getGlucose();
+            if(85.5 <= $value && $value <= 110){
+                $results['glucose'] = 'normal';
+            }else{
+                $results['glucose'] = 'abnormal';
+            }
+        }
+        if($exam->getBun()){
+            $value = $exam->getBun();
+            if(5.97 <= $value && $value <= 15.9){
+                $results['bun'] = 'normal';
+            }else{
+                $results['bun'] = 'abnormal';
+            }
+        }
+        if($exam->getCreatinine()){
+            $value = $exam->getCreatinine();
+            if(0.63 <= $value && $value <= 1.19){
+                $results['creatinine'] = 'normal';
+            }else{
+                $results['creatinine'] = 'abnormal';
+            }
+        }
+        if($exam->getTotalBilirubin()){
+            $value = $exam->getTotalBilirubin();
+            if(0.23 <= $value && $value <= 1.02){
+                $results['totalBilirubin'] = 'normal';
+            }else{
+                $results['totalBilirubin'] = 'abnormal';
+            }
+        }
+        if($exam->getAst()){
+            $value = $exam->getAst();
+            if(0 <= $value && $value <= 57){
+                $results['ast'] = 'normal';
+            }else{
+                $results['ast'] = 'abnormal';
+            }
+        }
+        if($exam->getAlt()){
+            $value = $exam->getAlt();
+            if(0 <= $value && $value <= 55){
+                $results['alt'] = 'normal';
+            }else{
+                $results['alt'] = 'abnormal';
+            }
+        }
+        if($exam->getTotalCholesterol()){
+            $value = $exam->getTotalCholesterol();
+            if(200 <= $value){
+                $results['totalCholesterol'] = 'normal';
+            }else{
+                $results['totalCholesterol'] = 'abnormal';
+            }
+        }
+
+        if($exam->getTriglycerides()){
+            $value = $exam->getTriglycerides();
+            if(200 <= $value){
+                $results['triglycerides'] = 'normal';
+            }else{
+                $results['triglycerides'] = 'abnormal';
+            }
         }
 
         $medicalHistory = $exam->getMedicalHistory();
@@ -141,6 +247,7 @@ class ExamController extends BaseController
             'exam' => $exam_name,
             'exam_path' => $exam_path,
             'form' => $form,
+            'results' => $results,
             'breadcrumbs' => $this->breadcrumbs
         ]);
     }
@@ -151,17 +258,20 @@ class ExamController extends BaseController
         $exam_name = 'Blood Type';
         $exam_path = 'blood_type';
 
-        $form = $this->createForm(ExamBloodTypeType::class);
+        $form = $this->createForm(ExamBloodTypeType::class, $exam);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(5);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
+
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -183,17 +293,19 @@ class ExamController extends BaseController
         $exam_name = 'CBC';
         $exam_path = 'cbc';
 
-        $form = $this->createForm(ExamCBCType::class);
+        $form = $this->createForm(ExamCBCType::class, $exam);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -215,7 +327,7 @@ class ExamController extends BaseController
         $exam_name = 'Chest X-ray';
         $exam_path = 'chest_xray';
 
-        $form = $this->createForm(ExamChestXrayType::class);
+        $form = $this->createForm(ExamChestXrayType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -247,7 +359,7 @@ class ExamController extends BaseController
         $exam_name = 'Drugs';
         $exam_path = 'drugs';
 
-        $form = $this->createForm(ExamDrugsType::class);
+        $form = $this->createForm(ExamDrugsType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -279,7 +391,7 @@ class ExamController extends BaseController
         $exam_name = 'EKG';
         $exam_path = 'ekg';
 
-        $form = $this->createForm(ExamEKGType::class);
+        $form = $this->createForm(ExamEKGType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -311,7 +423,7 @@ class ExamController extends BaseController
         $exam_name = 'Fecalysis';
         $exam_path = 'fecalysis';
 
-        $form = $this->createForm(ExamFecalysisType::class);
+        $form = $this->createForm(ExamFecalysisType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -343,7 +455,7 @@ class ExamController extends BaseController
         $exam_name = 'HbsAG';
         $exam_path = 'hbsag';
 
-        $form = $this->createForm(ExamHbsAGType::class);
+        $form = $this->createForm(ExamHbsAGType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -375,7 +487,7 @@ class ExamController extends BaseController
         $exam_name = 'HepA';
         $exam_path = 'hepa';
 
-        $form = $this->createForm(ExamHepAType::class);
+        $form = $this->createForm(ExamHepAType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -407,7 +519,7 @@ class ExamController extends BaseController
         $exam_name = 'HIV';
         $exam_path = 'hiv';
 
-        $form = $this->createForm(ExamHIVType::class);
+        $form = $this->createForm(ExamHIVType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -439,7 +551,7 @@ class ExamController extends BaseController
         $exam_name = 'Ova And Parasites';
         $exam_path = 'ova_and_parasites';
 
-        $form = $this->createForm(ExamOvaAndParasitesType::class);
+        $form = $this->createForm(ExamOvaAndParasitesType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -471,7 +583,7 @@ class ExamController extends BaseController
         $exam_name = 'Physical';
         $exam_path = 'physical';
 
-        $form = $this->createForm(ExamPhysicalType::class);
+        $form = $this->createForm(ExamPhysicalType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -503,7 +615,7 @@ class ExamController extends BaseController
         $exam_name = 'Pregnancy Test';
         $exam_path = 'pregnancy_test';
 
-        $form = $this->createForm(ExamPregnancyTestType::class);
+        $form = $this->createForm(ExamPregnancyTestType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -535,7 +647,7 @@ class ExamController extends BaseController
         $exam_name = 'PSA';
         $exam_path = 'psa';
 
-        $form = $this->createForm(ExamPSAType::class);
+        $form = $this->createForm(ExamPSAType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -567,7 +679,7 @@ class ExamController extends BaseController
         $exam_name = 'Psychological';
         $exam_path = 'psychological';
 
-        $form = $this->createForm(ExamPsychologicalType::class);
+        $form = $this->createForm(ExamPsychologicalType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -599,7 +711,7 @@ class ExamController extends BaseController
         $exam_name = 'Riba';
         $exam_path = 'riba';
 
-        $form = $this->createForm(ExamRibaType::class);
+        $form = $this->createForm(ExamRibaType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -631,7 +743,7 @@ class ExamController extends BaseController
         $exam_name = 'RPR';
         $exam_path = 'rpr';
 
-        $form = $this->createForm(ExamRPRType::class);
+        $form = $this->createForm(ExamRPRType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -663,7 +775,7 @@ class ExamController extends BaseController
         $exam_name = 'Stool Culture';
         $exam_path = 'stool_culture';
 
-        $form = $this->createForm(ExamStoolCultureType::class);
+        $form = $this->createForm(ExamStoolCultureType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -695,7 +807,7 @@ class ExamController extends BaseController
         $exam_name = 'Urinalysis';
         $exam_path = 'urinalysis';
 
-        $form = $this->createForm(ExamUrinalysisType::class);
+        $form = $this->createForm(ExamUrinalysisType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -727,7 +839,7 @@ class ExamController extends BaseController
         $exam_name = 'Vaccines';
         $exam_path = 'vaccines';
 
-        $form = $this->createForm(ExamVaccinesType::class);
+        $form = $this->createForm(ExamVaccinesType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -759,7 +871,7 @@ class ExamController extends BaseController
         $exam_name = 'Visual Acuity';
         $exam_path = 'visual_acuity';
 
-        $form = $this->createForm(ExamVisualAcuityType::class);
+        $form = $this->createForm(ExamVisualAcuityType::class, $exam);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
