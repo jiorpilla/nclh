@@ -210,14 +210,18 @@ class AppointmentController extends BaseController
 
         $form = $this->createForm(CsvUploadType::class);
         $form->handleRequest($request);
+        $error_msg = '';
 
         if ($form->isSubmitted() && $form->isValid()) {
             $csvFile = $form->get('csvFile')->getData();
 
             // Load the CSV file into an array
             $csvData = array_map('str_getcsv', file($csvFile->getPathname()));
-            array_shift($csvData); // remove the header.
+            $original_header = array_shift($csvData); // remove the header.
 
+            if(!$this->validateCSVHeadings($original_header)){
+                $error_msg = "Looks like the CSV file is tampered, please re-download the template.";
+            }
             //this part should be updated everytime we change the CSV format.
             $header = [
                 'appointment_date',
@@ -241,109 +245,139 @@ class AppointmentController extends BaseController
                 'is_food_handler',
             ];
 
+            if(empty($error_msg)){
 
-            foreach ($csvData as $row) {
-                $row = array_combine($header, $row); // Combine header and row data
+                foreach ($csvData as $row) {
+                    $row = array_combine($header, $row); // Combine header and row data
 
-                // Check if Crew with the same email, passportNumber, or seamanBookNumber exists
-                $existingCrew = $crewRepository->findExistingCrewByAttributes([
-                    'email' => $row['email'],
-                    'passport_number' => $row['passport_number'],
-                    'seaman_book_number' => $row['seaman_book_number'],
-                ]);
+                    // Check if Crew with the same email, passportNumber, or seamanBookNumber exists
+                    $existingCrew = $crewRepository->findExistingCrewByAttributes([
+                        'email' => $row['email'],
+                        'passport_number' => $row['passport_number'],
+                        'seaman_book_number' => $row['seaman_book_number'],
+                    ]);
 
-                $crew = $existingCrew ?: new Crew();
+                    $crew = $existingCrew ?: new Crew();
 
-                if ($existingCrew instanceof Crew) {
-                    // Crew already exists, update it
-                    $crew->setType(1); // returnee
-                } else {
-                    // Crew does not exist, create a new one
-                    $crew->setType(0); // new
+                    if ($existingCrew instanceof Crew) {
+                        // Crew already exists, update it
+                        $crew->setType(1); // returnee
+                    } else {
+                        // Crew does not exist, create a new one
+                        $crew->setType(0); // new
+                    }
+
+                    $civil_status = [
+                        'single' => 1,
+                        'married' => 2,
+                        'divorced' => 3,
+                        'widowed' => 4,
+                        'widow' => 4,
+                    ];
+
+                    if(in_array(strtolower($row['gender']), ['m', 'male'])){
+                        $gender = Crew::GENDER_MALE;
+                    }
+                    if(in_array(strtolower($row['gender']), ['f', 'female'])){
+                        $gender = Crew::GENDER_FEMALE;
+                    }
+                    $dateOfBirth = DateTime::createFromFormat('m-d-Y', $row['date_of_birth']);
+
+                    // Set Crew entity properties from the CSV data
+                    $crew->setEmail($row['email']);
+                    $crew->setPassportNumber($row['passport_number']);
+                    $crew->setSeamanBookNumber($row['seaman_book_number']);
+                    $crew->setFirstName($row['first_name']);
+                    $crew->setMiddleName($row['middle_name']);
+                    $crew->setLastName($row['last_name']);
+                    $crew->setSuffix($row['suffix']);
+                    $crew->setPhoneNumber($row['phone_number']);
+                    $crew->setCivilStatus($civil_status[strtolower($row['civil_status'])]); //double check the value first.
+                    $crew->setGender($gender);
+                    $crew->setAddress($row['address']);
+                    $crew->setDateOfBirth($dateOfBirth);
+                    $crew->setLocationOfBirth($row['location_of_birth']);
+                    $crew->setCompany($row['company']);
+                    $crew->setShip($row['ship']);
+                    $crew->setPosition($row['position']);
+                    $crew->setNationality($row['nationality']);
+
+                    // Create a new Appointment entity
+                    $appointment = new Appointment();
+                    $appointment->setCrew($crew);
+                    $appointment->setAppointmentDate(DateTime::createFromFormat('m-d-Y', $row['appointment_date']));
+                    $appointment->setStatus(Appointment::STATUS_PENDING);
+
+                    // create a Medical History entity and associate it with the Crew.
+                    $medicalHistory = new MedicalHistory();
+                    $medicalHistory->setStatus(MedicalHistory::STATUS_NOT_STARTED);
+                    $entityManager->persist($medicalHistory);
+
+                    $crew->addMedicalHistory($medicalHistory);
+
+                    // Persist the Crew and Appointment entities
+                    $entityManager->persist($crew);
+                    $entityManager->persist($appointment);
+
+                    $isFoodHandler = filter_var($row['is_food_handler'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+                    // Add exams here
+                    $examsGenerator->createExams($crew, $medicalHistory, $isFoodHandler);
+
+
+                    $recipientEmail = Address::create($crew->getFullName() . ' <' . $crew->getEmail() . '>');
+                    $subject = 'You have an Appointment NCLH on : ' . $appointment->getAppointmentDate()->format('Y-m-d');
+                    $template = 'templates/emails/appointment_registration.html.twig';
+                    $context = [
+                        'full_name' => $crew->getFullName(),
+                        'confirmation_link' => $request->getSchemeAndHttpHost() . '/appointment/confirm-appointment/' . $appointment->getId(),
+                        'appointment_date' => $appointment->getAppointmentDate()->format('Y-m-d'),
+                    ];
+                    //send Email
+                    $emailSender->sendTemplatedEmail($recipientEmail, $subject, $template, $context);
+
                 }
-
-
-
-                $civil_status = [
-                    'single' => 1,
-                    'married' => 2,
-                    'divorced' => 3,
-                    'widowed' => 4,
-                    'widow' => 4,
-                ];
-                
-                if(in_array(strtolower($row['gender']), ['m', 'male'])){
-                    $gender = Crew::GENDER_MALE;
-                }
-                if(in_array(strtolower($row['gender']), ['f', 'female'])){
-                    $gender = Crew::GENDER_FEMALE;
-                }
-                $dateOfBirth = DateTime::createFromFormat('m-d-Y', $row['date_of_birth']);
-
-                // Set Crew entity properties from the CSV data
-                $crew->setEmail($row['email']);
-                $crew->setPassportNumber($row['passport_number']);
-                $crew->setSeamanBookNumber($row['seaman_book_number']);
-                $crew->setFirstName($row['first_name']);
-                $crew->setMiddleName($row['middle_name']);
-                $crew->setLastName($row['last_name']);
-                $crew->setSuffix($row['suffix']);
-                $crew->setPhoneNumber($row['phone_number']);
-                $crew->setCivilStatus($civil_status[strtolower($row['civil_status'])]); //double check the value first.
-                $crew->setGender($gender);
-                $crew->setAddress($row['address']);
-                $crew->setDateOfBirth($dateOfBirth);
-                $crew->setLocationOfBirth($row['location_of_birth']);
-                $crew->setCompany($row['company']);
-                $crew->setShip($row['ship']);
-                $crew->setPosition($row['position']);
-                $crew->setNationality($row['nationality']);
-
-                // Create a new Appointment entity
-                $appointment = new Appointment();
-                $appointment->setCrew($crew);
-                $appointment->setAppointmentDate(DateTime::createFromFormat('m-d-Y', $row['appointment_date']));
-                $appointment->setStatus(Appointment::STATUS_PENDING);
-
-                // create a Medical History entity and associate it with the Crew.
-                $medicalHistory = new MedicalHistory();
-                $medicalHistory->setStatus(MedicalHistory::STATUS_NOT_STARTED);
-                $entityManager->persist($medicalHistory);
-
-                $crew->addMedicalHistory($medicalHistory);
-
-                // Persist the Crew and Appointment entities
-                $entityManager->persist($crew);
-                $entityManager->persist($appointment);
-
-                $isFoodHandler = filter_var($row['is_food_handler'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-                // Add exams here
-                $examsGenerator->createExams($crew, $medicalHistory, $isFoodHandler);
-
-
-                $recipientEmail = Address::create($crew->getFullName() . ' <' . $crew->getEmail() . '>');
-                $subject = 'You have an Appointment NCLH on : ' . $appointment->getAppointmentDate()->format('Y-m-d');
-                $template = 'templates/emails/appointment_registration.html.twig';
-                $context = [
-                    'full_name' => $crew->getFullName(),
-                    'confirmation_link' => $request->getSchemeAndHttpHost() . '/appointment/confirm-appointment/' . $appointment->getId(),
-                    'appointment_date' => $appointment->getAppointmentDate()->format('Y-m-d'),
-                ];
-                //send Email
-                $emailSender->sendTemplatedEmail($recipientEmail, $subject, $template, $context);
-
                 $entityManager->flush();
+                return $this->redirectToRoute('appointment_main');
             }
 
 
             // you can send confirmation emails or perform other actions after creating the appointments
 
-//            return $this->redirectToRoute('appointment_main');
         }
 
         return $this->render('appointment/bulk_create.html.twig', [
             'form' => $form,
+            'error_msg' => $error_msg,
             'breadcrumbs' => $this->breadcrumbs,
         ]);
+    }
+
+    public function validateCSVHeadings(array $csv_headers): bool
+    {
+        $original_headers = [
+            "Appointment Date (mm/dd/yyyy)",
+            "Email",
+            "Passport number",
+            "Seaman book number",
+            "First name",
+            "Middle name",
+            "Last name",
+            "Suffix",
+            "Phone number",
+            "Civil status",
+            "Gender",
+            "Address",
+            "Date of birth",
+            "Location of birth",
+            "Company",
+            "Ship",
+            "Position",
+            "Nationality",
+            "Food Handler"
+        ];
+        if (empty(array_diff($csv_headers, $original_headers)) && empty(array_diff($original_headers, $csv_headers))) {
+            return true;
+        }
+        return false;
     }
 }
