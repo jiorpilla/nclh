@@ -9,6 +9,7 @@ use App\Entity\MedicalHistory;
 use App\Form\Type\ExamFieldStatusType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,20 +17,19 @@ class ExamCBCType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('leukocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('erythrocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('hemoglobin', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('hematocrit', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('meanCorpuscularVolume', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('meanCorpuscularHemoglobin', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('neutrophils', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('lymphocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('monocytes', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('eosinophils', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('basophils', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
-            ->add('plateletCount', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('leukocytes', TextType::class)
+            ->add('erythrocytes', TextType::class)
+            ->add('hemoglobin', TextType::class)
+            ->add('hematocrit', TextType::class)
+            ->add('meanCorpuscularVolume', TextType::class)
+            ->add('meanCorpuscularHemoglobin', TextType::class)
+            ->add('neutrophils', TextType::class)
+            ->add('lymphocytes', TextType::class)
+            ->add('monocytes', TextType::class)
+            ->add('eosinophils', TextType::class)
+            ->add('basophils', TextType::class)
+            ->add('plateletCount', TextType::class)
         ;
     }
 
