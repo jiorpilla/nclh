@@ -26,7 +26,7 @@
         <div class="widget-body">
             <div class="appointment-status status-bar-wrapper d-flex justify-content-between">
                 {% for key, item in status %}
-                <label for="status{{ key }}" {% if key == medicalHistory.status %}  class="active" {% endif %}>
+                <label for="status{{ key }}" {% if key == test.status %}  class="active" {% endif %}>
                     <span>{{ item }}</span>
                     <input type="radio" id="status{{ key }}" name="status" value="{{ item }}"/>
                 </label>
