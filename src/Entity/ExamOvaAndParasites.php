@@ -10,4 +10,19 @@ use Doctrine\ORM\Mapping as ORM;
 class ExamOvaAndParasites
 {
     use CommonMedicalExamEntityTrait;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $result = null;
+
+    public function getResult(): ?string
+    {
+        return $this->result;
+    }
+
+    public function setResult(?string $result): static
+    {
+        $this->result = $result;
+
+        return $this;
+    }
 }
