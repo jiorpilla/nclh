@@ -7,14 +7,15 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ExamFieldStatusType extends AbstractType
+class ExamPositiveNegativeInvalidType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'choices' => [
-                'Normal' => 'normal',
-                'Abnormal' => 'abnormal',
+                'Postive' => 'positive',
+                'Negative' => 'negative',
+                'Invalid' => 'invalid',
             ],
             'expanded' => false,
             'multiple' => false,

@@ -98,7 +98,7 @@ class ExamController extends BaseController
             $entityManager->persist($exam);
             $entityManager->flush();
 
-//            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+//            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
         }
 
         $medicalHistory = $exam->getMedicalHistory();
@@ -174,7 +174,7 @@ class ExamController extends BaseController
             $entityManager->persist($exam);
             $entityManager->flush();
 
-//            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
+//            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
         }
 
 
@@ -477,14 +477,17 @@ class ExamController extends BaseController
         $form = $this->createForm(ExamDrugsType::class, $exam);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
-
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
+
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -500,7 +503,7 @@ class ExamController extends BaseController
         ]);
     }
 
-    #[Route('/ekg/{id}/', name: 'drugs')]
+    #[Route('/ekg/{id}/', name: 'ekg')]
     public function ExamEKG(ExamEKG $exam, Request $request, EntityManagerInterface $entityManager)
     {
         $exam_name = 'EKG';
@@ -509,14 +512,16 @@ class ExamController extends BaseController
         $form = $this->createForm(ExamEKGType::class, $exam);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
-
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -541,14 +546,16 @@ class ExamController extends BaseController
         $form = $this->createForm(ExamFecalysisType::class, $exam);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
-
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -571,16 +578,19 @@ class ExamController extends BaseController
         $exam_path = 'hbsag';
 
         $form = $this->createForm(ExamHbsAGType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -603,16 +613,19 @@ class ExamController extends BaseController
         $exam_path = 'hepa';
 
         $form = $this->createForm(ExamHepAType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -635,16 +648,19 @@ class ExamController extends BaseController
         $exam_path = 'hiv';
 
         $form = $this->createForm(ExamHIVType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -667,16 +683,19 @@ class ExamController extends BaseController
         $exam_path = 'ova_and_parasites';
 
         $form = $this->createForm(ExamOvaAndParasitesType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -748,16 +767,19 @@ class ExamController extends BaseController
         $exam_path = 'pregnancy_test';
 
         $form = $this->createForm(ExamPregnancyTestType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -780,16 +802,19 @@ class ExamController extends BaseController
         $exam_path = 'psa';
 
         $form = $this->createForm(ExamPSAType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -812,16 +837,19 @@ class ExamController extends BaseController
         $exam_path = 'psychological';
 
         $form = $this->createForm(ExamPsychologicalType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -844,16 +872,19 @@ class ExamController extends BaseController
         $exam_path = 'riba';
 
         $form = $this->createForm(ExamRibaType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -876,16 +907,19 @@ class ExamController extends BaseController
         $exam_path = 'rpr';
 
         $form = $this->createForm(ExamRPRType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -909,16 +943,18 @@ class ExamController extends BaseController
 
         $form = $this->createForm(ExamStoolCultureType::class, $exam);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
-
+        
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
+        
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
         return $this->render('medical_exam/index.html.twig', [
@@ -942,14 +978,16 @@ class ExamController extends BaseController
         $form = $this->createForm(ExamUrinalysisType::class, $exam);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
-
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -972,16 +1010,19 @@ class ExamController extends BaseController
         $exam_path = 'vaccines';
 
         $form = $this->createForm(ExamVaccinesType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 
@@ -1004,16 +1045,19 @@ class ExamController extends BaseController
         $exam_path = 'visual_acuity';
 
         $form = $this->createForm(ExamVisualAcuityType::class, $exam);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('crew_index', [], Response::HTTP_SEE_OTHER);
-        }
 
         $medicalHistory = $exam->getMedicalHistory();
         $crew = $medicalHistory->getCrew();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $exam->setStatus(3);
+            $entityManager->persist($exam);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('medical_history_detail', ['id' => $medicalHistory->getId()]);
+        }
 
         $this->createBreadcrumbs($crew, $medicalHistory, $exam_name);
 

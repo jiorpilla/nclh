@@ -7,17 +7,20 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ExamFieldStatusType extends AbstractType
+class ExamUrineAppearanceType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'choices' => [
-                'Normal' => 'normal',
-                'Abnormal' => 'abnormal',
+                'Clear' => 'clear',
+                'Cloudy' => 'cloudy',
+                'Viscid' => 'viscid',
+                'Thick' => 'thick',
             ],
-            'expanded' => false,
+            'expanded' => true,
             'multiple' => false,
+            'label_attr' => ['class' => 'radio-inline']
         ]);
     }
 

@@ -7,6 +7,7 @@ use App\Entity\ExamPSA;
 use App\Entity\Findings;
 use App\Entity\MedicalHistory;
 use App\Form\Type\ExamFieldStatusType;
+use App\Form\Type\ExamPositiveNegativeInvalidType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +19,7 @@ class ExamPSAType extends AbstractType
     {
         $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('psa', ExamFieldStatusType::class, options: ['row_attr' => $row_attr])
+            ->add('psa', ExamPositiveNegativeInvalidType::class, options: ['row_attr' => $row_attr])
         ;
     }
 

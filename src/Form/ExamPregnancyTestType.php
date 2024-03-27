@@ -7,6 +7,7 @@ use App\Entity\ExamPregnancyTest;
 use App\Entity\Findings;
 use App\Entity\MedicalHistory;
 use App\Form\Type\ExamFieldPositiveType;
+use App\Form\Type\ExamPositiveNegativeInvalidType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,9 +17,8 @@ class ExamPregnancyTestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $row_attr = ['class' => 'mb-3 col-md-6'];
         $builder
-            ->add('pregnancyTest', ExamFieldPositiveType::class, options: ['row_attr' => $row_attr])
+            ->add('pregnancyTest', ExamPositiveNegativeInvalidType::class)
         ;
     }
 

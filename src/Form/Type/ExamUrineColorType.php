@@ -7,17 +7,22 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ExamFieldStatusType extends AbstractType
+class ExamUrineColorType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'choices' => [
-                'Normal' => 'normal',
-                'Abnormal' => 'abnormal',
+                'Clear' => 'clear',
+                'Light Yellow' => 'light-yellow',
+                'Dark Yellow' => 'dark-yellow',
+                'Amber' => 'amber',
+                'Brown' => 'brown',
+                'Red' => 'red',
             ],
-            'expanded' => false,
+            'expanded' => true,
             'multiple' => false,
+            'label_attr' => ['class' => 'radio-inline']
         ]);
     }
 
